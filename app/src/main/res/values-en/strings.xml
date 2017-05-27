@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">lipper</string>
+    <string name="app_title">lipper</string>
+    <string name="login">Login</string>
+    <string name="login_e">SIGN IN</string>
+    <string name="go_to_dribbble_login">Go to dribbble login</string>
+    <string name="need_login">You need to be authorized in dribbble\n prior to use this app</string>
+    <string name="sign_in_now">SIGN IN NOW</string>
+    <string name="under_login">Login.......</string>
+    <string name="login_failed">Login failed</string>
+    <string name="login_expire">Login expires, please re-login</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="user">User</string>
+    <string name="retry_hint">Failed to load.Please click on the screen to reload</string>
+    <string name="no_data">no data</string>
+    <string name="failed_to_load">Failed to load</string>
+
+    <string name="small_with_info">small with info</string>
+    <string name="large_with_info">large with info</string>
+    <string name="only_image">only image</string>
+
+    <string name="apply_filters">APPLY FILTERS</string>
+
+    <string-array name="home_page">
+        <item>Home</item>
+        <item>Search</item>
+        <item>User</item>
+    </string-array>
+    <string-array name="sort">
+        <item >Popular</item>
+        <item >Recent</item>
+        <item >Viewed</item>
+        <item >Commented</item>
+    </string-array>
+    <string-array name="type">
+        <item >Shots</item>
+        <item >Debuts</item>
+        <item >Team</item>
+        <item >Playoffs</item>
+        <item >GIFs</item>
+        <item >Attachments</item>
+        <item>Rebound</item>
+    </string-array>
+    <string-array name="time">
+        <item >Now</item>
+        <item >Week</item>
+        <item >Month</item>
+        <item >Year</item>
+        <item >All</item>
+    </string-array>
+</resources>

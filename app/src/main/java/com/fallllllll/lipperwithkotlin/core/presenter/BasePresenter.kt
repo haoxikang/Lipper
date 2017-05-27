@@ -1,0 +1,21 @@
+package com.fallllllll.lipperwithkotlin.core.presenter
+
+import io.reactivex.disposables.CompositeDisposable
+import kotlin.properties.Delegates
+
+/**
+ * Created by fallllllll on 2017/5/27/027.
+ * GitHub :  https://github.com/348476129/Lipper
+ */
+abstract class BasePresenter : Contract.Presenter {
+    protected var compositeDisposable: CompositeDisposable by Delegates.notNull()
+
+    override fun attach() {
+        compositeDisposable = CompositeDisposable()
+    }
+
+    override fun detach() {
+        compositeDisposable.dispose()
+
+    }
+}

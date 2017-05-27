@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_arrow_back_black_24dp">
+    <target
+        android:animation="@animator/search_icon_anim_return"
+        android:name="ic_return"/>
+</animated-vector>

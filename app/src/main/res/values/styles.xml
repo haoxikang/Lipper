@@ -1,11 +1,63 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/secondary_text</item>
+
+    </style>
+
+    <style name="translucentNavigationBarTheme" parent="AppTheme">
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="ShotsDetailTheme" parent="AppTheme">
+        <item name="android:windowSharedElementEnterTransition">@transition/changebounds</item>
+        <item name="android:windowSharedElementExitTransition">@transition/changebounds</item>
+    </style>
+
+    <style name="SearchActivityTheme" parent="AppTheme">
+        　　
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@color/searchWindowColor</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/changebounds</item>
+        <item name="android:windowSharedElementExitTransition">@transition/changebounds</item>
+    </style>
+
+    <style name="ShotsActivityTheme" parent="AppTheme">
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="homeCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/primary</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    <style name="LipperOverlay" parent="@android:style/ThemeOverlay.Material.ActionBar">
+        <!-- Used to theme dark elements in light themed screens.
+             Extend the material dark Action Bar overlay as this contains text styling. -->
+    </style>
+
+    <style name="SearchViewTheme" parent="LipperOverlay">
+        <item name="colorControlActivated">?android:colorAccent</item>
+        <item name="android:searchViewStyle">@style/LipperSearchView</item>
+    </style>
+
+    <style name="LipperSearchView" parent="android:style/Widget.Material.SearchView">
+        <item name="android:searchIcon">@android:color/transparent</item>
+        <item name="android:queryBackground">@android:color/transparent</item>
+        <item name="android:submitBackground">@android:color/transparent</item>
     </style>
 
 </resources>
