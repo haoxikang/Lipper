@@ -15,7 +15,7 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    @Test
+    @org.junit.Test
     @Throws(Exception::class)
     fun useAppContext() {
         // Context of the app under test.

@@ -1,6 +1,6 @@
 package com.fallllllll.lipperwithkotlin
 
-import com.fallllllll.lipperwithkotlin.rxjava.RxBus
+import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import org.junit.Test
 
 /**
@@ -8,8 +8,7 @@ import org.junit.Test
  * GitHub :  https://github.com/348476129/Lipper
  */
 class KotlinTest {
-    @Test
-    fun kotlinTest(){
+    @Test fun kotlinTest(){
         RxBus.bus
         RxBus.bus
     }
