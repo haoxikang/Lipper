@@ -8,7 +8,7 @@ import kotlin.properties.Delegates
  * GitHub :  https://github.com/348476129/Lipper
  */
 abstract class BasePresenter : Contract.Presenter {
-    protected var compositeDisposable: CompositeDisposable by Delegates.notNull()
+    protected lateinit var compositeDisposable: CompositeDisposable
 
     override fun attach() {
         compositeDisposable = CompositeDisposable()

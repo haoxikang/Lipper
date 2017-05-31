@@ -5,9 +5,6 @@ package com.fallllllll.lipper.core.constants
  * GitHub :  https://github.com/348476129/Lipper
  */
 
-class SettingConstants {
-    companion object{
-        val canAutoPlayGif = true
-    }
 
-}
+const    val canAutoPlayGif = true
+

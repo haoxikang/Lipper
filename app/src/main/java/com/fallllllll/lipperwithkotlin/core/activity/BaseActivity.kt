@@ -11,8 +11,8 @@ import com.fallllllll.lipperwithkotlin.core.presenter.PresenterLifecycleHelper
  * GitHub :  https://github.com/348476129/Lipper
  */
 abstract class BaseActivity : AppCompatActivity(), Contract.BaseView {
-    private var baseViewUtils: BaseViewUtils? = null
-    protected var presenterLifecycleHelper: PresenterLifecycleHelper? = null
+    private lateinit var baseViewUtils: BaseViewUtils
+    protected lateinit var presenterLifecycleHelper: PresenterLifecycleHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,19 +27,19 @@ abstract class BaseActivity : AppCompatActivity(), Contract.BaseView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenterLifecycleHelper?.destroyPresenter()
+        presenterLifecycleHelper.destroyPresenter()
     }
 
     override fun showToast(s: String) {
-        baseViewUtils?.showToast(s)
+        baseViewUtils.showToast(s)
     }
 
     override fun showTopDialog(s: String) {
-        baseViewUtils?.showTopDialog(s)
+        baseViewUtils.showTopDialog(s)
     }
 
     override fun hideAllTopDialog() {
-        baseViewUtils?.hideAllTopDialog()
+        baseViewUtils.hideAllTopDialog()
     }
 
     override fun showErrorDialog(s: String) {

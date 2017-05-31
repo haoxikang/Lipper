@@ -4,37 +4,32 @@ package com.fallllllll.lipperwithkotlin.core.constants
  * Created by fallllllll on 2017/5/27/027.
  * GitHub :  https://github.com/348476129/Lipper
  */
-class AppConstants {
-    companion object {
-        val PAGE_COUNT = "30"
-        val ANIMATED = "animated"
-        val ATTACHMENTS = "attachments"
-        val DEBUTS = "debuts"
-        val PLAYOFFS = "playoffs"
-        val REBOUNDS = "rebounds"
-        val TEAMS = "teams"
-        val SHOTS: String = ""
+const val PAGE_COUNT = "30"
+const val ANIMATED = "animated"
+const val ATTACHMENTS = "attachments"
+const val DEBUTS = "debuts"
+const val PLAYOFFS = "playoffs"
+const val REBOUNDS = "rebounds"
+const val TEAMS = "teams"
+const val SHOTS = ""
 
-        val WEEK = "week"
-        val MONTH = "month"
-        val YEAR = "year"
-        val EVER = "ever"
-        val NOW: String = ""
+const val WEEK = "week"
+const val MONTH = "month"
+const val YEAR = "year"
+const val EVER = "ever"
+const val NOW = ""
 
 
-        val COMENTS = "comments"
-        val RECENT = "recent"
-        val VIEWS = "views"
-        val POPULARITY: String = ""
+const val COMENTS = "comments"
+const val RECENT = "recent"
+const val VIEWS = "views"
+const val POPULARITY = ""
 
-        val SHOTS_LAYOUT_LARGE = "shots_layout_large"
-        val SHOTS_LAYOUT_SMALL = "shots_layout_small"
-        val SHOTS_LAYOUT_ONLY_IMAGE = "shots_layout_only_image"
+const val SHOTS_LAYOUT_LARGE = "shots_layout_large"
+const val SHOTS_LAYOUT_SMALL = "shots_layout_small"
+const val SHOTS_LAYOUT_ONLY_IMAGE = "shots_layout_only_image"
 
-        val DATA_TANK_HOME_FILTER_KEY = "data_tank_home_filter_key"
-        val SHOTS_HOME_LAYOUT_KEY = "shots_home_layout_key"
+const val DATA_TANK_HOME_FILTER_KEY = "data_tank_home_filter_key"
+const val SHOTS_HOME_LAYOUT_KEY = "shots_home_layout_key"
 
-        val USER_IMAGE_SIZE = 50
-        val DIALOG_ERROR_SHOW_TIME=2000L
-    }
-}
+const val USER_IMAGE_SIZE = 50

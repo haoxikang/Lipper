@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/shots_root_layout"
+        android:fitsSystemWindows="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            app:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:id="@+id/shots_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/search_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:outlineProvider="bounds"
+                android:transitionGroup="false"
+                android:theme="@style/SearchViewTheme">
+
+
+                <SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:actionBarSize"
+                    android:iconifiedByDefault="false"
+                    android:transitionGroup="true" />
+
+                <!-- wrapping layout needed for the touch ripple -->
+                <FrameLayout
+                    android:id="@+id/searchback_container"
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent"
+                    android:paddingStart="4dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageButton
+                        android:transitionName="@string/transition_search_back"
+                        android:id="@+id/searchback"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:src="@drawable/search_icon" />
+
+                </FrameLayout>
+
+            </FrameLayout>
+        </android.support.design.widget.AppBarLayout>
+        <FrameLayout
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>

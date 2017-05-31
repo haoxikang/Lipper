@@ -3,7 +3,7 @@ package com.fallllllll.lipperwithkotlin.core
 import android.app.Activity
 import android.content.Context
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.constants.AppConstants
+import com.fallllllll.lipperwithkotlin.core.constants.DIALOG_ERROR_SHOW_TIME
 import com.tapadoo.alerter.Alert
 import com.tapadoo.alerter.Alerter
 import org.jetbrains.anko.toast
@@ -26,7 +26,7 @@ class BaseViewUtils(val context: Context) {
         alert = Alerter.create(context as Activity)
                 .setText(s)
                 .setBackgroundColor(R.color.accent)
-                .setDuration(AppConstants.DIALOG_ERROR_SHOW_TIME)
+                .setDuration(DIALOG_ERROR_SHOW_TIME)
                 .show()
     }
 
