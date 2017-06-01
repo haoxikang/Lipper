@@ -1,0 +1,33 @@
+package com.fallllllll.lipperwithkotlin.data.databean
+
+data class User(
+	val commentsReceivedCount: Int? = null,
+	val bucketsUrl: String? = null,
+	val followingUrl: String? = null,
+	val bio: String? = null,
+	val projectsCount: Int? = null,
+	val createdAt: String? = null,
+	val type: String? = null,
+	val updatedAt: String? = null,
+	val shotsUrl: String? = null,
+	val links: Links? = null,
+	val id: Int? = null,
+	val teamsCount: Int? = null,
+	val canUploadShot: Boolean? = null,
+	val likesUrl: String? = null,
+	val likesReceivedCount: Int? = null,
+	val pro: Boolean? = null,
+	val followersUrl: String? = null,
+	val bucketsCount: Int? = null,
+	val followingsCount: Int? = null,
+	val reboundsReceivedCount: Int? = null,
+	val likesCount: Int? = null,
+	val teamsUrl: String? = null,
+	val avatarUrl: String? = null,
+	val htmlUrl: String? = null,
+	val followersCount: Int? = null,
+	val name: String? = null,
+	val location: String? = null,
+	val shotsCount: Int? = null,
+	val username: String? = null
+)

@@ -9,7 +9,6 @@ import org.junit.Test
  */
 class KotlinTest {
     @Test fun kotlinTest(){
-        RxBus.bus
-        RxBus.bus
+
     }
 }
