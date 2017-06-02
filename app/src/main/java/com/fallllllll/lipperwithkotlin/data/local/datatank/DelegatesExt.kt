@@ -7,8 +7,8 @@ import android.content.Context
  * GitHub :  https://github.com/348476129/Lipper
  */
 object DelegatesExt {
-    fun <T : Any> valuePreference(context: Context, name:String, default:T)
-    = ValuePreference(context, name, default)
-    fun <T : Any> dataClassPreference(context: Context, name:String, default:T,clazz: Class<T>)
-            = DataClassPreference(context, name, default, clazz)
+    fun <T : Any> valuePreference( name:String, default:T)
+    = ValuePreference(name, default)
+    fun <T : Any> dataClassPreference(name:String, default:T,clazz: Class<T>)
+            = DataClassPreference(name, default, clazz)
 }

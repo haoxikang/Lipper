@@ -43,6 +43,6 @@ abstract class BaseActivity : AppCompatActivity(), Contract.BaseView {
     }
 
     override fun showErrorDialog(s: String) {
-        baseViewUtils?.showErrorDialog(s)
+        baseViewUtils.showErrorDialog(s)
     }
 }

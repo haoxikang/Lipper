@@ -24,12 +24,12 @@ class RxBus private constructor() {
 
 
     companion object {
-        fun get(): RxBus {
-            return Inner.rxBus
-        }
+        fun get(): RxBus = Inner.rxBus
+
     }
 
     private object Inner {
         val rxBus = RxBus()
+
     }
 }

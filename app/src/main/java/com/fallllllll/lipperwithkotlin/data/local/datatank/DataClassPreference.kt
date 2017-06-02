@@ -11,12 +11,12 @@ import kotlin.reflect.KProperty
  * Created by fallllllll on 2017/6/1/001.
  * GitHub :  https://github.com/348476129/Lipper
  */
-class DataClassPreference<T>(val context: Context, val name: String, val default: T, val clazz: Class<T>) : ReadWriteProperty<Any?, T> {
+class DataClassPreference<T>(val name: String, val default: T, val clazz: Class<T>) : ReadWriteProperty<Any?, T> {
 
     val gson: Gson by lazy { AppApplication.instance.gson }
 
     val prefs: SharedPreferences by lazy {
-        context.getSharedPreferences("default", Context.MODE_PRIVATE)
+        AppApplication.instance.getSharedPreferences("default", Context.MODE_PRIVATE)
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
