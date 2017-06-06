@@ -1,6 +1,5 @@
 package com.fallllllll.lipperwithkotlin
 
-import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import org.junit.Test
 
 /**
