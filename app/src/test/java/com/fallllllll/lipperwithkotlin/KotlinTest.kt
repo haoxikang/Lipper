@@ -7,7 +7,9 @@ import org.junit.Test
  * GitHub :  https://github.com/348476129/Lipper
  */
 class KotlinTest {
-    @Test fun kotlinTest(){
+    infix  fun  String.你猜(s:String)=this+s
 
+    @Test fun kotlinTest(){
+        print("aaa" 你猜  "bbb")
     }
 }
