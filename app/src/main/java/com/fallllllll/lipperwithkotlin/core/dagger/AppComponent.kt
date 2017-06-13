@@ -1,5 +1,8 @@
 package com.fallllllll.lipperwithkotlin.core.dagger
 
+import android.content.Context
+import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
+import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import dagger.Component
 
 /**
@@ -8,4 +11,10 @@ import dagger.Component
  */
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
+    fun drbbbleModel(): DribbbleModel
+
+    fun oauthModel(): OauthModel
+
+    fun context(): Context
+
 }

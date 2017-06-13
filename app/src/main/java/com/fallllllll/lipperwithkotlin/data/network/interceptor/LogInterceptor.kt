@@ -17,8 +17,8 @@ class LogInterceptor : Interceptor {
         val response = chain.proceed(chain.request())
         val endTime = System.currentTimeMillis()
         val duration = endTime - startTime
-        val mediaType = response.body().contentType()
-        val content = response.body().string()
+        val mediaType = response.body()?.contentType()
+        val content = response.body()?.string()
         LogUtils.d("\n")
         LogUtils.d("---------------Start----------------")
         LogUtils.d("|" + request.toString())

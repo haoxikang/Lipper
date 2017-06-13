@@ -1,6 +1,10 @@
 package com.fallllllll.lipperwithkotlin.core.dagger
 
 import android.content.Context
+import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
+import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
+import com.fallllllll.lipperwithkotlin.data.network.model.impl.DribbbleModelImpl
+import com.fallllllll.lipperwithkotlin.data.network.model.impl.OauthModelImpl
 import dagger.Module
 import dagger.Provides
 
@@ -12,7 +16,11 @@ import dagger.Provides
 class AppModule(val context: Context) {
 
     @Provides
-    fun provideDribbbleModel(){
+    fun provideDribbbleModel():DribbbleModel = DribbbleModelImpl.getInstance()
 
-    }
+    @Provides
+    fun provideOauthModel() :OauthModel= OauthModelImpl.getInstance()
+
+    @Provides
+    fun provideContext() = context
 }

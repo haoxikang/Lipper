@@ -9,7 +9,7 @@ import android.text.TextUtils
 fun String.numberToK(string: String): String {
     var s = string
     if (!string.isEmpty() && TextUtils.isDigitsOnly(string)) {
-        var a = string as Int
+        val a = Integer.parseInt(string)
         if (a > 999) {
             s = (a / 1000).toString() + "k"
         }

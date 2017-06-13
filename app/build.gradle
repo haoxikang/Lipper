@@ -20,7 +20,6 @@ android {
         }
     }
 }
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -49,10 +48,9 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxkotlin:2.0.3'
     //Dagger
-    compile 'com.google.dagger:dagger:2.9'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
-    //储存相关
-    compile 'com.jakewharton:disklrucache:2.0.2'
+    compile 'com.google.dagger:dagger:2.11'
+   kapt "com.google.dagger:dagger-compiler:2.11"
+
     //unit tests
     androidTestCompile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'
