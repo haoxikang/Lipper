@@ -11,7 +11,7 @@
         android:paddingRight="32dp"
         android:paddingTop="24dp">
 
-        <com.fallllllll.lipper.ui.view.widget.MultiLineRadioGroup
+        <com.fallllllll.lipperwithkotlin.ui.view.widget.MultiLineRadioGroup
             android:id="@+id/timeGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,9 +75,9 @@
                 android:layout_height="2px"
                 android:layout_marginBottom="12dp"
                 android:background="@color/divider" />
-        </com.fallllllll.lipper.ui.view.widget.MultiLineRadioGroup>
+        </com.fallllllll.lipperwithkotlin.ui.view.widget.MultiLineRadioGroup>
 
-        <com.fallllllll.lipper.ui.view.widget.MultiLineRadioGroup
+        <com.fallllllll.lipperwithkotlin.ui.view.widget.MultiLineRadioGroup
             android:id="@+id/sortGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,9 +133,9 @@
                 android:layout_height="2px"
                 android:layout_marginBottom="12dp"
                 android:background="@color/divider" />
-        </com.fallllllll.lipper.ui.view.widget.MultiLineRadioGroup>
+        </com.fallllllll.lipperwithkotlin.ui.view.widget.MultiLineRadioGroup>
 
-        <com.fallllllll.lipper.ui.view.widget.MultiLineRadioGroup
+        <com.fallllllll.lipperwithkotlin.ui.view.widget.MultiLineRadioGroup
             android:id="@+id/typeGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -216,5 +216,5 @@
                 android:layout_weight="1"
                 android:tag="rebounds"
                 android:theme="@style/homeCheckBox" />
-        </com.fallllllll.lipper.ui.view.widget.MultiLineRadioGroup>
+        </com.fallllllll.lipperwithkotlin.ui.view.widget.MultiLineRadioGroup>
     </LinearLayout>
