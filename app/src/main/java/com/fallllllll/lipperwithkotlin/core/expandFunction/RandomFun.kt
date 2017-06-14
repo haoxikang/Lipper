@@ -1,4 +1,4 @@
-package com.fallllllll.lipperwithkotlin.utils
+package com.fallllllll.lipperwithkotlin.core.expandFunction
 
 import java.util.*
 
@@ -8,7 +8,7 @@ import java.util.*
  */
 fun getRandomString(length: Int): String {
     val base = "abcdefghijklmnopqrstuvwxyz0123456789"
-    val random = Random()
+    val random = java.util.Random()
     val sb = StringBuilder()
     for (i in 0..length) {
         val number = random.nextInt(base.length)

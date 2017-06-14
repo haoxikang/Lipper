@@ -1,4 +1,4 @@
-package com.fallllllll.lipperwithkotlin.utils
+package com.fallllllll.lipperwithkotlin.core.expandFunction
 
 import com.fallllllll.lipperwithkotlin.core.exception.APIException
 import com.fallllllll.lipperwithkotlin.core.exception.HTTP_ERROR

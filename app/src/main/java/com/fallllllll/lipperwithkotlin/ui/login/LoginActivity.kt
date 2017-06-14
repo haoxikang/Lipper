@@ -1,7 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
 import android.animation.ValueAnimator
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.View
@@ -10,7 +9,7 @@ import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
-import com.fallllllll.lipperwithkotlin.utils.setImageTranslucent
+import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivityForResult
 import javax.inject.Inject

@@ -7,8 +7,8 @@ import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.constants.CALLBACK_URL
 import com.fallllllll.lipperwithkotlin.core.constants.CLIENT_ID
 import com.fallllllll.lipperwithkotlin.core.constants.LOGIN_URL
-import com.fallllllll.lipperwithkotlin.utils.getRandomString
-import com.fallllllll.lipperwithkotlin.utils.setOrdinaryToolbar
+import com.fallllllll.lipperwithkotlin.core.expandFunction.getRandomString
+import com.fallllllll.lipperwithkotlin.core.expandFunction.setOrdinaryToolbar
 import kotlinx.android.synthetic.main.activity_login_web.*
 
 /**

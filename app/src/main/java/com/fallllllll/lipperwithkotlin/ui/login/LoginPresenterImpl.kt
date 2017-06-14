@@ -8,8 +8,8 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
-import com.fallllllll.lipperwithkotlin.utils.commonChange
-import com.fallllllll.lipperwithkotlin.utils.checkToken
+import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
+import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import org.jetbrains.anko.doAsync
