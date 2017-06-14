@@ -12,10 +12,10 @@ import com.google.gson.annotations.SerializedName
  * GitHub :  https://github.com/348476129/Lipper
  */
 class UserToken {
-    var access_token: String by DelegatesExt.valuePreference(KEY_USER_TOKEN, "")
-    var token_type: String by DelegatesExt.valuePreference(KEY_TOKEN_TYPE, "")
-    var scope: String by DelegatesExt.valuePreference(KEY_TOKEN_SCOPE, "")
-    var created_at: Int by DelegatesExt.valuePreference(KEY_CREATED_AT, -1)
+    val access_token: String?=null
+    val token_type: String?=null
+    val scope: String ?=null
+    val created_at: Int ?=null
 }
 
 data class LipperUser(

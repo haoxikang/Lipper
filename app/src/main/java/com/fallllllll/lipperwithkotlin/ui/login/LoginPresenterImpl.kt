@@ -7,7 +7,8 @@ import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
-import com.fallllllll.lipperwithkotlin.utils.change
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
+import com.fallllllll.lipperwithkotlin.utils.commonChange
 import com.fallllllll.lipperwithkotlin.utils.checkToken
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -23,9 +24,12 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         loginView.setButtonEnable(false)
         loginView.showTopDialog(loginView.getString(R.string.under_login))
         val disposable = oauthModel.getToken(code)
-                .map { UserManager.get().updateToken(it) }
-                .flatMap { dribbbleModel.getUserInfo() }
-                .change()
+                .flatMap {
+                    LogUtils.d(it.access_token?:"")
+                    UserManager.get().updateToken(it)
+                    dribbbleModel.getUserInfo()
+                }
+                .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
         compositeDisposable.add(disposable)
     }
@@ -41,6 +45,25 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
             updateUserData()
         } else {
             loginView.goWebActivityForResult()
+        }
+    }
+
+    private fun updateUserData(): Disposable {
+        loginView.setButtonEnable(false)
+        loginView.showTopDialog(loginView.getString(R.string.under_login))
+        val disposable = dribbbleModel.getUserInfo()
+                .commonChange()
+                .subscribeBy({ next(it) }, { error(it) })
+        return disposable
+    }
+
+
+    private fun finishActivity() {
+        doAsync {
+            Thread.sleep(ACTIVITY_TRANSITIONS_TIME.toLong())
+            uiThread {
+                loginView.finishActivity()
+            }
         }
     }
 
@@ -62,24 +85,4 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
             loginView.showErrorDialog(loginView.getString(R.string.login_failed))
         }
     }
-
-    private fun updateUserData(): Disposable {
-        loginView.setButtonEnable(false)
-        loginView.showTopDialog(loginView.getString(R.string.under_login))
-        val disposable = dribbbleModel.getUserInfo()
-                .change()
-                .subscribeBy({ next(it) }, { error(it) })
-        return disposable
-    }
-
-
-    private fun finishActivity() {
-        doAsync {
-            Thread.sleep(ACTIVITY_TRANSITIONS_TIME.toLong())
-            uiThread {
-                loginView.finishActivity()
-            }
-        }
-    }
-
 }

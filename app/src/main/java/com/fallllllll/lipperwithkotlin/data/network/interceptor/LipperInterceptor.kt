@@ -17,7 +17,7 @@ class LipperInterceptor : Interceptor {
         LogUtils.i(original.url().url().toString())
         val requestBuilder: Request.Builder = original.newBuilder()
         if (UserManager.get().isLogin()) {
-            requestBuilder.header("Authorization", "Bearer " + UserManager.get().userToken.access_token)
+            requestBuilder.header("Authorization", "Bearer " + UserManager.get().access_token)
         } else {
             requestBuilder.header("Authorization", "Bearer " + CLIENT_ACCESS_TOKEN)
         }

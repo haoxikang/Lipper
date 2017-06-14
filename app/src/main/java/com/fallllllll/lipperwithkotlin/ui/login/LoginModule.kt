@@ -10,6 +10,8 @@ import dagger.Provides
  * GitHub :  https://github.com/348476129/Lipper
  */
 @Module
-interface LoginModule {
-
+ class LoginModule(val loginView: LoginContract.LoginView) {
+    @Provides
+    fun provideLoginPresenter(dribbbleModel: DribbbleModel, oauthModel: OauthModel):
+            LoginContract.LoginPresenter = LoginPresenterImpl(dribbbleModel, oauthModel, loginView)
 }

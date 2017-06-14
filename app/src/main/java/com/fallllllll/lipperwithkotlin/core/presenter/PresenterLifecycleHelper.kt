@@ -8,6 +8,7 @@ class PresenterLifecycleHelper {
     private val presenterList: ArrayList<Contract.Presenter> = ArrayList()
     fun addPresenter(presenter: Contract.Presenter) {
         presenterList.add(presenter)
+        presenter.attach()
     }
 
     fun onPresenterCreate() {
@@ -17,6 +18,4 @@ class PresenterLifecycleHelper {
     fun destroyPresenter() {
         presenterList.forEach { it.detach() }
     }
-
-
 }

@@ -34,7 +34,7 @@ class BaseViewUtils(val context: Context) {
         hideAllTopDialog()
         alert = Alerter.create(context as Activity)
                 .setText(s)
-                .setDuration(Long.MAX_VALUE)
+                .setDuration(Int.MAX_VALUE.toLong())
                 .setBackgroundColor(R.color.primary)
                 .setOnClickListener {}
                 .show()
