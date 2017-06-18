@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/home_popup_large_layout"
+                    android:id="@+id/homePopupLargeLayout"
                     android:background="?android:attr/selectableItemBackground"
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp"
@@ -46,7 +46,7 @@
                     android:paddingRight="24dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:id="@+id/home_popup_small_layout"
+                    android:id="@+id/homePopupSmallLayout"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/home_popup_only_image_layout"
+                    android:id="@+id/homePopupOnlyImageLayout"
                     android:background="?android:attr/selectableItemBackground"
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp"
