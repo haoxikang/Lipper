@@ -8,9 +8,10 @@ import android.view.animation.OvershootInterpolator
 import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
+import com.fallllllll.lipperwithkotlin.ui.main.home.ShotsActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import javax.inject.Inject
 
@@ -39,11 +40,13 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun goMainActivity() {
-        LogUtils.d("进去")
+
+        startActivity<ShotsActivity>()
+
     }
 
     override fun finishActivity() {
-     //   finish()
+        finish()
     }
 
     override fun initViewAndData() {
@@ -59,13 +62,16 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
         loginButton.setOnClickListener { loginPresenter.onLoginClick() }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == LOGIN_REQUEST_CODE) {
             when (resultCode) {
                 RESULT_OK -> {
-                    val b = data.extras
-                    val url = b.getString(LOGIN_CODE_KEY)
-                    loginPresenter.getUserData(Uri.parse(url).getQueryParameter("code"))
+                    if (data != null) {
+                        val b = data.extras
+                        val url = b.getString(LOGIN_CODE_KEY)
+                        loginPresenter.getUserData(Uri.parse(url).getQueryParameter("code"))
+                    }
+
                 }
             }
         }
@@ -88,8 +94,8 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
             val YLoginButton = loginButton.height + rlLayout.height - distanceLoginButton * value / maxValue
 
 
-            rotateButton.setY(YRotateButton)
-            loginButton.setY(YLoginButton)
+            rotateButton.y = YRotateButton
+            loginButton.y = YLoginButton
 
             if (value == maxValue) {
                 valueAnimator.removeAllUpdateListeners()

@@ -54,6 +54,17 @@ class ShotsListAdapter(var shotsListLayoutType: String) : RecyclerView.Adapter<S
             } else {
                 itemView.itemShotReboundImage.visibility = VISIBLE
             }
+
+            if (!shotBean.images?.hidpi.isNullOrEmpty()&&!shotBean.animated){
+                itemView.itemShotImage.showImage(shotBean.images?.hidpi?:"",false)
+            }else{
+                itemView.itemShotImage.showImage(shotBean.images?.normal?:"",false)
+            }
+            if (shotBean.animated) {
+                itemView. itemShotGIFImage.visibility = View.VISIBLE
+            } else {
+                itemView. itemShotGIFImage.visibility = View.GONE
+            }
             itemView.itemShotCommentsNum.text = shotBean.commentsCount?.numberToK()
             itemView.itemShotViewsCount.text = shotBean.viewsCount?.numberToK()
             itemView.itemShotLikeCount.text = shotBean.likesCount?.numberToK()

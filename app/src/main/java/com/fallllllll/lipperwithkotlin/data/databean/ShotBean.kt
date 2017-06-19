@@ -73,7 +73,7 @@ data class ShotBean(
         val width: Int? = null,
 
         @field:SerializedName("animated")
-        val animated: Boolean? = null,
+        val animated: Boolean = false,
 
         @field:SerializedName("attachments_count")
         val attachmentsCount: Int? = null,

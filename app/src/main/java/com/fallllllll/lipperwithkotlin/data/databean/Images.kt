@@ -10,7 +10,7 @@ data class Images(
 	val normal: String? = null,
 
 	@field:SerializedName("hidpi")
-	val hidpi: Any? = null,
+	val hidpi: String? = null,
 
 	@field:SerializedName("teaser")
 	val teaser: String? = null

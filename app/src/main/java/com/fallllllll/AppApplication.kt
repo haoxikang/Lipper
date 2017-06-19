@@ -1,6 +1,8 @@
 package com.fallllllll
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.imagepipeline.core.ImagePipelineConfig
 import com.fallllllll.lipperwithkotlin.core.dagger.AppComponent
 import com.fallllllll.lipperwithkotlin.core.dagger.AppModule
 import com.fallllllll.lipperwithkotlin.core.dagger.DaggerAppComponent
@@ -27,5 +29,12 @@ class AppApplication :Application(){
         super.onCreate()
         instance=this
         gson=Gson()
+        initFresco()
+    }
+
+    private fun initFresco() {
+        val config = ImagePipelineConfig.newBuilder(this)
+                .setDownsampleEnabled(true).build()
+        Fresco.initialize(this, config)
     }
 }

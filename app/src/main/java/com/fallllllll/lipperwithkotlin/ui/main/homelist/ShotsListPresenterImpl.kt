@@ -48,7 +48,7 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
         disposeLoadNext()
         loadNextDisposable = model.getShot(type, time, sort, page.toString())
                 .commonChange()
-                .subscribeBy({ this::loadNextPageFinish }, { onLoadNextError() })
+                .subscribeBy({ loadNextPageFinish(it) }, { onLoadNextError() })
     }
 
     override fun detach() {
@@ -94,12 +94,8 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
     }
 
     private fun setListLayout(currentLayoutType: String) {
-        if (this.currentLayoutType == currentLayoutType) {
-            if ((this.currentLayoutType == SHOTS_LAYOUT_SMALL || this.currentLayoutType == SHOTS_LAYOUT_ONLY_IMAGE) && (currentLayoutType == SHOTS_LAYOUT_SMALL || currentLayoutType == SHOTS_LAYOUT_ONLY_IMAGE)) {
-                shotsListView.changeItemViewLayout(currentLayoutType)
-            } else {
-                shotsListView.changeRecyclerViewLayout(currentLayoutType)
-            }
+        if (this.currentLayoutType != currentLayoutType) {
+            shotsListView.changeRecyclerViewLayout(currentLayoutType)
             this.currentLayoutType = currentLayoutType
         }
     }

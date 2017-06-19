@@ -33,7 +33,7 @@ class HomeItemLayoutPopWindow(val activity: Activity) : PopupWindow() {
     }
 
     fun showPopUpWindow(parent: View) {
-        if (isShowing) showAsDropDown(parent, 0, 0, END) else dismiss()
+        if (!isShowing) showAsDropDown(parent, 0, 0, END) else dismiss()
     }
 
     private fun initListener(view: View) {
@@ -43,9 +43,11 @@ class HomeItemLayoutPopWindow(val activity: Activity) : PopupWindow() {
         }
         view.homePopupSmallLayout.setOnClickListener {
             RxBus.get().post(ShotsMenuLayoutEvent(SHOTS_LAYOUT_SMALL))
+            dismiss()
         }
         view.homePopupOnlyImageLayout.setOnClickListener {
             RxBus.get().post(ShotsMenuLayoutEvent(SHOTS_LAYOUT_ONLY_IMAGE))
+            dismiss()
         }
     }
 }
