@@ -19,6 +19,13 @@
         <activity
             android:name=".ui.login.LoginWebActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.main.home.ShotsActivity"
+            android:theme="@style/ShotsActivityTheme" />
+        <!--<activity android:name=".ui.shotbeandetail.ShotBeanDetailActivity"-->
+            <!--android:theme="@style/ShotsDetailTheme"/>-->
+        <!--<activity android:name=".ui.search.SearchActivity"-->
+            <!--android:theme="@style/SearchActivityTheme"/>-->
     </application>
 
 </manifest>

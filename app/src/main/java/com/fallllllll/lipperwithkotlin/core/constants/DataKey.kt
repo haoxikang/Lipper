@@ -12,3 +12,5 @@ const val KEY_CREATED_AT = "key_created_at"
 const val KEY_FILTER_TIME = "key_filter_time"
 const val KEY_FILTER_SORT = "key_filter_sort"
 const val KEY_FILTER_TYPE = "key_filter_type"
+
+const val KEY_LAYOUT_TYPE = "key_layout_type"
