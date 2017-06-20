@@ -9,6 +9,4 @@ import android.content.Context
 object DelegatesExt {
     fun <T : Any> valuePreference( name:String, default:T)
     = ValuePreference(name, default)
-    fun <T : Any> dataClassPreference(name:String, default:T,clazz: Class<T>)
-            = DataClassPreference(name, default, clazz)
 }
