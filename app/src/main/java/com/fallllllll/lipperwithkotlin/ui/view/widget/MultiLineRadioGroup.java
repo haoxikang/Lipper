@@ -106,8 +106,8 @@ public class MultiLineRadioGroup extends LinearLayout {
      *
      * @param child
      */
-    private List<RadioButton> getAllRadioButton(View child) {
-        List<RadioButton> btns = new ArrayList<RadioButton>();
+    public List<RadioButton> getAllRadioButton(View child) {
+        List<RadioButton> btns = new ArrayList<>();
         if (child instanceof RadioButton) {
             btns.add((RadioButton) child);
         } else if (child instanceof ViewGroup) {

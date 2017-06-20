@@ -11,7 +11,9 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.*
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEvent
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
 import kotlinx.android.synthetic.main.fragment_home_bottom_sheet.*
+import kotlinx.android.synthetic.main.fragment_home_bottom_sheet.view.*
 
 /**
  * Created by 康颢曦 on 2017/6/14.
@@ -43,8 +45,8 @@ class HomeBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home_bottom_sheet, container, false)
         initData()
-        initView()
-        initListener()
+        initView(view)
+        initListener(view)
         return view
     }
 
@@ -55,32 +57,34 @@ class HomeBottomSheetFragment : BottomSheetDialogFragment() {
         radioStatus = HomeBottomSheetFragmentStatus(context, time, sort, type)
     }
 
-    private fun initView() {
+    private fun initView(view: View) {
 
-        for (i in 0..timeGroup.childCount) {
-            val timeRadio = timeGroup.getChildAt(i) as RadioButton
-            timeRadio.text = radioStatus.listTime[0]
+
+
+        for (i in view.timeGroup.getAllRadioButton(view.timeGroup).indices) {
+            val timeRadio = view.timeGroup.getAllRadioButton(view.timeGroup)[i]
+            timeRadio.text = radioStatus.listTime?.get(i)
             timeRadio.isChecked = (timeRadio.tag == radioStatus.time)
         }
 
-        for (i in 0..sortGroup.childCount) {
-            val sortRadio = sortGroup.getChildAt(i) as RadioButton
-            sortRadio.text = radioStatus.listTime[0]
+        for (i in view.sortGroup.getAllRadioButton(view.sortGroup).indices) {
+            val sortRadio = view.sortGroup.getAllRadioButton(view.sortGroup)[i]
+            sortRadio.text = radioStatus.listSort?.get(i)
             sortRadio.isChecked = (sortRadio.tag == radioStatus.sort)
         }
 
-        for (i in 0..typeGroup.childCount) {
-            val typeRadio = typeGroup.getChildAt(i) as RadioButton
-            typeRadio.text = radioStatus.listTime[0]
+        for (i in view.typeGroup.getAllRadioButton(view.typeGroup).indices){
+            val typeRadio = view.typeGroup.getAllRadioButton(view.typeGroup)[i]
+            typeRadio.text = radioStatus.listType?.get(i)
             typeRadio.isChecked = (typeRadio.tag == radioStatus.type)
         }
 
     }
 
-    private fun initListener() {
-        timeGroup.setOnCheckedChangeListener({ group, checkedId -> time = group.findViewById(checkedId).tag as String })
-        typeGroup.setOnCheckedChangeListener({ group, checkedId -> type = group.findViewById(checkedId).tag as String })
-        sortGroup.setOnCheckedChangeListener({ group, checkedId -> sort = group.findViewById(checkedId).tag as String })
+    private fun initListener(view: View) {
+        view.timeGroup.setOnCheckedChangeListener({ group, checkedId -> time = group.findViewById(checkedId).tag as String })
+        view.typeGroup.setOnCheckedChangeListener({ group, checkedId -> type = group.findViewById(checkedId).tag as String })
+        view.sortGroup.setOnCheckedChangeListener({ group, checkedId -> sort = group.findViewById(checkedId).tag as String })
     }
 
     override fun onDismiss(dialog: DialogInterface?) {

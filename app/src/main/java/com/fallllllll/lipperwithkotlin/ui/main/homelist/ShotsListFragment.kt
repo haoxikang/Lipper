@@ -25,7 +25,7 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
     lateinit var shotsListPresenter: ShotsListContract.ShotsListPresenter
 
     private val shotsListAdapter by lazy {
-        ShotsListAdapter(SHOTS_LAYOUT_LARGE)
+        ShotsListAdapter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,30 +47,36 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
 
     override fun getAdapter(): RecyclerView.Adapter<*> = shotsListAdapter
 
-    override fun getLayoutManager(): RecyclerView.LayoutManager = GridLayoutManager(context, 1)
+    override fun getLayoutManager(): RecyclerView.LayoutManager {
+        if (shotsListAdapter.currentLayoutType == SHOTS_LAYOUT_LARGE) {
+         return   GridLayoutManager(context, 1)
+        } else {
+     return       GridLayoutManager(context, 2)
+        }
+
+    }
 
     override fun getPresenter(): GeneralContract.Presenter = shotsListPresenter as GeneralContract.Presenter
 
     override fun changeRecyclerViewLayout(layoutType: String) {
         val gridLayoutManager = recyclerView.layoutManager as GridLayoutManager
-        when(layoutType){
-           SHOTS_LAYOUT_LARGE->{
-               shotsListAdapter.shotsListLayoutType = SHOTS_LAYOUT_LARGE
-               gridLayoutManager.spanCount=1
-           }
-            SHOTS_LAYOUT_ONLY_IMAGE->{
-                shotsListAdapter.shotsListLayoutType = SHOTS_LAYOUT_ONLY_IMAGE
-                gridLayoutManager.spanCount =2
+        when (layoutType) {
+            SHOTS_LAYOUT_LARGE -> {
+                gridLayoutManager.spanCount = 1
+                shotsListAdapter.changeCurrentLayoutType(layoutType)
             }
-            SHOTS_LAYOUT_SMALL->{
-                shotsListAdapter.shotsListLayoutType = SHOTS_LAYOUT_SMALL
+            SHOTS_LAYOUT_ONLY_IMAGE -> {
                 gridLayoutManager.spanCount = 2
+                shotsListAdapter.changeCurrentLayoutType(layoutType)
             }
+            SHOTS_LAYOUT_SMALL -> {
+                gridLayoutManager.spanCount = 2
+                shotsListAdapter.changeCurrentLayoutType(layoutType)
 
+            }
         }
-        shotsListAdapter.notifyItemRangeChanged(0,shotsListAdapter.itemCount)
-    }
 
+    }
 
 
     override fun setErrorViewVisible(isShow: Boolean) {

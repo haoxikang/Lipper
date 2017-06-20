@@ -17,7 +17,8 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
 
-    var currentLayoutType: String by DelegatesExt.valuePreference(KEY_LAYOUT_TYPE, SHOTS_LAYOUT_LARGE)
+
+
     var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
     var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
     var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
@@ -94,10 +95,10 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
     }
 
     private fun setListLayout(currentLayoutType: String) {
-        if (this.currentLayoutType != currentLayoutType) {
+
             shotsListView.changeRecyclerViewLayout(currentLayoutType)
-            this.currentLayoutType = currentLayoutType
-        }
+
+
     }
 
 }

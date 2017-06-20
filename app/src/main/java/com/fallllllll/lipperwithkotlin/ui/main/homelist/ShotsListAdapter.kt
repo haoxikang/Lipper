@@ -10,27 +10,37 @@ import android.view.ViewGroup
 import com.fall.generalrecyclerviewfragment.GeneralAdapter
 import com.fall.generalrecyclerviewfragment.GeneralDataController
 import com.fallllllll.lipperwithkotlin.R
+import com.fallllllll.lipperwithkotlin.core.constants.KEY_LAYOUT_TYPE
 import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_LARGE
 import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_ONLY_IMAGE
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
 import com.fallllllll.lipperwithkotlin.core.expandFunction.numberToK
 import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import kotlinx.android.synthetic.main.item_view_shots.view.*
 
 /**
  * Created by fallllllll on 2017/6/19/019.
  * GitHub :  https://github.com/348476129/Lipper
  */
-class ShotsListAdapter(var shotsListLayoutType: String) : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHolder>(), GeneralAdapter {
+class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHolder>(), GeneralAdapter {
+    var currentLayoutType: String by DelegatesExt.valuePreference(KEY_LAYOUT_TYPE, SHOTS_LAYOUT_LARGE)
     private lateinit var context: Context
     var itemClick: (ShotBean) -> Unit = {}
     private val stringGeneralDataController: GeneralDataController<ShotBean> by lazy {
         GeneralDataController<ShotBean>(this)
     }
 
+    fun changeCurrentLayoutType(type: String) {
+        if (currentLayoutType != type) {
+            currentLayoutType = type
+            notifyItemRangeChanged(0,itemCount)
+        }
+    }
+
     override fun onBindViewHolder(holder: ShotsListViewHolder, position: Int) {
-        val shotBean = stringGeneralDataController.datas.get(position)
+        val shotBean = stringGeneralDataController.datas[position]
         holder.bindView(shotBean)
     }
 
@@ -55,21 +65,21 @@ class ShotsListAdapter(var shotsListLayoutType: String) : RecyclerView.Adapter<S
                 itemView.itemShotReboundImage.visibility = VISIBLE
             }
 
-            if (!shotBean.images?.hidpi.isNullOrEmpty()&&!shotBean.animated){
-                itemView.itemShotImage.showImage(shotBean.images?.hidpi?:"",false)
-            }else{
-                itemView.itemShotImage.showImage(shotBean.images?.normal?:"",false)
+            if (!shotBean.images?.hidpi.isNullOrEmpty() && !shotBean.animated) {
+                itemView.itemShotImage.showImage(shotBean.images?.hidpi ?: "", false)
+            } else {
+                itemView.itemShotImage.showImage(shotBean.images?.normal ?: "", false)
             }
             if (shotBean.animated) {
-                itemView. itemShotGIFImage.visibility = View.VISIBLE
+                itemView.itemShotGIFImage.visibility = View.VISIBLE
             } else {
-                itemView. itemShotGIFImage.visibility = View.GONE
+                itemView.itemShotGIFImage.visibility = View.GONE
             }
             itemView.itemShotCommentsNum.text = shotBean.commentsCount?.numberToK()
             itemView.itemShotViewsCount.text = shotBean.viewsCount?.numberToK()
             itemView.itemShotLikeCount.text = shotBean.likesCount?.numberToK()
 
-            if (shotsListLayoutType == SHOTS_LAYOUT_LARGE) {
+            if (currentLayoutType == SHOTS_LAYOUT_LARGE) {
                 itemView.itemShotLikeCount.setPadding(context.resources.getDimension(R.dimen.shots_item_padding_left_large).toInt(), 0, 0, 0)
                 itemView.itemShotReplay.setPadding(context.resources.getDimension(R.dimen.shots_item_padding_left_large).toInt(), 0, 0, 0)
                 itemView.itemShotCommentsLayout.visibility = View.VISIBLE
@@ -84,7 +94,7 @@ class ShotsListAdapter(var shotsListLayoutType: String) : RecyclerView.Adapter<S
                 itemView.itemShotViewsText.visibility = View.GONE
                 itemView.itemShotLikeText.visibility = View.GONE
             }
-            if (shotsListLayoutType == SHOTS_LAYOUT_ONLY_IMAGE) {
+            if (currentLayoutType == SHOTS_LAYOUT_ONLY_IMAGE) {
                 itemView.itemShotTopLayout.visibility = View.GONE
                 itemView.itemShotBottomLayout.visibility = View.GONE
                 itemView.itemShotCardView.cardElevation = context.resources.getDimension(R.dimen.shots_card_elevation_image)
