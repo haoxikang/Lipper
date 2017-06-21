@@ -14,6 +14,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by fallllllll on 2017/6/13/013.
@@ -29,6 +30,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
                     UserManager.get().updateToken(it)
                     dribbbleModel.getUserInfo()
                 }
+                .delay(2,TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
         compositeDisposable.add(disposable)
@@ -52,6 +54,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         loginView.setButtonEnable(false)
         loginView.showTopDialog(loginView.getString(R.string.under_login))
         val disposable = dribbbleModel.getUserInfo()
+                .delay(2,TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
         return disposable
@@ -59,12 +62,9 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
 
 
     private fun finishActivity() {
-        doAsync {
-            Thread.sleep(ACTIVITY_TRANSITIONS_TIME.toLong())
-            uiThread {
+
                 loginView.finishActivity()
-            }
-        }
+
     }
 
 
