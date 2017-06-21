@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.webkit.*
 import com.fallllllll.lipperwithkotlin.R
@@ -32,6 +33,7 @@ class LoginWebActivity : BaseActivity() {
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
         val settings = webView.settings
         settings.javaScriptEnabled = true

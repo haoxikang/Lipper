@@ -1,19 +1,16 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.constants.ACTIVITY_TRANSITIONS_TIME
+import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
+import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
-import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
-import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import java.util.concurrent.TimeUnit
 
 /**

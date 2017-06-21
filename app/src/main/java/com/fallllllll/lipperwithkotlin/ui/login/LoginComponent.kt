@@ -9,5 +9,5 @@ import dagger.Component
  */
 @Component(dependencies =arrayOf( AppComponent::class),modules = arrayOf(LoginModule::class))
 interface LoginComponent {
-    fun inject(loginActivity:LoginActivity);
+    fun inject(loginActivity:LoginActivity)
 }

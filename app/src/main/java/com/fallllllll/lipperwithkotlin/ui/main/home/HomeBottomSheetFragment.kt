@@ -6,18 +6,15 @@ import android.support.design.widget.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.constants.*
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEvent
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
-import kotlinx.android.synthetic.main.fragment_home_bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_home_bottom_sheet.view.*
 
 /**
- * Created by 康颢曦 on 2017/6/14.
- */
+* Created by 康颢曦 on 2017/6/14.
+* GitHub :  https://github.com/348476129/LipperWithKotlin
+*/
 
 
 const val TIME_KEY = "HomeBottomSheetFragment.time"

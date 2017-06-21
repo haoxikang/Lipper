@@ -8,15 +8,15 @@ import com.fallllllll.lipperwithkotlin.data.network.model.impl.DribbbleModelImpl
 import com.fallllllll.lipperwithkotlin.data.network.model.impl.OauthModelImpl
 import com.fallllllll.lipperwithkotlin.utils.RxSchedulersOverrideRule
 import com.fallllllll.lipperwithkotlin.utils.initUser
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.anyOrNull
+import com.nhaarman.mockito_kotlin.verify
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.*
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import org.robolectric.annotation.Config
@@ -52,14 +52,14 @@ class LoginPresenterImplTest {
         oauthModel = OauthModelImpl.getInstance()
         loginPresenter = LoginPresenterImpl(dribbbleModel,oauthModel,mockLoginView)
         loginPresenter.attach()
-        `when`(mockLoginView.getString(anyInt())).thenReturn("test")
+   //     `when`(mockLoginView.getString(anyInt())).thenReturn("test")
     }
 
     @Test
     fun onPresenterCreate() {
         loginPresenter.onPresenterCreate()
-        verify(mockLoginView).setButtonEnable(anyBoolean())
-        verify(mockLoginView).showTopDialog("test")
+        verify(mockLoginView).setButtonEnable(any<Boolean>())
+        verify(mockLoginView).showTopDialog(anyOrNull())
         verify(mockLoginView).hideAllTopDialog()
         verify(mockLoginView).goMainActivity()
         verify(mockLoginView).finishActivity()
