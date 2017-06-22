@@ -20,7 +20,7 @@ class RxBus private constructor() {
     fun post(any: Any) = bus.onNext(any)
 
 
-    fun <T> toFlowable(clazz: Class<T>) = bus.ofType(clazz)
+    inline fun <reified T> toFlowable() = bus.ofType(T::class.java)
 
 
     companion object {

@@ -70,20 +70,20 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
         }
     }
 
-    private fun initRxBus() {
+     fun initRxBus() {
         subscribeLayoutEvent()
         subscribeListFilterEvent()
     }
 
     private fun subscribeLayoutEvent() {
-        compositeDisposable.add(RxBus.get().toFlowable(ShotsMenuLayoutEvent::class.java)
+        compositeDisposable.add(RxBus.get().toFlowable<ShotsMenuLayoutEvent>()
                 .subscribeBy({
                     setListLayout(it.shotLayoutType)
                 }, { subscribeLayoutEvent() }))
     }
 
     private fun subscribeListFilterEvent() {
-        compositeDisposable.add(RxBus.get().toFlowable(ShotsListFilterEvent::class.java)
+        compositeDisposable.add(RxBus.get().toFlowable<ShotsListFilterEvent>()
                 .subscribeBy({
                     stopLoading()
                     time = it.time
@@ -94,7 +94,7 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
                 }, { subscribeListFilterEvent() }))
     }
 
-    private fun setListLayout(currentLayoutType: String) {
+     fun setListLayout(currentLayoutType: String) {
 
             shotsListView.changeRecyclerViewLayout(currentLayoutType)
 

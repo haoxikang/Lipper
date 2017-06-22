@@ -15,13 +15,13 @@ import kotlinx.android.synthetic.main.activity_shots.*
  */
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
-    private val popWindow by lazy {
+     val popWindow by lazy {
         HomeItemLayoutPopWindow(this)
     }
     private val shotsListFragment by lazy {
         ShotsListFragment()
     }
-    private var homeBottomSheetFragment: HomeBottomSheetFragment? = null
+     var homeBottomSheetFragment: HomeBottomSheetFragment? = null
     private var presenter: ShotsActivityContract.ShotsActivityPresenter? = null
 
     fun setPresenter(presenter: ShotsActivityContract.ShotsActivityPresenter) {
