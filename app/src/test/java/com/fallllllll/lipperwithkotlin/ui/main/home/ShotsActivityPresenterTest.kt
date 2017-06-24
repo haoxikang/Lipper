@@ -5,7 +5,9 @@ import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
 import com.fallllllll.lipperwithkotlin.core.constants.*
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
+import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
+import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.Assert.assertEquals
@@ -24,9 +26,13 @@ import org.robolectric.shadows.ShadowLog
 @Config(constants = BuildConfig::class)
 class ShotsActivityPresenterTest {
 
-
+    lateinit var  presenter :ShotsActivityContract.ShotsActivityPresenter
+    val view = mock<ShotsActivityContract.ShotsActivityView>()
     @Before
     fun beforeTest() {
+        initUser()
+         presenter = ShotsActivityPresenter(view)
+        presenter.attach()
         var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
         var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
         var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
@@ -35,12 +41,18 @@ class ShotsActivityPresenterTest {
         type = DEBUTS
     }
 
+
+    @Test
+    fun testOnCreate() {
+        presenter.onPresenterCreate()
+        verify(view).showUserUI(any())
+    }
+
     @Test
     fun showBottomSheet() {
 
-        val view = mock<ShotsActivityContract.ShotsActivityView>()
-        val presenter = ShotsActivityPresenter(view)
-        presenter.attach()
+
+
         presenter.showBottomSheet()
 
         val argumentCaptor = argumentCaptor<HomeListFilterBean>()

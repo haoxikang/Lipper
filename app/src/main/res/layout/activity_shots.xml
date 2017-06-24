@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/shots_root_layout"
-        android:fitsSystemWindows="false"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shots_root_layout"
+    android:fitsSystemWindows="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -24,11 +23,19 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    app:roundWithOverlayColor="@color/primary"
+                    app:actualImageScaleType="centerCrop"
+                    app:roundAsCircle="true"
+                    android:id="@+id/userIcon"
+                    android:layout_marginStart="18dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
         <FrameLayout
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"/>
     </android.support.design.widget.CoordinatorLayout>

@@ -19,5 +19,6 @@ interface LoginContract {
     interface LoginPresenter : Contract.Presenter {
         fun getUserData(code: String)
         fun onLoginClick()
+        fun goShotsActivity()
     }
 }

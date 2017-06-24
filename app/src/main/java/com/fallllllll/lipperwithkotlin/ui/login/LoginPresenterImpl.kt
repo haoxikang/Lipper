@@ -18,6 +18,10 @@ import java.util.concurrent.TimeUnit
  * GitHub :  https://github.com/348476129/Lipper
  */
 class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: OauthModel, val loginView: LoginContract.LoginView) : BasePresenter(), LoginContract.LoginPresenter {
+    override fun goShotsActivity() {
+        loginView.goMainActivity()
+    }
+
     override fun getUserData(code: String) {
         loginView.setButtonEnable(false)
         loginView.showTopDialog(loginView.getString(R.string.under_login))

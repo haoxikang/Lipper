@@ -18,7 +18,6 @@ import io.reactivex.rxkotlin.subscribeBy
 class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
 
 
-
     var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
     var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
     var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
@@ -70,7 +69,7 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
         }
     }
 
-     fun initRxBus() {
+    fun initRxBus() {
         subscribeLayoutEvent()
         subscribeListFilterEvent()
     }
@@ -86,17 +85,18 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
         compositeDisposable.add(RxBus.get().toFlowable<ShotsListFilterEvent>()
                 .subscribeBy({
                     stopLoading()
-                    time = it.time
-                    sort = it.sort
-                    type = it.type
-                    checkAndRefreshData()
-
+                    if (time != it.time || sort != it.sort || type != it.type) {
+                        time = it.time
+                        sort = it.sort
+                        type = it.type
+                        checkAndRefreshData()
+                    }
                 }, { subscribeListFilterEvent() }))
     }
 
-     fun setListLayout(currentLayoutType: String) {
+    fun setListLayout(currentLayoutType: String) {
 
-            shotsListView.changeRecyclerViewLayout(currentLayoutType)
+        shotsListView.changeRecyclerViewLayout(currentLayoutType)
 
 
     }

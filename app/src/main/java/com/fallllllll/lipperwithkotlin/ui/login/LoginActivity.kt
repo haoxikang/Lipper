@@ -60,6 +60,7 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     override fun initListeners() {
         loginButton.setOnClickListener { loginPresenter.onLoginClick() }
+        rotateButton.setOnClickListener { loginPresenter.goShotsActivity() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

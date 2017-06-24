@@ -13,6 +13,7 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEv
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsMenuLayoutEvent
 import com.fallllllll.lipperwithkotlin.data.network.model.impl.DribbbleModelImpl
 import com.fallllllll.lipperwithkotlin.utils.RxSchedulersOverrideRule
+import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.spy
@@ -40,6 +41,7 @@ class ShotsListPresenterImplTest {
     lateinit var presenter: ShotsListPresenterImpl
     @Before
     fun beforeTest() {
+        initUser()
         presenter = spy(ShotsListPresenterImpl(DribbbleModelImpl.getInstance(), shotsListView))
         presenter.attach()
         presenter.setView(view)

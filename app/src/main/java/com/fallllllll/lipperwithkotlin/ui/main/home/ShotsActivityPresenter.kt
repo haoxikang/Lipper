@@ -5,7 +5,9 @@ import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TIME
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TYPE
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
+import com.fallllllll.lipperwithkotlin.data.databean.User
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 
 /**
  * Created by 康颢曦 on 2017/6/18.
@@ -21,6 +23,11 @@ class ShotsActivityPresenter(val view: ShotsActivityContract.ShotsActivityView) 
     }
 
     override fun onPresenterCreate() {
+
+        if (UserManager.get().isLogin()){
+            view.showUserUI(UserManager.get().lipperUser)
+        }
+
     }
 
 }

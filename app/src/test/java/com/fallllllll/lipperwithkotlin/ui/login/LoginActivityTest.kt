@@ -54,6 +54,12 @@ class LoginActivityTest {
     }
 
     @Test
+    fun testVisitorLogin(){
+        loginActivity.rotateButton.callOnClick()
+        verify(loginPresenter).goShotsActivity()
+    }
+
+    @Test
     fun testLoginActivity(){
         verify(loginPresenter).attach()
         verify(loginPresenter).onPresenterCreate()

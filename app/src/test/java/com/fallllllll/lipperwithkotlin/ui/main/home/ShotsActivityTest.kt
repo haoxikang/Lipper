@@ -4,9 +4,12 @@ import com.fallllllll.lipperwithkotlin.BuildConfig
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.utils.getActivityController
+import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
 import com.nhaarman.mockito_kotlin.verify
+import kotlinx.android.synthetic.main.activity_shots.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -30,6 +33,7 @@ class ShotsActivityTest {
     val presenter = mock<ShotsActivityContract.ShotsActivityPresenter>()
     @Before
     fun beforeTest() {
+        initUser()
         shotsActivity.setPresenter(presenter)
         controller.create()
         verify(presenter).attach()
@@ -50,6 +54,11 @@ class ShotsActivityTest {
         val layoutMenu = RoboMenuItem(R.id.shots_menu_layout)
         shotsActivity.onOptionsItemSelected(layoutMenu)
         assertTrue(shotsActivity.popWindow.isShowing)
+    }
+    @Test
+    fun testShowUserUI(){
+        shotsActivity.showUserUI(UserManager.get().lipperUser)
+      assertNotEquals( shotsActivity.shotsToolbar.title,shotsActivity.getString(R.string.app_name))
     }
 
 }
