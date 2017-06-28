@@ -12,6 +12,8 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.hideIme
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.core.expandFunction.showIme
 import kotlinx.android.synthetic.main.activity_search.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 
 /**
@@ -20,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_search.*
  */
 class SearchActivity : BaseActivity() {
 
-
+private val animationDuration=300L
     override fun initViewAndData() {
         setContentView(R.layout.activity_search)
         setImageTranslucent()
@@ -32,8 +34,7 @@ class SearchActivity : BaseActivity() {
             checkAndBack()
         }
         searchback.setOnClickListener {
-            searchback.background = null
-            finishAfterTransition()
+            checkAndBack()
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -64,7 +65,7 @@ class SearchActivity : BaseActivity() {
         val animator = ViewAnimationUtils.createCircularReveal(view, view.width / 2, 0, 0f,
                 Math.hypot(view.width.toDouble(), view.height.toDouble()).toFloat())
         animator.interpolator = AccelerateInterpolator()
-        animator.duration = 300
+        animator.duration = animationDuration
         view.visibility = View.VISIBLE
         animator.start()
     }
@@ -73,29 +74,21 @@ class SearchActivity : BaseActivity() {
         val animator = ViewAnimationUtils.createCircularReveal(view, view.width / 2, 0,
                 Math.hypot(view.width.toDouble(), view.height.toDouble()).toFloat(), 0f)
         animator.interpolator = AccelerateInterpolator()
-        animator.duration = 300
+        animator.duration = animationDuration
         animator.start()
-        animator.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationRepeat(animation: Animator?) {
-            }
-
-            override fun onAnimationEnd(animation: Animator?) {
+        doAsync {
+            Thread.sleep(animationDuration)
+            uiThread {
                 view.visibility = View.INVISIBLE
             }
-
-            override fun onAnimationCancel(animation: Animator?) {
-            }
-
-            override fun onAnimationStart(animation: Animator?) {
-            }
-
-        })
+        }
     }
 
     private fun checkAndBack() {
         if (fragment_container.visibility == View.VISIBLE) {
             hideContainerAnimation(fragment_container)
         } else {
+            searchback.background=null
             finishAfterTransition()
         }
     }

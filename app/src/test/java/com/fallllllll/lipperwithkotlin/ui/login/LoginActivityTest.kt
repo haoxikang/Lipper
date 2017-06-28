@@ -10,6 +10,7 @@ import com.fallllllll.lipperwithkotlin.utils.getActivityController
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.verify
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.doAsync
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -37,30 +38,30 @@ class LoginActivityTest {
     @Mock
     lateinit var mockLoginModule: LoginModule
     @Mock
-  lateinit   var loginPresenter: LoginContract.LoginPresenter
+    lateinit var loginPresenter: LoginContract.LoginPresenter
 
-   lateinit private var loginActivity: LoginActivity
-  lateinit  private var controller: ActivityController<LoginActivity>
+    lateinit private var loginActivity: LoginActivity
+    lateinit private var controller: ActivityController<LoginActivity>
 
     @Before
-    fun beforeTest(){
+    fun beforeTest() {
         controller = getActivityController<LoginActivity>()
         loginActivity = controller.get()
 
         `when`(mockLoginModule.provideLoginPresenter(any<DribbbleModel>(),
-           any<OauthModel>())).thenReturn(loginPresenter)
-        loginActivity.loginModule=mockLoginModule
+                any<OauthModel>())).thenReturn(loginPresenter)
+        loginActivity.loginModule = mockLoginModule
         controller.create().start().resume()
     }
 
     @Test
-    fun testVisitorLogin(){
+    fun testVisitorLogin() {
         loginActivity.rotateButton.callOnClick()
         verify(loginPresenter).goShotsActivity()
     }
 
     @Test
-    fun testLoginActivity(){
+    fun testLoginActivity() {
         verify(loginPresenter).attach()
         verify(loginPresenter).onPresenterCreate()
 
@@ -73,21 +74,26 @@ class LoginActivityTest {
     }
 
     @Test
-    fun goWebActivityForResult() {
-        loginActivity.goWebActivityForResult()
+    fun goWebActivity() {
+        loginActivity.goWebActivity()
+        val intent = Intent(loginActivity, LoginWebActivity::class.java)
         val shadowActivity = shadowOf(loginActivity)
-        val actualIntent = shadowActivity.nextStartedActivityForResult
-        assertEquals(actualIntent.requestCode,LOGIN_REQUEST_CODE)
+        val actualIntent = shadowActivity.nextStartedActivity
+        assertEquals(intent.toString(), actualIntent.toString())
 
     }
 
     @Test
-    fun goMainActivity() {
-        loginActivity.goMainActivity()
-     val   intent = Intent(loginActivity,ShotsActivity::class.java)
-        val shadowActivity = shadowOf(loginActivity)
-        val actualIntent = shadowActivity.nextStartedActivity
-        assertEquals(intent.toString(), actualIntent.toString())
+    fun TestLoginSuccessful() {
+        loginActivity.loginSuccessful()
+        doAsync {
+            Thread.sleep(500)
+            val intent = Intent(loginActivity, ShotsActivity::class.java)
+            val shadowActivity = shadowOf(loginActivity)
+            val actualIntent = shadowActivity.nextStartedActivity
+            assertEquals(intent.toString(), actualIntent.toString())
+        }
+
     }
 
 }

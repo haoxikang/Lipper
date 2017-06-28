@@ -1,20 +1,19 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
+import android.net.Uri
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
+import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
+import com.fallllllll.lipperwithkotlin.data.databean.eventBean.WebLoginBackEvent
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.FlowableSubscriber
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
-import org.reactivestreams.Subscriber
 import java.util.concurrent.TimeUnit
 
 /**
@@ -23,7 +22,7 @@ import java.util.concurrent.TimeUnit
  */
 class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: OauthModel, val loginView: LoginContract.LoginView) : BasePresenter(), LoginContract.LoginPresenter {
     override fun goShotsActivity() {
-        loginView.goMainActivity()
+        loginView.loginSuccessful()
     }
 
     override fun getUserData(code: String) {
@@ -42,6 +41,9 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
     }
 
     override fun onPresenterCreate() {
+
+        subscribeWebLoginEvent()
+
         if (UserManager.get().isLogin()) {
             compositeDisposable.add(updateUserData())
         }
@@ -51,7 +53,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         if (UserManager.get().isLogin()) {
             updateUserData()
         } else {
-            loginView.goWebActivityForResult()
+            loginView.goWebActivity()
         }
     }
 
@@ -66,18 +68,10 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
     }
 
 
-    private fun finishActivity() {
-
-        loginView.finishActivity()
-
-    }
-
-
     private fun next(lipperUser: LipperUser) {
         UserManager.get().updateUser(lipperUser)
         loginView.hideAllTopDialog()
-        loginView.goMainActivity()
-        finishActivity()
+        loginView.loginSuccessful()
     }
 
     private fun error(throwable: Throwable) {
@@ -91,4 +85,12 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         }
     }
 
+    fun subscribeWebLoginEvent() {
+        compositeDisposable.add(RxBus.get().toFlowable<WebLoginBackEvent>()
+                .subscribeBy({
+                    getUserData(Uri.parse(it.url).getQueryParameter("code"))
+                }, {
+                    subscribeWebLoginEvent()
+                }))
+    }
 }

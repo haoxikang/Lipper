@@ -8,12 +8,11 @@ import com.fallllllll.lipperwithkotlin.core.presenter.Contract
  */
 interface LoginContract {
     interface LoginView : Contract.BaseView {
-        fun goWebActivityForResult()
+        fun goWebActivity()
         fun setButtonEnable(isEnable: Boolean)
 
-        fun goMainActivity()
+        fun loginSuccessful()
 
-        fun finishActivity()
     }
 
     interface LoginPresenter : Contract.Presenter {

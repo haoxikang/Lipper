@@ -7,3 +7,5 @@ package com.fallllllll.lipperwithkotlin.data.databean.eventBean
 data class ShotsListFilterEvent(val time: String, val sort: String, val type: String)
 
 data class ShotsMenuLayoutEvent(val shotLayoutType: String)
+
+data class WebLoginBackEvent(val url:String)

@@ -1,8 +1,10 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.net.Uri
+import android.support.v4.view.animation.FastOutSlowInInterpolator
+import android.transition.TransitionInflater
+import android.transition.TransitionManager
 import android.view.View
 import android.view.animation.OvershootInterpolator
 import com.fallllllll.AppApplication
@@ -11,8 +13,10 @@ import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.ui.main.home.ShotsActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.uiThread
 import javax.inject.Inject
 
 /**
@@ -21,8 +25,7 @@ import javax.inject.Inject
  */
 
 
-const val LOGIN_REQUEST_CODE = 100
-const val LOGIN_CODE_KEY = "LoginActivity.code.key"
+
 
 class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
@@ -30,31 +33,44 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
     var loginModule: LoginModule? = null
 
-    override fun goWebActivityForResult() {
-        startActivityForResult<LoginWebActivity>(LOGIN_REQUEST_CODE)
+    override fun goWebActivity() {
+        startActivity<LoginWebActivity>()
     }
 
 
     override fun setButtonEnable(isEnable: Boolean) {
         loginButton.isEnabled = isEnable
+        rotateButton.isEnabled = isEnable
     }
 
-    override fun goMainActivity() {
+    override fun loginSuccessful() {
 
-        startActivity<ShotsActivity>()
+        startExitAnimation()
+        doAsync {
+            Thread.sleep(400)
+            uiThread {
+                startActivity<ShotsActivity>()
+                finish()
+            }
+        }
 
     }
 
-    override fun finishActivity() {
-        finish()
-    }
 
     override fun initViewAndData() {
         DaggerLoginComponent.builder().appComponent(AppApplication.instance.appComponent).loginModule(loginModule ?: LoginModule(this)).build().inject(this)
         presenterLifecycleHelper.addPresenter(loginPresenter)
         setContentView(R.layout.activity_login)
         setImageTranslucent()
-        rotateButton.post { startAnimation() }
+        rotateButton.post {
+            doAsync {
+                Thread.sleep(200)
+                uiThread {
+                    startEnterAnimation()
+                }
+            }
+
+        }
         presenterLifecycleHelper.onPresenterCreate()
     }
 
@@ -63,72 +79,21 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
         rotateButton.setOnClickListener { loginPresenter.goShotsActivity() }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == LOGIN_REQUEST_CODE) {
-            when (resultCode) {
-                RESULT_OK -> {
-                    if (data != null) {
-                        val b = data.extras
-                        val url = b.getString(LOGIN_CODE_KEY)
-                        loginPresenter.getUserData(Uri.parse(url).getQueryParameter("code"))
-                    }
 
-                }
-            }
-        }
-    }
-
-    private fun startAnimation() {
-        val duration = 700f
-        val maxValue = 1000f
-
-        val distanceRotateButton = beforeRotateButtonAnimation()
-        val distanceLoginButton = beforeLoginButtonAnimation()
-
-
-        val valueAnimator = ValueAnimator.ofFloat(0f, maxValue)
-        valueAnimator.interpolator = OvershootInterpolator(0.8f)
-        valueAnimator.addUpdateListener {
-            val value = it.animatedValue as Float
-            val YRotateButton = 0 - rotateButton.height + distanceRotateButton * value / maxValue
-
-            val YLoginButton = loginButton.height + rlLayout.height - distanceLoginButton * value / maxValue
-
-
-            rotateButton.y = YRotateButton
-            loginButton.y = YLoginButton
-
-            if (value == maxValue) {
-                valueAnimator.removeAllUpdateListeners()
-            }
-
-
-        }
-
-        valueAnimator.setDuration(duration.toLong()).start()
-    }
-
-    private fun beforeRotateButtonAnimation(): Float {
-        val rotateH = rotateButton.height.toFloat()
-        val rotateButtonY = rotateButton.y
-        val rotateButtonYs = 0 - rotateH
-        val distance = rotateButtonY - rotateButtonYs
-        rotateButton.y = rotateButtonYs
+    private fun startEnterAnimation() {
+        val transition = TransitionInflater.from(this@LoginActivity).inflateTransition(R.transition.login_button_enter)
+        transition.interpolator = OvershootInterpolator(0.8f)
+        TransitionManager.beginDelayedTransition(rlLayout, transition)
         rotateButton.visibility = View.VISIBLE
-        return distance
-
-
-    }
-
-    private fun beforeLoginButtonAnimation(): Float {
-        val layoutH = rlLayout.height.toFloat()
-        val buttonH = loginButton.height.toFloat()
-        val buttonY = loginButton.y
-        val buttonYs = layoutH + buttonH
-        val distance = buttonYs - buttonY
-        loginButton.y = buttonYs
         loginButton.visibility = View.VISIBLE
-        return distance
     }
 
+    private fun startExitAnimation() {
+        val transition = TransitionInflater.from(this@LoginActivity).inflateTransition(R.transition.login_button_enter)
+        transition.interpolator = FastOutSlowInInterpolator()
+        TransitionManager.beginDelayedTransition(rlLayout, transition)
+        rotateButton.visibility = View.GONE
+        loginButton.visibility = View.GONE
+    }
 }
+

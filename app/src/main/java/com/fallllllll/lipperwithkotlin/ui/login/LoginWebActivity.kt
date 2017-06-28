@@ -10,6 +10,8 @@ import com.fallllllll.lipperwithkotlin.core.constants.CLIENT_ID
 import com.fallllllll.lipperwithkotlin.core.constants.LOGIN_URL
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getRandomString
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setOrdinaryToolbar
+import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
+import com.fallllllll.lipperwithkotlin.data.databean.eventBean.WebLoginBackEvent
 import kotlinx.android.synthetic.main.activity_login_web.*
 
 /**
@@ -66,9 +68,7 @@ class LoginWebActivity : BaseActivity() {
                 webView.loadUrl(url)
             } else {
                 isLoadUrl = true
-                val intent = Intent()
-                intent.putExtra(LOGIN_CODE_KEY, url)
-                setResult(RESULT_OK, intent)
+                RxBus.get().post(WebLoginBackEvent(url))
                 finish()
 
             }

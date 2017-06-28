@@ -61,8 +61,7 @@ class LoginPresenterImplTest {
         verify(mockLoginView).setButtonEnable(any<Boolean>())
         verify(mockLoginView).showTopDialog(anyOrNull())
         verify(mockLoginView).hideAllTopDialog()
-        verify(mockLoginView).goMainActivity()
-        verify(mockLoginView).finishActivity()
+        verify(mockLoginView).loginSuccessful()
     }
 
     @After

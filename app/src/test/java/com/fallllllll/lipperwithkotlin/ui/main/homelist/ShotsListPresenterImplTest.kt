@@ -3,10 +3,7 @@ package com.fallllllll.lipperwithkotlin.ui.main.homelist
 import com.fall.generalrecyclerviewfragment.GeneralContract
 import com.fallllllll.lipperwithkotlin.BuildConfig
 import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
-import com.fallllllll.lipperwithkotlin.core.constants.NOW
-import com.fallllllll.lipperwithkotlin.core.constants.POPULARITY
-import com.fallllllll.lipperwithkotlin.core.constants.SHOTS
-import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_ONLY_IMAGE
+import com.fallllllll.lipperwithkotlin.core.constants.*
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEvent
@@ -67,7 +64,7 @@ class ShotsListPresenterImplTest {
     @Test
     fun testRxBus(){
         presenter.initRxBus()
-        RxBus.get().post(ShotsListFilterEvent(NOW, POPULARITY, SHOTS))
+        RxBus.get().post(ShotsListFilterEvent(NOW, POPULARITY, WEEK))
         verify(presenter).checkAndRefreshData()
         verify(presenter).stopLoading()
         RxBus.get().post(ShotsMenuLayoutEvent(SHOTS_LAYOUT_ONLY_IMAGE))
