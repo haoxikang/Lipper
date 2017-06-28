@@ -56,9 +56,9 @@
         </android.support.design.widget.AppBarLayout>
         <FrameLayout
             android:visibility="invisible"
-            android:background="@color/primary"
+            android:background="@color/background"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="300dp"/>
+            android:layout_height="match_parent"/>
     </android.support.design.widget.CoordinatorLayout>
