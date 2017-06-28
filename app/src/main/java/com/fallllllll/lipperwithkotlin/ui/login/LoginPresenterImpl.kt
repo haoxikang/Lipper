@@ -9,8 +9,12 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
+import io.reactivex.FlowableSubscriber
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
+import org.reactivestreams.Subscriber
 import java.util.concurrent.TimeUnit
 
 /**
@@ -27,11 +31,11 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         loginView.showTopDialog(loginView.getString(R.string.under_login))
         val disposable = oauthModel.getToken(code)
                 .flatMap {
-                    LogUtils.d(it.access_token?:"")
+                    LogUtils.d(it.access_token ?: "")
                     UserManager.get().updateToken(it)
                     dribbbleModel.getUserInfo()
                 }
-                .delay(2,TimeUnit.SECONDS)
+                .delay(2, TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
         compositeDisposable.add(disposable)
@@ -55,7 +59,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         loginView.setButtonEnable(false)
         loginView.showTopDialog(loginView.getString(R.string.under_login))
         val disposable = dribbbleModel.getUserInfo()
-                .delay(2,TimeUnit.SECONDS)
+                .delay(2, TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
         return disposable
@@ -64,7 +68,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
 
     private fun finishActivity() {
 
-                loginView.finishActivity()
+        loginView.finishActivity()
 
     }
 
@@ -86,4 +90,5 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
             loginView.showErrorDialog(loginView.getString(R.string.login_failed))
         }
     }
+
 }

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/shots_root_layout"
-        android:fitsSystemWindows="false"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shotsRootLayout"
+    android:fitsSystemWindows="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/backView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent"/>
         <android.support.design.widget.AppBarLayout
             app:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <FrameLayout
-                android:id="@+id/search_toolbar"
+                android:id="@+id/searchToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:outlineProvider="bounds"
@@ -27,7 +28,7 @@
 
 
                 <SearchView
-                    android:id="@+id/search_view"
+                    android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="?android:actionBarSize"
                     android:iconifiedByDefault="false"
@@ -47,15 +48,17 @@
                         android:layout_width="48dp"
                         android:layout_height="match_parent"
                         android:background="?android:selectableItemBackgroundBorderless"
-                        android:src="@drawable/search_icon" />
+                        android:src="@drawable/ic_arrow_back_padded" />
 
                 </FrameLayout>
 
             </FrameLayout>
         </android.support.design.widget.AppBarLayout>
         <FrameLayout
+            android:visibility="invisible"
+            android:background="@color/primary"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="300dp"/>
     </android.support.design.widget.CoordinatorLayout>

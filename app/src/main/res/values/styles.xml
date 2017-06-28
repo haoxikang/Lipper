@@ -26,10 +26,11 @@
     <style name="SearchActivityTheme" parent="AppTheme">
         　　
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowBackground">@color/searchWindowColor</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowSharedElementEnterTransition">@transition/changebounds</item>
-        <item name="android:windowSharedElementExitTransition">@transition/changebounds</item>
+        <item name="android:windowBackground">@color/searchWindowColor</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/search_shared_enter</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/search_shared_return</item>
+        <item name="android:windowSharedElementsUseOverlay">true</item>
     </style>
 
     <style name="ShotsActivityTheme" parent="AppTheme">

@@ -1,5 +1,7 @@
 package com.fallllllll.lipperwithkotlin.ui.main.home
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import com.fallllllll.lipperwithkotlin.R
@@ -11,6 +13,7 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.ShotsListFragment
+import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_shots.*
 
 /**
@@ -69,7 +72,9 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.shots_menu_search -> {
-
+                val searchMenuView = shotsToolbar.findViewById(R.id.shots_menu_search)
+                val options = ActivityOptions.makeSceneTransitionAnimation(this, searchMenuView, getString(R.string.transition_search_back)).toBundle()
+                startActivity(Intent(this, SearchActivity::class.java), options)
             }
             R.id.shots_menu_layout -> {
                 popWindow.showPopUpWindow(shotsToolbar)

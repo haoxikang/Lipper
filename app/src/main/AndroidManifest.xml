@@ -26,6 +26,8 @@
             <!--android:theme="@style/ShotsDetailTheme"/>-->
         <!--<activity android:name=".ui.search.SearchActivity"-->
             <!--android:theme="@style/SearchActivityTheme"/>-->
+        <activity android:name=".ui.search.SearchActivity"
+            android:theme="@style/SearchActivityTheme"/>
     </application>
 
 </manifest>
