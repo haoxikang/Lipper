@@ -6,9 +6,11 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
+import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.WebLoginBackEvent
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
+import com.fallllllll.lipperwithkotlin.data.local.user.UserToken
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
@@ -21,22 +23,23 @@ import java.util.concurrent.TimeUnit
  * GitHub :  https://github.com/348476129/Lipper
  */
 class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: OauthModel, val loginView: LoginContract.LoginView) : BasePresenter(), LoginContract.LoginPresenter {
+    lateinit var token: UserToken
     override fun goShotsActivity() {
         loginView.loginSuccessful()
     }
 
     override fun getUserData(code: String) {
-        loginView.setButtonEnable(false)
+        loginView.beforeLogin()
         loginView.showTopDialog(loginView.getString(R.string.under_login))
+
         val disposable = oauthModel.getToken(code)
                 .flatMap {
-                    LogUtils.d(it.access_token ?: "")
-                    UserManager.get().updateToken(it)
+                    token = it
                     dribbbleModel.getUserInfo()
                 }
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
-                .subscribeBy({ next(it) }, { error(it) })
+                .subscribeBy({ next(it, token) }, { error(it) })
         compositeDisposable.add(disposable)
     }
 
@@ -51,14 +54,14 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
 
     override fun onLoginClick() {
         if (UserManager.get().isLogin()) {
-            updateUserData()
+            compositeDisposable.add(updateUserData())
         } else {
             loginView.goWebActivity()
         }
     }
 
     private fun updateUserData(): Disposable {
-        loginView.setButtonEnable(false)
+        loginView.beforeLogin()
         loginView.showTopDialog(loginView.getString(R.string.under_login))
         val disposable = dribbbleModel.getUserInfo()
                 .delay(2, TimeUnit.SECONDS)
@@ -68,15 +71,19 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
     }
 
 
-    private fun next(lipperUser: LipperUser) {
+    private fun next(lipperUser: LipperUser, token: UserToken? = null) {
+        if (token != null) {
+            UserManager.get().updateToken(token)
+        }
         UserManager.get().updateUser(lipperUser)
         loginView.hideAllTopDialog()
         loginView.loginSuccessful()
+        RxBus.get().post(LoginEvent(true))
     }
 
     private fun error(throwable: Throwable) {
         loginView.hideAllTopDialog()
-        loginView.setButtonEnable(true)
+        loginView.loginFinish()
         if (throwable.checkToken()) {
             loginView.showErrorDialog(loginView.getString(R.string.login_expire))
             UserManager.get().logOut()

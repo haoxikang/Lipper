@@ -25,9 +25,11 @@ import javax.inject.Inject
  */
 
 
-
-
 class LoginActivity : BaseActivity(), LoginContract.LoginView {
+    override fun loginFinish() {
+        loginButton.isEnabled = true
+        rotateButton.isEnabled = true
+    }
 
     @Inject lateinit var loginPresenter: LoginContract.LoginPresenter
 
@@ -38,9 +40,9 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
 
-    override fun setButtonEnable(isEnable: Boolean) {
-        loginButton.isEnabled = isEnable
-        rotateButton.isEnabled = isEnable
+    override fun beforeLogin() {
+        loginButton.isEnabled = false
+        rotateButton.isEnabled = false
     }
 
     override fun loginSuccessful() {
@@ -58,7 +60,11 @@ class LoginActivity : BaseActivity(), LoginContract.LoginView {
 
 
     override fun initViewAndData() {
-        DaggerLoginComponent.builder().appComponent(AppApplication.instance.appComponent).loginModule(loginModule ?: LoginModule(this)).build().inject(this)
+        DaggerLoginComponent.builder()
+                .appComponent(AppApplication.instance.appComponent)
+                .loginModule(loginModule ?: LoginModule(this))
+                .build()
+                .inject(this)
         presenterLifecycleHelper.addPresenter(loginPresenter)
         setContentView(R.layout.activity_login)
         setImageTranslucent()

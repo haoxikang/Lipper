@@ -13,7 +13,7 @@
 
 
     <color name="statusBar">#30000000</color>
-    <color name="searchWindowColor">#90000000</color>
+    <color name="translucentWindowColor">#90000000</color>
     <color name="ripple">#30000000</color>
     <color name="navigationBarColor">#30000000</color>
 

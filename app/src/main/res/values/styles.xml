@@ -14,8 +14,16 @@
 
     </style>
 
-    <style name="translucentNavigationBarTheme" parent="AppTheme">
+    <style name="TranslucentNavigationBarTheme" parent="AppTheme">
         <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="DribbbleLoginTheme" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@color/translucentWindowColor</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:colorButtonNormal">@color/primary</item>
     </style>
 
     <style name="ShotsDetailTheme" parent="AppTheme">
@@ -27,9 +35,11 @@
         　　
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@color/searchWindowColor</item>
-        <item name="android:windowSharedElementEnterTransition">@transition/search_shared_enter</item>
-        <item name="android:windowSharedElementReturnTransition">@transition/search_shared_return</item>
+        <item name="android:windowBackground">@color/translucentWindowColor</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/search_shared_enter
+        </item>
+        <item name="android:windowSharedElementReturnTransition">@transition/search_shared_return
+        </item>
         <item name="android:windowSharedElementsUseOverlay">true</item>
     </style>
 

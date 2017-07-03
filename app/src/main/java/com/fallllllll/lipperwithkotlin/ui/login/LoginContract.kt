@@ -9,7 +9,8 @@ import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 interface LoginContract {
     interface LoginView : Contract.BaseView {
         fun goWebActivity()
-        fun setButtonEnable(isEnable: Boolean)
+        fun beforeLogin()
+        fun loginFinish()
 
         fun loginSuccessful()
 

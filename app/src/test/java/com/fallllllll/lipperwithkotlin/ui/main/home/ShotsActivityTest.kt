@@ -1,10 +1,13 @@
 package com.fallllllll.lipperwithkotlin.ui.main.home
 
+import android.content.Intent
 import com.fallllllll.lipperwithkotlin.BuildConfig
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
+import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
+import com.fallllllll.lipperwithkotlin.ui.login.LoginWebActivity
 import com.fallllllll.lipperwithkotlin.utils.getActivityController
 import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
@@ -15,6 +18,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.runner.RunWith
+import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 import org.robolectric.fakes.RoboMenuItem
 
@@ -55,10 +59,28 @@ class ShotsActivityTest {
         shotsActivity.onOptionsItemSelected(layoutMenu)
         assertTrue(shotsActivity.popWindow.isShowing)
     }
+
     @Test
-    fun testShowUserUI(){
+    fun testShowUserUI() {
         shotsActivity.showUserUI(UserManager.get().lipperUser)
-      assertNotEquals( shotsActivity.shotsToolbar.title,shotsActivity.getString(R.string.app_name))
+        assertNotEquals(shotsActivity.shotsToolbar.title, shotsActivity.getString(R.string.app_name))
     }
+
+    @Test
+    fun testGoUserActivity() {
+        shotsActivity.goDribbbeLoginActivity()
+        val intent = Intent(shotsActivity, DribbbleLoginActivity::class.java)
+        intent.putExtra("test","test")
+        val shadowActivity = Shadows.shadowOf(shotsActivity)
+        val actualIntent = shadowActivity.nextStartedActivity
+        assertEquals(intent.toString(), actualIntent.toString())
+    }
+
+    @Test
+    fun testUserImageClick() {
+        shotsActivity.userIcon.callOnClick()
+        verify(presenter).userImageViewClick()
+    }
+
 
 }

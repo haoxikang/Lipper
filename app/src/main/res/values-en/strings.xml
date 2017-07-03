@@ -16,7 +16,7 @@
     <string name="retry_hint">Failed to load.Please click on the screen to reload</string>
     <string name="no_data">no data</string>
     <string name="failed_to_load">Failed to load</string>
-
+    <string name="dribbble_login_hint">You‘ll need to login to dribbble</string>
     <string name="small_with_info">small with info</string>
     <string name="large_with_info">large with info</string>
     <string name="only_image">only image</string>

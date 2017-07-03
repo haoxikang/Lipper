@@ -37,11 +37,11 @@ abstract class BaseFragment : Fragment(), Contract.BaseView {
 
     protected abstract fun initListeners()
 
-    override fun onDestroy() {
-        super.onDestroy()
+
+    override fun onDestroyView() {
+        super.onDestroyView()
         presenterLifecycleHelper.destroyPresenter()
     }
-
     override fun showToast(s: String) {
         baseViewUtils.showToast(s)
     }

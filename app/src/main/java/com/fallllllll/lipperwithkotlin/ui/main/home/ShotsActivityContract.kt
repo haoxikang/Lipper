@@ -13,9 +13,15 @@ open class ShotsActivityContract {
         fun showBottomSheet(homeListFilterBean: HomeListFilterBean)
 
          fun showUserUI(lipperUser: LipperUser)
+
+         fun LogOut()
+         fun goDribbbeLoginActivity()
+         fun goUserActivity()
     }
 
      interface ShotsActivityPresenter : Contract.Presenter {
         fun showBottomSheet()
+         fun  userImageViewClick()
+
     }
 }

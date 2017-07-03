@@ -52,13 +52,12 @@ class LoginPresenterImplTest {
         oauthModel = OauthModelImpl.getInstance()
         loginPresenter = LoginPresenterImpl(dribbbleModel,oauthModel,mockLoginView)
         loginPresenter.attach()
-   //     `when`(mockLoginView.getString(anyInt())).thenReturn("test")
     }
 
     @Test
     fun onPresenterCreate() {
         loginPresenter.onPresenterCreate()
-        verify(mockLoginView).setButtonEnable(any<Boolean>())
+        verify(mockLoginView).beforeLogin()
         verify(mockLoginView).showTopDialog(anyOrNull())
         verify(mockLoginView).hideAllTopDialog()
         verify(mockLoginView).loginSuccessful()

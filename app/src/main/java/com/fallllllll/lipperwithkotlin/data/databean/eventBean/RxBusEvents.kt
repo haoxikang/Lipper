@@ -9,3 +9,5 @@ data class ShotsListFilterEvent(val time: String, val sort: String, val type: St
 data class ShotsMenuLayoutEvent(val shotLayoutType: String)
 
 data class WebLoginBackEvent(val url:String)
+
+data class LoginEvent(val isLogin:Boolean)
