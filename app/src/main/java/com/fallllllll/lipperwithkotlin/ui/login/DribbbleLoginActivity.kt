@@ -5,8 +5,6 @@ import android.view.View
 import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
-import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
-import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
 import com.fallllllll.lipperwithkotlin.ui.transitions.FabTransform
 import com.fallllllll.lipperwithkotlin.ui.transitions.MorphTransform
 import kotlinx.android.synthetic.main.activity_dribbble_login.*
