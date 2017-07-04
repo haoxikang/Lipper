@@ -9,5 +9,5 @@ import io.reactivex.functions.Function
  * GitHub :  https://github.com/348476129/Lipper
  */
 class ConvertToAPIException<T> : Function<Throwable, Flowable<T>> {
-    override fun apply(t: Throwable?): Flowable<T> = Flowable.error(NetWorkException.handleException(t ?: Throwable("unknown")))
+    override fun apply(t: Throwable): Flowable<T> = Flowable.error(NetWorkException.handleException(t ))
 }

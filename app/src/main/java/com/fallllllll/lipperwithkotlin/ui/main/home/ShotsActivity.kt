@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
@@ -84,7 +85,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.shots_menu_search -> {
-                val searchMenuView = shotsToolbar.findViewById(R.id.shots_menu_search)
+                val searchMenuView = shotsToolbar.findViewById<View>(R.id.shots_menu_search)
                 val options = ActivityOptions.makeSceneTransitionAnimation(this, searchMenuView, getString(R.string.transition_search_back)).toBundle()
                 startActivity(Intent(this, SearchActivity::class.java), options)
             }

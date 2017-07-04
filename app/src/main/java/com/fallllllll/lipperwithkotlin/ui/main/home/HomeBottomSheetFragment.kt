@@ -3,6 +3,7 @@ package com.fallllllll.lipperwithkotlin.ui.main.home
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v7.widget.AppCompatRadioButton
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,9 +80,9 @@ class HomeBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun initListener(view: View) {
-        view.timeGroup.setOnCheckedChangeListener({ group, checkedId -> time = group.findViewById(checkedId).tag as String })
-        view.typeGroup.setOnCheckedChangeListener({ group, checkedId -> type = group.findViewById(checkedId).tag as String })
-        view.sortGroup.setOnCheckedChangeListener({ group, checkedId -> sort = group.findViewById(checkedId).tag as String })
+        view.timeGroup.setOnCheckedChangeListener({ group, checkedId -> time = group.findViewById<AppCompatRadioButton>(checkedId).tag as String })
+        view.typeGroup.setOnCheckedChangeListener({ group, checkedId -> type = group.findViewById<AppCompatRadioButton>(checkedId).tag as String })
+        view.sortGroup.setOnCheckedChangeListener({ group, checkedId -> sort = group.findViewById<AppCompatRadioButton>(checkedId).tag as String })
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
