@@ -12,7 +12,7 @@ import org.robolectric.annotation.Config
  * Created by 康颢曦 on 2017/6/20.
  */
 @RunWith(MyRobolectricTestRunner::class)
-@Config(constants = BuildConfig::class)
+@Config(constants = BuildConfig::class,sdk = intArrayOf(23))
 class StringFunKtTest {
     @Test
     fun testNumberToK() {

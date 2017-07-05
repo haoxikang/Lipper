@@ -34,14 +34,15 @@ dependencies {
     implementation 'com.android.support:design:26.0.0-beta2'
     //UI相关
     implementation 'com.tapadoo.android:alerter:1.0.4'
-    implementation 'com.github.348476129:GeneralRecyclerViewFragment:1.2.4'
+    implementation 'com.github.348476129:GeneralRecyclerViewFragment:1.2.5'
     // fresco
     implementation 'com.facebook.fresco:fresco:1.1.0'
     implementation 'com.facebook.fresco:animated-gif:1.1.0'
     //网络相关
-    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'org.jsoup:jsoup:1.10.1'
     //Rx
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'

@@ -16,6 +16,5 @@ class ShotsListContract {
 
     }
 
-     interface ShotsListPresenter : Contract.Presenter{
-     }
+     interface ShotsListPresenter : Contract.Presenter
 }

@@ -35,7 +35,7 @@ data class User(
 	val links: Links? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Long? = null,
 
 	@field:SerializedName("teams_count")
 	val teamsCount: Int? = null,

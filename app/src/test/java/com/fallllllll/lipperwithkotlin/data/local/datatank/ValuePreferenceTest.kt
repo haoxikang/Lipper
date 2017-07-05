@@ -15,7 +15,7 @@ import org.robolectric.annotation.Config
  * GitHub :  https://github.com/348476129/Lipper
  */
 @RunWith(MyRobolectricTestRunner::class)
-@Config(constants = BuildConfig::class)
+@Config(constants = BuildConfig::class,sdk = intArrayOf(23))
 class ValuePreferenceTest{
 
 

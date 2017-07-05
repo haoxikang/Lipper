@@ -4,7 +4,7 @@ package com.fallllllll.lipperwithkotlin.core.constants
  * Created by fallllllll on 2017/5/27/027.
  * GitHub :  https://github.com/348476129/Lipper
  */
-const val PAGE_COUNT = "30"
+const val PAGE_COUNT = 30
 const val ANIMATED = "animated"
 const val ATTACHMENTS = "attachments"
 const val DEBUTS = "debuts"

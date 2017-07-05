@@ -27,7 +27,7 @@ import org.robolectric.fakes.RoboMenuItem
  * GitHub :  https://github.com/348476129/Lipper
  */
 @RunWith(MyRobolectricTestRunner::class)
-@Config(constants = BuildConfig::class)
+@Config(constants = BuildConfig::class,sdk = intArrayOf(23))
 class ShotsActivityTest {
 
     val controller = getActivityController<ShotsActivity>()

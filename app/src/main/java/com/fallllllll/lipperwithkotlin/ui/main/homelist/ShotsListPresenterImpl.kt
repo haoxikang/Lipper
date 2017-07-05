@@ -48,7 +48,13 @@ class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsL
         disposeLoadNext()
         loadNextDisposable = model.getShot(type, time, sort, page.toString())
                 .commonChange()
-                .subscribeBy({ loadNextPageFinish(it) }, { onLoadNextError() })
+                .subscribeBy({
+                    if (it.size < PAGE_COUNT) {
+                        loadLastPageDataFinish(it)
+                    } else {
+                        loadNextPageFinish(it)
+                    }
+                }, { onLoadNextError() })
     }
 
     override fun detach() {

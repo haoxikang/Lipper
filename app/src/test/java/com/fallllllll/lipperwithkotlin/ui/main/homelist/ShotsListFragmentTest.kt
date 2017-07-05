@@ -18,7 +18,7 @@ import org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment
  * GitHub :  https://github.com/348476129/Lipper
  */
 @RunWith(MyRobolectricTestRunner::class)
-@Config(constants = BuildConfig::class)
+@Config(constants = BuildConfig::class,sdk = intArrayOf(23))
 class ShotsListFragmentTest {
 
     val presenter = mock<AbstractShotListPresenter>()

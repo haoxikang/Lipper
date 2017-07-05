@@ -2,6 +2,7 @@ package com.fallllllll.lipperwithkotlin.data.databean
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class ShotBean(
 
@@ -22,7 +23,7 @@ data class ShotBean(
         val description: String? = null,
 
         @field:SerializedName("created_at")
-        val createdAt: String? = null,
+        val createdAt: Date? = null,
 
         @field:SerializedName("title")
         val title: String? = null,
@@ -37,7 +38,7 @@ data class ShotBean(
         val commentsUrl: String? = null,
 
         @field:SerializedName("id")
-        val id: Int? = null,
+        val id: Long? = null,
 
         @field:SerializedName("views_count")
         val viewsCount: Int? = null,

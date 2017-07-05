@@ -7,3 +7,4 @@ package com.fallllllll.lipperwithkotlin.core.constants
 
 const val LOGIN_URL = "https://dribbble.com/oauth/"
 const val BASE_URL = "https://api.dribbble.com/v1/"
+const val DRIBBBLE_HOST = "https://dribbble.com/"
