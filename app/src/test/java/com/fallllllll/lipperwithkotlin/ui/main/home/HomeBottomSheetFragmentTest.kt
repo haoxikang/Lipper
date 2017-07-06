@@ -52,6 +52,7 @@ class HomeBottomSheetFragmentTest {
     fun testOnDismiss(){
         RxBus.get().toFlowable<ShotsListFilterEvent>()
                 .subscribeBy({
+                    print("aaa")
                     assertEquals(it.time, WEEK)
                     assertEquals(it.type, DEBUTS)
                     assertEquals(it.sort, RECENT)

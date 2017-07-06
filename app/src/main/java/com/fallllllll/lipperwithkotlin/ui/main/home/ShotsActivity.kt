@@ -15,8 +15,9 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
-import com.fallllllll.lipperwithkotlin.ui.main.homelist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
+import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
+import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.transitions.FabTransform
 import kotlinx.android.synthetic.main.activity_shots.*
 
@@ -30,7 +31,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         HomeItemLayoutPopWindow(this)
     }
     private val shotsListFragment by lazy {
-        ShotsListFragment()
+        ShotsListFragment.newInstance(HOME_TYPE, "")
     }
     var homeBottomSheetFragment: HomeBottomSheetFragment? = null
     private var presenter: ShotsActivityContract.ShotsActivityPresenter? = null
@@ -120,6 +121,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
                 this, userIcon, getString(R.string.transition_dribbble_login))
         startActivity(intent, options.toBundle())
     }
+
     override fun goUserActivity() {
 
     }

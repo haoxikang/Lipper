@@ -15,6 +15,6 @@ class SearchModelImpl private constructor(private  val searchService: SearchServ
         fun getInstance(): SearchModelImpl = SearchModelImpl(SearchServiceMethods().service)
     }
 
-    override fun search(query: String, sort: String, page: String) = searchService.search(query, sort, page, PAGE_COUNT.toString())
+    override fun search(query: String, sort: String, page: String) = searchService.search(query, sort, page,"identity")
 
 }

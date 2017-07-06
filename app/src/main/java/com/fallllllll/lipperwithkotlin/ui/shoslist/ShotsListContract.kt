@@ -1,4 +1,4 @@
-package com.fallllllll.lipperwithkotlin.ui.main.homelist
+package com.fallllllll.lipperwithkotlin.ui.shoslist
 
 import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 

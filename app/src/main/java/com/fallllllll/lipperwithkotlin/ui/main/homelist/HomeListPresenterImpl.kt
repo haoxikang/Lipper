@@ -8,6 +8,7 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEv
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsMenuLayoutEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
+import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -15,7 +16,7 @@ import io.reactivex.rxkotlin.subscribeBy
  * Created by fallllllll on 2017/6/19/019.
  * GitHub :  https://github.com/348476129/Lipper
  */
-class ShotsListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
+class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
 
 
     var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")

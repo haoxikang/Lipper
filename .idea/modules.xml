@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LipperWithKotlin.iml" filepath="$PROJECT_DIR$/LipperWithKotlin.iml" />
       <module fileurl="file://G:\LipperWithKotlin\LipperWithKotlin\.idea\LipperWithKotlin.iml" filepath="G:\LipperWithKotlin\LipperWithKotlin\.idea\LipperWithKotlin.iml" />
-      <module fileurl="file://C:\Users\Administrator\Desktop\code\Lipper\LipperWithKotlin\LipperWithKotlin.iml" filepath="C:\Users\Administrator\Desktop\code\Lipper\LipperWithKotlin\LipperWithKotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

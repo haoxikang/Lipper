@@ -3,6 +3,7 @@ package com.fallllllll.lipperwithkotlin.core.dagger
 import android.content.Context
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
+import com.fallllllll.lipperwithkotlin.data.network.model.SearchModel
 import dagger.Component
 
 /**
@@ -14,6 +15,8 @@ interface AppComponent {
     fun drbbbleModel(): DribbbleModel
 
     fun oauthModel(): OauthModel
+
+    fun searchModel():SearchModel
 
     fun context(): Context
 

@@ -1,6 +1,5 @@
 package com.fallllllll.lipperwithkotlin.ui.search
 
-import android.animation.Animator
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
@@ -11,6 +10,8 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.hideIme
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.core.expandFunction.showIme
+import com.fallllllll.lipperwithkotlin.ui.shoslist.SEARCH_TYPE
+import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -22,7 +23,7 @@ import org.jetbrains.anko.uiThread
  */
 class SearchActivity : BaseActivity() {
 
-private val animationDuration=300L
+    private val animationDuration = 300L
     override fun initViewAndData() {
         setContentView(R.layout.activity_search)
         setImageTranslucent()
@@ -38,18 +39,25 @@ private val animationDuration=300L
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchView.clearFocus()
-                showContainerAnimation(fragment_container)
+
+                if (fragment_container.visibility == View.INVISIBLE) {
+                    showContainerAnimation(fragment_container)
+                }
                 searchView.hideIme()
+                searchView.clearFocus()
+                showFragment(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
+
+                if (fragment_container.visibility==View.VISIBLE){
                     searchView.requestFocus()
                     hideContainerAnimation(fragment_container)
-
                 }
+
+
+
                 return true
             }
 
@@ -88,12 +96,23 @@ private val animationDuration=300L
         if (fragment_container.visibility == View.VISIBLE) {
             hideContainerAnimation(fragment_container)
         } else {
-            searchback.background=null
+            searchback.background = null
             finishAfterTransition()
         }
     }
 
     override fun onBackPressed() {
         checkAndBack()
+    }
+
+    private fun showFragment(query: String?) {
+        if (!query.isNullOrEmpty()) {
+            val fm = supportFragmentManager
+            val transaction = fm.beginTransaction()
+            val fragment = ShotsListFragment.newInstance(SEARCH_TYPE, query!!)
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.commit()
+        }
+
     }
 }

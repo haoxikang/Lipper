@@ -22,7 +22,7 @@ import kotlin.collections.ArrayList
 class DribbbleSearchConverter private constructor() : Converter<ResponseBody, List<ShotBean>> {
     private val HOST = "https://dribbble.com"
     private val PATTERN_PLAYER_ID: Pattern = Pattern.compile("users/(\\d+?)/", Pattern.DOTALL)
-    private val DATE_FORMAT: SimpleDateFormat = SimpleDateFormat("MMMM d, yyyy")
+    private val DATE_FORMAT: SimpleDateFormat = SimpleDateFormat("MMMM d, yyyy", Locale.US)
 
 
   class Factory : Converter.Factory() {
@@ -47,11 +47,11 @@ class DribbbleSearchConverter private constructor() : Converter<ResponseBody, Li
             description = "<p>$description</p>"
         }
         var imaUrl = element.select("img").first().attr("src")
-        if (imaUrl.contains("_teaser.")) imaUrl = imaUrl.replace("_teaser", ".")
+        if (imaUrl.contains("_teaser.")) imaUrl = imaUrl.replace("_teaser.", ".")
         var createAt: Date? = null
         try {
             createAt = dataFormat.parse(descriptionBlock.select("timestamp").first().text())
-        } catch (e: ParseException) {
+        } catch (e: Exception) {
         }
         return ShotBean(id = element.id().replace("screenshot-", "").toLong()
                 , htmlUrl = HOST + element.select("a.dribbble-link").first().attr("href")

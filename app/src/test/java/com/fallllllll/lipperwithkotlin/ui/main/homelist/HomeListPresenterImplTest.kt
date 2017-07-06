@@ -9,6 +9,7 @@ import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEvent
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsMenuLayoutEvent
 import com.fallllllll.lipperwithkotlin.data.network.model.impl.DribbbleModelImpl
+import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
 import com.fallllllll.lipperwithkotlin.utils.RxSchedulersOverrideRule
 import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
@@ -27,7 +28,7 @@ import org.robolectric.annotation.Config
  */
 @RunWith(MyRobolectricTestRunner::class)
 @Config(constants = BuildConfig::class,sdk = intArrayOf(23))
-class ShotsListPresenterImplTest {
+class HomeListPresenterImplTest {
     @Rule
     @JvmField
     var mRxSchedulersOverrideRule = RxSchedulersOverrideRule()
@@ -35,11 +36,11 @@ class ShotsListPresenterImplTest {
     val view = mock<GeneralContract.View>()
 
     val shotsListView = mock<ShotsListContract.ShotsListView>()
-    lateinit var presenter: ShotsListPresenterImpl
+    lateinit var presenter: HomeListPresenterImpl
     @Before
     fun beforeTest() {
         initUser()
-        presenter = spy(ShotsListPresenterImpl(DribbbleModelImpl.getInstance(), shotsListView))
+        presenter = spy(HomeListPresenterImpl(DribbbleModelImpl.getInstance(), shotsListView))
         presenter.attach()
         presenter.setView(view)
     }

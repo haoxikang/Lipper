@@ -25,6 +25,9 @@ const val RECENT = "recent"
 const val VIEWS = "views"
 const val POPULARITY = ""
 
+const val SORT_POPULAR = ""
+const val SORT_RECENT = "latest"
+
 const val SHOTS_LAYOUT_LARGE = "shots_layout_large"
 const val SHOTS_LAYOUT_SMALL = "shots_layout_small"
 const val SHOTS_LAYOUT_ONLY_IMAGE = "shots_layout_only_image"
