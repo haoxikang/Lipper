@@ -8,7 +8,7 @@ import java.util.*
  */
 fun getRandomString(length: Int): String {
     val base = "abcdefghijklmnopqrstuvwxyz0123456789"
-    val random = java.util.Random()
+    val random =Random()
     val sb = StringBuilder()
     for (i in 1..length) {
         val number = random.nextInt(base.length)

@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
  * GitHub :  https://github.com/348476129/Lipper
  */
 fun <T> io.reactivex.Flowable<T>.commonChange() : io.reactivex.Flowable<T> {
-return    this.onErrorResumeNext(com.fallllllll.lipperwithkotlin.core.rxjava.ConvertToAPIException())
-            .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-            .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+return    this.onErrorResumeNext(ConvertToAPIException())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 }
