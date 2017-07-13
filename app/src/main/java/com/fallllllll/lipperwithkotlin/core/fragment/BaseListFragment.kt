@@ -42,26 +42,62 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
         presenterLifecycleHelper.destroyPresenter()
     }
 
-    override fun loadError() {
+    override fun loadError(s: String?) {
+        loadError(getString(R.string.retry_hint), R.drawable.ic_retry_black_48dp)
+    }
+
+    override fun loadError(res: Int) {
+        loadError(getString(res))
+    }
+    override fun loadError(s: String?, res: Int) {
         loadErrorView()
         errorLayout.setOnClickListener {
             presenter.checkAndRefreshData()
             errorLayout.visibility = View.GONE
         }
-        errorView.errorImage.setImageResource(R.drawable.ic_retry_black_48dp)
-        errorView.errorText.setText(R.string.retry_hint)
+        errorView.errorImage.setImageResource(res)
+        errorView.errorText.text = s
+    }
+
+    override fun loadError() {
+        loadError(getString(R.string.retry_hint))
     }
 
     override fun loadNextPageError() {
-        showSnackBar(getString(R.string.failed_to_load), swipeRefreshLayout)
+        loadNextPageError(getString(R.string.failed_to_load))
     }
 
-    fun loadEmpty() {
+    override fun loadNextPageError(s: String?) {
+        loadNextPageError(s, -1)
+    }
+
+    override fun loadNextPageError(res: Int) {
+        loadNextPageError(getString(res))
+    }
+    override fun loadNextPageError(s: String?, res: Int) {
+        showSnackBar(s ?: getString(R.string.failed_to_load), swipeRefreshLayout)
+    }
+
+    override fun noDataLoad() {
+        noDataLoad(getString(R.string.no_data))
+    }
+
+    override fun noDataLoad(s: String?) {
+        noDataLoad((s), R.drawable.ic_no_data_black_48dp)
+    }
+
+    override fun noDataLoad(res: Int) {
+        noDataLoad(getString(res))
+    }
+
+    override fun noDataLoad(s: String?, res: Int) {
         swipeRefreshLayout.isEnabled = false
         loadErrorView()
-        errorView.errorImage.setImageResource(R.drawable.ic_no_data_black_48dp)
-        errorView.errorText.setText(R.string.no_data)
+        errorLayout.setOnClickListener { }
+        errorView.errorImage.setImageResource(res)
+        errorView.errorText.text = s
     }
+
 
     private fun loadErrorView() {
         errorLayout.visibility = View.VISIBLE
@@ -70,6 +106,7 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
             errorLayout.addView(errorView)
         }
     }
+
     override fun showToast(s: String) {
         baseViewUtils.showToast(s)
     }

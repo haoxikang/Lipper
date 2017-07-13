@@ -20,6 +20,7 @@
     <string name="small_with_info">small with info</string>
     <string name="large_with_info">large with info</string>
     <string name="only_image">only image</string>
+    <string name="search_no_data">No results match</string>
 
     <string name="apply_filters">APPLY FILTERS</string>
 

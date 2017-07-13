@@ -1,6 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.search
 
-import com.fallllllll.lipperwithkotlin.core.constants.PAGE_COUNT
+import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.SORT_POPULAR
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BaseListPresenter
@@ -25,13 +25,15 @@ class SearchListPresenterImpl(val model: SearchModel, val shotsListView: ShotsLi
                 .commonChange()
                 .subscribeBy({
                     if (it.isEmpty()) {
-                        onRefreshError()
+                        noDataLoad(R.string.search_no_data)
                     } else {
                         refreshFinish(it)
                         canShowError = false
                     }
 
-                }, { if (canShowError) onRefreshError() else onReloadError() })
+                }, {
+                    if (canShowError) onRefreshError() else onReloadError()
+                })
     }
 
     override fun loadNextPageData(page: Int) {

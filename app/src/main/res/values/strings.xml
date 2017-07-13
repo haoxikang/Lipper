@@ -17,6 +17,7 @@
     <string name="no_data">数据为空</string>
     <string name="dribbble_login_hint">你需要先去dribbble登录才能使用此功能</string>
     <string name="failed_to_load">加载失败</string>
+    <string name="search_no_data">没有搜索到</string>
 
     <string name="small_with_info">小图</string>
     <string name="large_with_info">大图</string>
