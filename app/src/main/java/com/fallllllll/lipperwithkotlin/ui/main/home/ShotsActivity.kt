@@ -3,6 +3,7 @@ package com.fallllllll.lipperwithkotlin.ui.main.home
 import android.app.ActivityOptions
 import android.content.Intent
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -37,17 +38,17 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     private var presenter: ShotsActivityContract.ShotsActivityPresenter? = null
 
     override fun LogOut() {
-        userIcon.showImage("", false)
-        shotsToolbar.title = getString(R.string.app_name)
+//        userIcon.showImage("", false)
+//        shotsToolbar.title = getString(R.string.app_name)
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-        userIcon.showImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, lipperUser.avatarUrl ?: "")
-        if ((lipperUser.username ?: "").length > 8) {
-            shotsToolbar.title = lipperUser.username?.substring(0, 7) + "..."
-        } else {
-            shotsToolbar.title = lipperUser.username
-        }
+//        userIcon.showImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, lipperUser.avatarUrl ?: "")
+//        if ((lipperUser.username ?: "").length > 8) {
+//            shotsToolbar.title = lipperUser.username?.substring(0, 7) + "..."
+//        } else {
+//            shotsToolbar.title = lipperUser.username
+//        }
     }
 
 
@@ -66,7 +67,8 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     override fun initViewAndData() {
         setContentView(R.layout.activity_shots)
-        shotsToolbar.setPadding(0, getStatusBarHeight(), 0, 0)
+        initToolbar()
+        initDrawerLayout()
         setImageTranslucent()
         setSupportActionBar(shotsToolbar)
         showFragment()
@@ -77,10 +79,24 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         presenter?.onPresenterCreate()
     }
 
-    override fun initListeners() {
-        userIcon.setOnClickListener {
-            presenter?.userImageViewClick()
+    private fun initToolbar() {
+        shotsToolbar.title = ""
+        toolbarLayout.setPadding(0, getStatusBarHeight(), 0, 0)
+        toolbarLayout.post {
+            toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
         }
+    }
+
+    private fun initDrawerLayout() {
+        val drawerToggle = ActionBarDrawerToggle(this, homeDrawerLayout, shotsToolbar, R.string.open_drawer, R.string.close_drawer)
+        drawerToggle.syncState()
+        homeDrawerLayout.addDrawerListener(drawerToggle)
+    }
+
+    override fun initListeners() {
+//        userIcon.setOnClickListener {
+//            presenter?.userImageViewClick()
+//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -115,11 +131,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun goDribbbeLoginActivity() {
-        val intent = Intent(this, DribbbleLoginActivity::class.java)
-        FabTransform.addExtras(intent, ContextCompat.getColor(this, R.color.primary), R.drawable.ic_person_black)
-        val options = ActivityOptions.makeSceneTransitionAnimation(
-                this, userIcon, getString(R.string.transition_dribbble_login))
-        startActivity(intent, options.toBundle())
+//        val intent = Intent(this, DribbbleLoginActivity::class.java)
+//        FabTransform.addExtras(intent, ContextCompat.getColor(this, R.color.primary), R.drawable.ic_person_black)
+//        val options = ActivityOptions.makeSceneTransitionAnimation(
+//                this, userIcon, getString(R.string.transition_dribbble_login))
+//        startActivity(intent, options.toBundle())
     }
 
     override fun goUserActivity() {

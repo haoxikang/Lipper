@@ -77,16 +77,16 @@ class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsLi
     }
 
     fun initRxBus() {
-        subscribeLayoutEvent()
+ //       subscribeLayoutEvent()
         subscribeListFilterEvent()
     }
 
-    private fun subscribeLayoutEvent() {
-        compositeDisposable.add(RxBus.get().toFlowable<ShotsMenuLayoutEvent>()
-                .subscribeBy({
-                    setListLayout(it.shotLayoutType)
-                }, { subscribeLayoutEvent() }))
-    }
+//    private fun subscribeLayoutEvent() {
+//        compositeDisposable.add(RxBus.get().toFlowable<ShotsMenuLayoutEvent>()
+//                .subscribeBy({
+//                    setListLayout(it.shotLayoutType)
+//                }, { subscribeLayoutEvent() }))
+//    }
 
     private fun subscribeListFilterEvent() {
         compositeDisposable.add(RxBus.get().toFlowable<ShotsListFilterEvent>()
@@ -101,11 +101,11 @@ class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsLi
                 }, { subscribeListFilterEvent() }))
     }
 
-    fun setListLayout(currentLayoutType: String) {
-
-        shotsListView.changeRecyclerViewLayout(currentLayoutType)
-
-
-    }
+//    fun setListLayout(currentLayoutType: String) {
+//
+//        shotsListView.changeRecyclerViewLayout(currentLayoutType)
+//
+//
+//    }
 
 }

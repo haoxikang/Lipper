@@ -68,7 +68,5 @@ class HomeListPresenterImplTest {
         RxBus.get().post(ShotsListFilterEvent(NOW, POPULARITY, WEEK))
         verify(presenter).checkAndRefreshData()
         verify(presenter).stopLoading()
-        RxBus.get().post(ShotsMenuLayoutEvent(SHOTS_LAYOUT_ONLY_IMAGE))
-        verify(presenter).setListLayout(any<String>())
     }
 }

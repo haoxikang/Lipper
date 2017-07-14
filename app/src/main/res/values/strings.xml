@@ -25,7 +25,7 @@
 
 
     <string name="apply_filters">确定</string>
-
+    <string name="no_tags" translatable="false">no tags</string>
 
 
 
@@ -61,5 +61,9 @@
 
     <string name="transition_search_back" translatable="false">transition_search_back</string>
     <string name="transition_dribbble_login" translatable="false">transition_dribbble_login</string>
+
+
+    <string name="open_drawer" translatable="false">open drawer</string>
+    <string name="close_drawer" translatable="false">close drawer</string>
 
 </resources>

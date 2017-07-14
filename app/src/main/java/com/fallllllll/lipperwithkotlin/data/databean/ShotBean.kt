@@ -59,7 +59,7 @@ data class ShotBean(
         val bucketsCount: Int? = null,
 
         @field:SerializedName("tags")
-        val tags: List<String?>? = null,
+        val tags: List<String>? = null,
 
         @field:SerializedName("likes_count")
         val likesCount: Int? = null,

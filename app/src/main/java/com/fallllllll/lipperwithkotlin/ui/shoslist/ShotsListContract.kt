@@ -9,7 +9,7 @@ import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 class ShotsListContract {
      interface ShotsListView : Contract.BaseView {
 
-        fun changeRecyclerViewLayout(layoutType: String)
+    //    fun changeRecyclerViewLayout(layoutType: String)
 
 
         fun setErrorViewVisible(isShow: Boolean)

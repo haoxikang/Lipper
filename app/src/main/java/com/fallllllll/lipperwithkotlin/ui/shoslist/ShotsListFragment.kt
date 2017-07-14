@@ -91,35 +91,32 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
     override fun getAdapter(): RecyclerView.Adapter<*> = shotsListAdapter
 
     override fun getLayoutManager(): RecyclerView.LayoutManager {
-        if (shotsListAdapter.currentLayoutType == SHOTS_LAYOUT_LARGE) {
             return GridLayoutManager(context, 1)
-        } else {
-            return GridLayoutManager(context, 2)
-        }
+
 
     }
 
     override fun getPresenter(): GeneralContract.Presenter = shotsListPresenter as GeneralContract.Presenter
 
-    override fun changeRecyclerViewLayout(layoutType: String) {
-        val gridLayoutManager = recyclerView.layoutManager as GridLayoutManager
-        when (layoutType) {
-            SHOTS_LAYOUT_LARGE -> {
-                gridLayoutManager.spanCount = 1
-                shotsListAdapter.changeCurrentLayoutType(layoutType)
-            }
-            SHOTS_LAYOUT_ONLY_IMAGE -> {
-                gridLayoutManager.spanCount = 2
-                shotsListAdapter.changeCurrentLayoutType(layoutType)
-            }
-            SHOTS_LAYOUT_SMALL -> {
-                gridLayoutManager.spanCount = 2
-                shotsListAdapter.changeCurrentLayoutType(layoutType)
-
-            }
-        }
-
-    }
+//    override fun changeRecyclerViewLayout(layoutType: String) {
+//        val gridLayoutManager = recyclerView.layoutManager as GridLayoutManager
+//        when (layoutType) {
+//            SHOTS_LAYOUT_LARGE -> {
+//                gridLayoutManager.spanCount = 1
+//                shotsListAdapter.changeCurrentLayoutType(layoutType)
+//            }
+//            SHOTS_LAYOUT_ONLY_IMAGE -> {
+//                gridLayoutManager.spanCount = 2
+//                shotsListAdapter.changeCurrentLayoutType(layoutType)
+//            }
+//            SHOTS_LAYOUT_SMALL -> {
+//                gridLayoutManager.spanCount = 2
+//                shotsListAdapter.changeCurrentLayoutType(layoutType)
+//
+//            }
+//        }
+//
+//    }
 
 
     override fun setErrorViewVisible(isShow: Boolean) {
