@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bubbleCount" format="integer" />
+    <attr name="bubbleColor" format="color" />
+    <declare-styleable name="BubbleView">
+        <attr name="bubbleCount" />
+        <attr name="bubbleColor" />
+    </declare-styleable>
+</resources>

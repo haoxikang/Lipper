@@ -21,7 +21,7 @@ open class ShotsActivityContract {
 
      interface ShotsActivityPresenter : Contract.Presenter {
         fun showBottomSheet()
-         fun  userImageViewClick()
+         fun menuActivityClick()
 
     }
 }

@@ -3,7 +3,9 @@ package com.fallllllll.lipperwithkotlin.ui.shoslist
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.transition.Fade
 import android.view.View
+import android.view.animation.LayoutAnimationController
 import com.fall.generalrecyclerviewfragment.GeneralContract
 import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_LARGE

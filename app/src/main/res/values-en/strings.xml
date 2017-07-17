@@ -12,6 +12,7 @@
     <string name="login_expire">Login expires, please re-login</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
+    <string name="activity">Activity</string>
     <string name="user">User</string>
     <string name="retry_hint">Failed to load.Please click on the screen to reload</string>
     <string name="no_data">no data</string>

@@ -43,23 +43,27 @@ class ShotsActivityTest {
         verify(presenter).attach()
     }
 
-    @Test
-    fun testShowBottomSheet() {
-        val roboMenuItem = RoboMenuItem(R.id.filter_list)
-        shotsActivity.onOptionsItemSelected(roboMenuItem)
-        verify(presenter).showBottomSheet()
+//    @Test
+//    fun testShowBottomSheet() {
+//        val roboMenuItem = RoboMenuItem(R.id.filter_list)
+//        shotsActivity.onOptionsItemSelected(roboMenuItem)
+//        verify(presenter).showBottomSheet()
+//
+//        shotsActivity.showBottomSheet(HomeListFilterBean("", "", ""))
+//        assertTrue(shotsActivity.homeBottomSheetFragment?.isAdded ?: false)
+//    }
 
-        shotsActivity.showBottomSheet(HomeListFilterBean("", "", ""))
-        assertTrue(shotsActivity.homeBottomSheetFragment?.isAdded ?: false)
-    }
-
-    @Test
-    fun testShowPopWindow() {
-        val layoutMenu = RoboMenuItem(R.id.shots_menu_layout)
-        shotsActivity.onOptionsItemSelected(layoutMenu)
-        assertTrue(shotsActivity.popWindow.isShowing)
-    }
-
+//    @Test
+//    fun testShowPopWindow() {
+//        val layoutMenu = RoboMenuItem(R.id.shots_menu_layout)
+//        shotsActivity.onOptionsItemSelected(layoutMenu)
+//        assertTrue(shotsActivity.popWindow.isShowing)
+//    }
+@Test fun testUserActivityClick(){
+    val layoutMenu = RoboMenuItem(R.id.shots_menu_activity)
+    shotsActivity.onOptionsItemSelected(layoutMenu)
+    verify(presenter).menuActivityClick()
+}
     @Test
     fun testShowUserUI() {
         shotsActivity.showUserUI(UserManager.get().lipperUser)
@@ -76,11 +80,7 @@ class ShotsActivityTest {
         assertEquals(intent.toString(), actualIntent.toString())
     }
 
-    @Test
-    fun testUserImageClick() {
-        shotsActivity.userIcon.callOnClick()
-        verify(presenter).userImageViewClick()
-    }
+
 
 
 }

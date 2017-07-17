@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.search
 
+import android.support.design.widget.AppBarLayout
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
@@ -27,7 +28,15 @@ class SearchActivity : BaseActivity() {
     override fun initViewAndData() {
         setContentView(R.layout.activity_search)
         setImageTranslucent()
-        searchToolbar.setPadding(0, getStatusBarHeight(), 0, 0)
+        initAppbar()
+    }
+
+    private fun initAppbar() {
+        val layoutParams = searchToolbar.layoutParams as AppBarLayout.LayoutParams
+        layoutParams.topMargin = getStatusBarHeight()
+        searchToolbar.post {
+            shotsAppbar.layoutParams.height = shotsAppbar.height + getStatusBarHeight()
+        }
     }
 
     override fun initListeners() {
@@ -51,7 +60,7 @@ class SearchActivity : BaseActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
-                if (fragment_container.visibility==View.VISIBLE){
+                if (fragment_container.visibility == View.VISIBLE) {
                     searchView.requestFocus()
                     hideContainerAnimation(fragment_container)
                 }

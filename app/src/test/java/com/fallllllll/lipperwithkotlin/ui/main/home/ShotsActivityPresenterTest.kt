@@ -6,7 +6,6 @@ import com.fallllllll.lipperwithkotlin.core.constants.*
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
-import com.fallllllll.lipperwithkotlin.data.databean.eventBean.WebLoginBackEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
@@ -19,7 +18,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
-import org.robolectric.shadows.ShadowLog
 
 
 /**
@@ -78,10 +76,10 @@ class ShotsActivityPresenterTest {
 
     @Test
     fun testUserImageViewClick() {
-        presenter.userImageViewClick()
+        presenter.menuActivityClick()
         verify(view).goDribbbeLoginActivity()
         initUser()
-        presenter.userImageViewClick()
+        presenter.menuActivityClick()
         verify(view).goUserActivity()
     }
 }

@@ -2,17 +2,16 @@ package com.fallllllll.lipperwithkotlin.ui.main.home
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.support.v4.content.ContextCompat
+import android.graphics.Color
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.RelativeLayout
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
-import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
-import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
@@ -26,7 +25,15 @@ import kotlinx.android.synthetic.main.activity_shots.*
  * Created by 康颢曦 on 2017/6/18.
  */
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
-
+    val listTime: Array<String> by lazy {
+        resources.getStringArray(R.array.time)
+    }
+    val listSort: Array<String> by lazy {
+        resources.getStringArray(R.array.sort)
+    }
+    val listType: Array<String>by lazy {
+        resources.getStringArray(R.array.type)
+    }
 
     val popWindow by lazy {
         HomeItemLayoutPopWindow(this)
@@ -69,6 +76,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         setContentView(R.layout.activity_shots)
         initToolbar()
         initDrawerLayout()
+        initTabText()
         setImageTranslucent()
         setSupportActionBar(shotsToolbar)
         showFragment()
@@ -81,7 +89,8 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     private fun initToolbar() {
         shotsToolbar.title = ""
-        toolbarLayout.setPadding(0, getStatusBarHeight(), 0, 0)
+        val layoutParams = shotsToolbar.layoutParams as RelativeLayout.LayoutParams
+        layoutParams.topMargin = getStatusBarHeight()
         toolbarLayout.post {
             toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
         }
@@ -95,8 +104,14 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     override fun initListeners() {
 //        userIcon.setOnClickListener {
-//            presenter?.userImageViewClick()
+//            presenter?.menuActivityClick()
 //        }
+    }
+
+    private fun initTabText() {
+        textSort.text = listSort[0]
+        textTime.text = listTime[0]
+        textType.text = listType[0]
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -106,12 +121,15 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
                 val options = ActivityOptions.makeSceneTransitionAnimation(this, searchMenuView, getString(R.string.transition_search_back)).toBundle()
                 startActivity(Intent(this, SearchActivity::class.java), options)
             }
-            R.id.shots_menu_layout -> {
-                popWindow.showPopUpWindow(shotsToolbar)
+            R.id.shots_menu_activity -> {
+                presenter?.menuActivityClick()
             }
-            R.id.filter_list -> {
-                presenter?.showBottomSheet()
-            }
+//            R.id.shots_menu_layout -> {
+//                popWindow.showPopUpWindow(shotsToolbar)
+//            }
+//            R.id.filter_list -> {
+//                presenter?.showBottomSheet()
+//            }
 
         }
         return true
@@ -131,11 +149,12 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun goDribbbeLoginActivity() {
-//        val intent = Intent(this, DribbbleLoginActivity::class.java)
-//        FabTransform.addExtras(intent, ContextCompat.getColor(this, R.color.primary), R.drawable.ic_person_black)
-//        val options = ActivityOptions.makeSceneTransitionAnimation(
-//                this, userIcon, getString(R.string.transition_dribbble_login))
-//        startActivity(intent, options.toBundle())
+        val activityMenuView = shotsToolbar.findViewById<View>(R.id.shots_menu_activity)
+        val intent = Intent(this, DribbbleLoginActivity::class.java)
+        FabTransform.addExtras(intent, Color.TRANSPARENT, R.drawable.ic_user_activity)
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+                this, activityMenuView, getString(R.string.transition_dribbble_login))
+        startActivity(intent, options.toBundle())
     }
 
     override fun goUserActivity() {
