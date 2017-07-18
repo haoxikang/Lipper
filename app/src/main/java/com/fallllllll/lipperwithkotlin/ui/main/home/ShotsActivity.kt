@@ -3,15 +3,23 @@ package com.fallllllll.lipperwithkotlin.ui.main.home
 import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Color
+import android.support.annotation.ColorRes
+import android.support.annotation.DrawableRes
+import android.support.annotation.IdRes
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.util.Log
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
+import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
+import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
@@ -19,12 +27,19 @@ import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.transitions.FabTransform
+import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
+import com.fallllllll.lipperwithkotlin.utils.LoginTransitionBundle
 import kotlinx.android.synthetic.main.activity_shots.*
+import kotlinx.android.synthetic.main.view_drawer_layout.*
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by 康颢曦 on 2017/6/18.
  */
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
+
+
     val listTime: Array<String> by lazy {
         resources.getStringArray(R.array.time)
     }
@@ -35,9 +50,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         resources.getStringArray(R.array.type)
     }
 
-    val popWindow by lazy {
-        HomeItemLayoutPopWindow(this)
-    }
     private val shotsListFragment by lazy {
         ShotsListFragment.newInstance(HOME_TYPE, "")
     }
@@ -45,17 +57,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     private var presenter: ShotsActivityContract.ShotsActivityPresenter? = null
 
     override fun LogOut() {
-//        userIcon.showImage("", false)
-//        shotsToolbar.title = getString(R.string.app_name)
+        userImage.showImage("", false)
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-//        userIcon.showImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, lipperUser.avatarUrl ?: "")
-//        if ((lipperUser.username ?: "").length > 8) {
-//            shotsToolbar.title = lipperUser.username?.substring(0, 7) + "..."
-//        } else {
-//            shotsToolbar.title = lipperUser.username
-//        }
+        userImage.showImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, lipperUser.avatarUrl ?: "")
     }
 
 
@@ -78,8 +84,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         initDrawerLayout()
         initTabText()
         setImageTranslucent()
-        setSupportActionBar(shotsToolbar)
         showFragment()
+        initPresenter()
+    }
+
+    private fun initPresenter() {
         if (presenter == null) {
             presenter = ShotsActivityPresenter(this)
         }
@@ -94,6 +103,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         toolbarLayout.post {
             toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
         }
+        setSupportActionBar(shotsToolbar)
     }
 
     private fun initDrawerLayout() {
@@ -103,9 +113,12 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun initListeners() {
-//        userIcon.setOnClickListener {
-//            presenter?.menuActivityClick()
-//        }
+        userImage.setOnClickListener {
+            presenter?.userImageClick()
+        }
+        shotsToolbar.setNavigationOnClickListener {
+            homeDrawerLayout.openDrawer(Gravity.START,true)
+        }
     }
 
     private fun initTabText() {
@@ -124,12 +137,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
             R.id.shots_menu_activity -> {
                 presenter?.menuActivityClick()
             }
-//            R.id.shots_menu_layout -> {
-//                popWindow.showPopUpWindow(shotsToolbar)
-//            }
-//            R.id.filter_list -> {
-//                presenter?.showBottomSheet()
-//            }
 
         }
         return true
@@ -148,16 +155,27 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     }
 
-    override fun goDribbbeLoginActivity() {
-        val activityMenuView = shotsToolbar.findViewById<View>(R.id.shots_menu_activity)
-        val intent = Intent(this, DribbbleLoginActivity::class.java)
-        FabTransform.addExtras(intent, Color.TRANSPARENT, R.drawable.ic_user_activity)
-        val options = ActivityOptions.makeSceneTransitionAnimation(
-                this, activityMenuView, getString(R.string.transition_dribbble_login))
-        startActivity(intent, options.toBundle())
+    override fun showUserImageLoginAnimation() {
+        goLogin(ContextCompat.getColor(this, R.color.primary), R.drawable.ic_person_black, userImage)
+    }
+
+    override fun showMenuLoginAnimation() {
+        goLogin(Color.TRANSPARENT, R.drawable.ic_user_activity, shotsToolbar.findViewById<View>(R.id.shots_menu_activity))
     }
 
     override fun goUserActivity() {
 
+    }
+
+    override fun goUserCenterActivity() {
+        startActivity<UserCenterActivity>()
+    }
+
+    private fun goLogin(color: Int, @DrawableRes drawableId: Int, view: View) {
+        val intent = Intent(this, DribbbleLoginActivity::class.java)
+        FabTransform.addExtras(intent, color, drawableId)
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+                this, view, getString(R.string.transition_dribbble_login))
+        startActivity(intent, options.toBundle())
     }
 }

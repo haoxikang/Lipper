@@ -4,10 +4,8 @@ import android.content.Intent
 import com.fallllllll.lipperwithkotlin.BuildConfig
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
-import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
-import com.fallllllll.lipperwithkotlin.ui.login.LoginWebActivity
 import com.fallllllll.lipperwithkotlin.utils.getActivityController
 import com.fallllllll.lipperwithkotlin.utils.initUser
 import com.fallllllll.lipperwithkotlin.utils.mock
@@ -71,16 +69,23 @@ class ShotsActivityTest {
     }
 
     @Test
-    fun testGoUserActivity() {
-        shotsActivity.goDribbbeLoginActivity()
+    fun testShowMenuLoginAnimation() {
+        shotsActivity.showMenuLoginAnimation()
         val intent = Intent(shotsActivity, DribbbleLoginActivity::class.java)
         intent.putExtra("test","test")
         val shadowActivity = Shadows.shadowOf(shotsActivity)
         val actualIntent = shadowActivity.nextStartedActivity
         assertEquals(intent.toString(), actualIntent.toString())
     }
-
-
+    @Test
+    fun testShowUserLoginAnimation() {
+        shotsActivity.showUserImageLoginAnimation()
+        val intent = Intent(shotsActivity, DribbbleLoginActivity::class.java)
+        intent.putExtra("test","test")
+        val shadowActivity = Shadows.shadowOf(shotsActivity)
+        val actualIntent = shadowActivity.nextStartedActivity
+        assertEquals(intent.toString(), actualIntent.toString())
+    }
 
 
 }

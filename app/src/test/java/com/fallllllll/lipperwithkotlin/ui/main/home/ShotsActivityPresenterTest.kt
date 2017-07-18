@@ -77,7 +77,7 @@ class ShotsActivityPresenterTest {
     @Test
     fun testUserImageViewClick() {
         presenter.menuActivityClick()
-        verify(view).goDribbbeLoginActivity()
+        verify(view).showMenuLoginAnimation()
         initUser()
         presenter.menuActivityClick()
         verify(view).goUserActivity()

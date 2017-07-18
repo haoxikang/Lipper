@@ -15,11 +15,20 @@ import io.reactivex.rxkotlin.subscribeBy
  * Created by 康颢曦 on 2017/6/18.
  */
 class ShotsActivityPresenter(val view: ShotsActivityContract.ShotsActivityView) : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
+    override fun userImageClick() {
+        if (UserManager.get().isLogin()) {
+            view.goUserCenterActivity()
+        } else {
+
+            view.showUserImageLoginAnimation()
+        }
+    }
+
     override fun menuActivityClick() {
         if (UserManager.get().isLogin()) {
             view.goUserActivity()
         } else {
-            view.goDribbbeLoginActivity()
+            view.showMenuLoginAnimation()
         }
     }
 

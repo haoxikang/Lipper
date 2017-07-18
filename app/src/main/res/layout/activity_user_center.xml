@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:elevation="14dp"
+        app:arc_cropDirection="cropOutside"
+        app:arc_height="10dp"
+        app:arc_position="bottom">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/bg_clean" />
+        <com.fallllllll.lipperwithkotlin.ui.view.widget.BubbleView
+            app:bubbleColor="@color/defaultBubbleColor"
+            app:bubbleCount="4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.Toolbar
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:id="@+id/userCenterToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/transparent" />
+    </com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout>
+
+</LinearLayout>
