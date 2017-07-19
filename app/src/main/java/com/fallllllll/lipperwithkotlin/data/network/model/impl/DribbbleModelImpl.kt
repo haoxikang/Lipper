@@ -12,11 +12,11 @@ import com.fallllllll.lipperwithkotlin.data.network.service.DribbbleService
 class DribbbleModelImpl private constructor(private val dribbbleService: DribbbleService) : DribbbleModel {
 
     companion object {
-        fun getInstance(): DribbbleModelImpl =DribbbleModelImpl(DribbbleHttpMethods().service)
+        fun getInstance(): DribbbleModelImpl = DribbbleModelImpl(DribbbleHttpMethods().service)
     }
 
     override fun getShot(list: String, timeframe: String, sort: String, page: String) = dribbbleService.getShot(list, timeframe, sort, page, PAGE_COUNT.toString())
 
-    override fun getUserInfo() = dribbbleService.getUserInfo()
+    override fun getUserInfo(token: String) = dribbbleService.getUserInfo("Bearer $token")
 
 }

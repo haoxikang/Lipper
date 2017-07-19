@@ -117,7 +117,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
             presenter?.userImageClick()
         }
         shotsToolbar.setNavigationOnClickListener {
-            homeDrawerLayout.openDrawer(Gravity.START,true)
+            homeDrawerLayout.openDrawer(Gravity.START, true)
         }
     }
 

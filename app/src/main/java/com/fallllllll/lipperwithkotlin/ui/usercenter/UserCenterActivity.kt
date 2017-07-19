@@ -1,13 +1,12 @@
 package com.fallllllll.lipperwithkotlin.ui.usercenter
 
 import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
-import kotlinx.android.synthetic.main.activity_shots.*
+import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import kotlinx.android.synthetic.main.activity_user_center.*
 
 /**
@@ -23,6 +22,30 @@ class UserCenterActivity : BaseActivity() {
         setContentView(R.layout.activity_user_center)
         setImageTranslucent()
         initToolbar()
+        initAppbarBg()
+        showUI(UserManager.get().lipperUser)
+
+    }
+
+    private fun showUI(lipperUser: LipperUser) {
+        userCenterImage.setImageURI(lipperUser.avatarUrl)
+        userName.text = lipperUser.username
+        userLocation.text = lipperUser.location
+        //userEmal.text = lipperUser.
+    }
+
+    private fun initAppbarBg() {
+        appbarLayout.post {
+            val h = appbarLayout.height
+            val w = appbarLayout.width
+
+            userCenterBg.layoutParams.height = h
+            userCenterBg.layoutParams.width = w
+
+            userCenterBubble.layoutParams.height = h
+            userCenterBubble.layoutParams.width = w
+
+        }
     }
 
     private fun initToolbar() {

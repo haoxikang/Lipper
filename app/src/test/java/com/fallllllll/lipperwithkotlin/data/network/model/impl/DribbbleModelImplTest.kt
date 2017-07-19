@@ -5,6 +5,7 @@ import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
 import com.fallllllll.lipperwithkotlin.core.rxjava.ConvertToAPIException
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.utils.RxSchedulersOverrideRule
 import com.fallllllll.lipperwithkotlin.utils.initUser
 import io.reactivex.disposables.Disposable
@@ -23,7 +24,7 @@ import org.robolectric.annotation.Config
  * GitHub :  https://github.com/348476129/Lipper
  */
 @RunWith(MyRobolectricTestRunner::class)
-@Config(constants = BuildConfig::class,sdk = intArrayOf(23))
+@Config(constants = BuildConfig::class, sdk = intArrayOf(23))
 class DribbbleModelImplTest {
     @Rule
     @JvmField
@@ -48,10 +49,11 @@ class DribbbleModelImplTest {
 
     @Test
     fun getUserInfo() {
-        disposable = DribbbleModelImpl.getInstance().getUserInfo()
+        disposable = DribbbleModelImpl.getInstance().getUserInfo(UserManager.get().access_token)
                 .onErrorResumeNext(ConvertToAPIException())
                 .subscribeBy({
                     lipperUser = it
+                    print(lipperUser?.avatarUrl)
                 }, {})
         assertNotNull(lipperUser)
     }

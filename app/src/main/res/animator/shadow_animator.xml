@@ -5,6 +5,6 @@
         android:propertyName="elevation"
         android:valueTo="20dp"
         android:valueType="floatType"
-        android:duration="300"/>
+        android:duration="1"/>
 </item>
 </selector>

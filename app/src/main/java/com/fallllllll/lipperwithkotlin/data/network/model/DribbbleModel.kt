@@ -11,5 +11,5 @@ import io.reactivex.Flowable
 interface DribbbleModel {
      fun getShot(list: String, timeframe: String, sort: String, page: String): Flowable<List<ShotBean>>
 
-     fun getUserInfo(): Flowable<LipperUser>
+     fun getUserInfo(token:String): Flowable<LipperUser>
 }

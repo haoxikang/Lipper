@@ -6,29 +6,87 @@
     android:orientation="vertical">
 
     <com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout
+        android:paddingBottom="10dp"
+        android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:elevation="14dp"
         app:arc_cropDirection="cropOutside"
         app:arc_height="10dp"
         app:arc_position="bottom">
 
         <View
+            android:id="@+id/userCenterBg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:background="@mipmap/bg_clean" />
+
         <com.fallllllll.lipperwithkotlin.ui.view.widget.BubbleView
-            app:bubbleColor="@color/defaultBubbleColor"
-            app:bubbleCount="4"
+            android:id="@+id/userCenterBubble"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            app:bubbleColor="@color/defaultBubbleColor"
+            app:bubbleCount="4" />
 
         <android.support.v7.widget.Toolbar
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:id="@+id/userCenterToolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:stateListAnimator="@animator/shadow_user_center_image"
+                app:cardCornerRadius="32dp">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/userCenterImage"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:placeholderImage="@drawable/ic_person_black"
+                    app:roundAsCircle="true"
+                    app:roundWithOverlayColor="@color/primary" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+            android:layout_marginTop="2dp"
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+            <TextView
+                android:layout_marginTop="2dp"
+                android:id="@+id/userLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white_translucent_text"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_marginTop="2dp"
+                android:id="@+id/userEmal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
     </com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout>
 
 </LinearLayout>

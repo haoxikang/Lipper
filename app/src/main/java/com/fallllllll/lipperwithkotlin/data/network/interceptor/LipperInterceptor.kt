@@ -19,7 +19,10 @@ class LipperInterceptor : Interceptor {
         if (UserManager.get().isLogin()) {
             requestBuilder.header("Authorization", "Bearer " + UserManager.get().access_token)
         } else {
-            requestBuilder.header("Authorization", "Bearer " + CLIENT_ACCESS_TOKEN)
+            if (original.headers().get("Authorization").isNullOrEmpty()){
+                requestBuilder.header("Authorization", "Bearer " + CLIENT_ACCESS_TOKEN)
+            }
+
         }
         val request = requestBuilder.build()
         return chain.proceed(request)

@@ -35,7 +35,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
         val disposable = oauthModel.getToken(code)
                 .flatMap {
                     token = it
-                    dribbbleModel.getUserInfo()
+                    dribbbleModel.getUserInfo(it.access_token ?: "")
                 }
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
@@ -63,7 +63,7 @@ class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: Oauth
     private fun updateUserData(): Disposable {
         loginView.beforeLogin()
         loginView.showTopDialog(loginView.getString(R.string.under_login))
-        val disposable = dribbbleModel.getUserInfo()
+        val disposable = dribbbleModel.getUserInfo(UserManager.get().access_token)
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
