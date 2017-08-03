@@ -43,7 +43,7 @@ class DribbbleModelImplTest {
                 .onErrorResumeNext(ConvertToAPIException())
                 .subscribeBy({
                     list = it
-                }, {})
+                })
         assertNotNull(list)
     }
 

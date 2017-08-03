@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LipperWithKotlin.iml" filepath="$PROJECT_DIR$/LipperWithKotlin.iml" />
-      <module fileurl="file://G:\LipperWithKotlin\LipperWithKotlin\.idea\LipperWithKotlin.iml" filepath="G:\LipperWithKotlin\LipperWithKotlin\.idea\LipperWithKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LipperWithKotlin.iml" filepath="$PROJECT_DIR$/.idea/LipperWithKotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

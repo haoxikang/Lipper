@@ -3,6 +3,7 @@ package com.fallllllll.lipperwithkotlin.ui.main.homelist
 import com.fallllllll.lipperwithkotlin.BuildConfig
 import com.fallllllll.lipperwithkotlin.core.MyRobolectricTestRunner
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
+import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.utils.mock
 import com.nhaarman.mockito_kotlin.any
@@ -25,7 +26,7 @@ class ShotsListFragmentTest {
 
     @Test
     fun textShotsListFragment() {
-        val shotsListFragment = ShotsListFragment()
+        val shotsListFragment = ShotsListFragment.newInstance(HOME_TYPE,"")
         val mockShotsListModule = mock<HomeListModule>()
         `when`(mockShotsListModule.provideShotsListPresenter(any<DribbbleModel>())).thenReturn(presenter)
         shotsListFragment.homeListModule =mockShotsListModule

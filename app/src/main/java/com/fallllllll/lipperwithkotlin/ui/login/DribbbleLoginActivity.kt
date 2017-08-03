@@ -33,7 +33,6 @@ class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
         startActivity<LoginWebActivity>()
     }
 
-
     override fun loginSuccessful() {
         finishAfterTransition()
     }

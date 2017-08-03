@@ -11,15 +11,21 @@ import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
  * GitHub :  https://github.com/348476129/Lipper
  */
 class UserManager private constructor() {
+
+   private val lipperUserFactory by lazy { LipperUserFactory() }
+
     var access_token: String by DelegatesExt.valuePreference(KEY_USER_TOKEN, "")
     var token_type: String by DelegatesExt.valuePreference(KEY_TOKEN_TYPE, "")
     var scope: String by DelegatesExt.valuePreference(KEY_TOKEN_SCOPE, "")
     var created_at: Int by DelegatesExt.valuePreference(KEY_CREATED_AT, -1)
 
-    lateinit var lipperUser: LipperUser
+    var lipperUser = lipperUserFactory.createLipperUser()
+
 
     fun updateUser(lipperUser: LipperUser) {
         this.lipperUser = lipperUser
+        lipperUserFactory.updateLipperUser(lipperUser)
+
     }
 
     fun updateToken(userToken: UserToken) {
@@ -38,6 +44,8 @@ class UserManager private constructor() {
         scope = ""
         created_at = -1
         token_type = ""
+        lipperUser = LipperUser()
+        lipperUserFactory.updateLipperUser(lipperUser)
     }
 
     companion object {

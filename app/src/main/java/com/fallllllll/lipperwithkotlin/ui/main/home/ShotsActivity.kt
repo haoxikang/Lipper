@@ -18,6 +18,7 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
+import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
@@ -160,7 +161,8 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun showMenuLoginAnimation() {
-        goLogin(Color.TRANSPARENT, R.drawable.ic_user_activity, shotsToolbar.findViewById<View>(R.id.shots_menu_activity))
+        val menuItem  =  shotsToolbar.findViewById<View>(R.id.shots_menu_activity)
+        goLogin(Color.TRANSPARENT, R.drawable.ic_user_activity, menuItem)
     }
 
     override fun goUserActivity() {
@@ -171,11 +173,5 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         startActivity<UserCenterActivity>()
     }
 
-    private fun goLogin(color: Int, @DrawableRes drawableId: Int, view: View) {
-        val intent = Intent(this, DribbbleLoginActivity::class.java)
-        FabTransform.addExtras(intent, color, drawableId)
-        val options = ActivityOptions.makeSceneTransitionAnimation(
-                this, view, getString(R.string.transition_dribbble_login))
-        startActivity(intent, options.toBundle())
-    }
+
 }
