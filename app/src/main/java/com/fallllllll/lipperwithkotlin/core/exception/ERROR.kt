@@ -17,7 +17,7 @@ const val PARSE_ERROR = 1001
 /**
  * 网络错误
  */
-const val NETWORD_ERROR = 1002
+const val NETWORK_ERROR = 1002
 /**
  * 协议出错
  */

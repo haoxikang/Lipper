@@ -1,6 +1,5 @@
 package com.fallllllll.lipperwithkotlin.data.network.model.impl
 
-import com.fallllllll.lipperwithkotlin.core.constants.PAGE_COUNT
 import com.fallllllll.lipperwithkotlin.data.network.SearchServiceMethods
 import com.fallllllll.lipperwithkotlin.data.network.model.SearchModel
 import com.fallllllll.lipperwithkotlin.data.network.service.SearchService

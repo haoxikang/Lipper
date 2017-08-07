@@ -1,13 +1,10 @@
 package com.fallllllll.lipperwithkotlin.core.exception
 
-import android.accounts.NetworkErrorException
 import org.json.JSONException
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import org.mockito.Mockito
-import retrofit2.HttpException
 import java.net.ConnectException
 import java.util.ArrayList
 
@@ -44,7 +41,7 @@ class NetWorkExceptionTest {
 
         when(e){
             is JSONException-> assertEquals(apiException.code, PARSE_ERROR)
-            is ConnectException-> assertEquals(apiException.code, NETWORD_ERROR)
+            is ConnectException-> assertEquals(apiException.code, NETWORK_ERROR)
             is NullPointerException-> assertEquals(apiException.code, UNKNOWN)
         }
 

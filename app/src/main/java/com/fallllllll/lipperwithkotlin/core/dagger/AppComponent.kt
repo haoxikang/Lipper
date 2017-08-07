@@ -12,7 +12,7 @@ import dagger.Component
  */
 @Component(modules = arrayOf(AppModule::class))
 interface AppComponent {
-    fun drbbbleModel(): DribbbleModel
+    fun dribbbleModel(): DribbbleModel
 
     fun oauthModel(): OauthModel
 

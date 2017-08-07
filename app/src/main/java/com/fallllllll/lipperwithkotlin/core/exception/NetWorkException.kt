@@ -13,7 +13,7 @@ import java.text.ParseException
 class NetWorkException {
     companion object {
         fun handleException(e: Throwable): APIException {
-            var apiException: APIException
+            val apiException: APIException
             when (e) {
                 is HttpException -> {
                     apiException = APIException(e, HTTP_ERROR)
@@ -25,7 +25,7 @@ class NetWorkException {
                     apiException = APIException(e, PARSE_ERROR)
                 }
                 is ConnectException -> {
-                    apiException = APIException(e, NETWORD_ERROR)
+                    apiException = APIException(e, NETWORK_ERROR)
                 }
                 else -> {
                     apiException = APIException(e, UNKNOWN)
