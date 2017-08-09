@@ -22,7 +22,9 @@ import java.util.concurrent.TimeUnit
  * Created by fallllllll on 2017/6/13/013.
  * GitHub :  https://github.com/348476129/Lipper
  */
-class LoginPresenterImpl(val dribbbleModel: DribbbleModel, val oauthModel: OauthModel, val loginView: LoginContract.LoginView) : BasePresenter(), LoginContract.LoginPresenter {
+class LoginPresenterImpl(val dribbbleModel: DribbbleModel,
+                         val oauthModel: OauthModel,
+                         val loginView: LoginContract.LoginView) : BasePresenter(), LoginContract.LoginPresenter {
     lateinit var token: UserToken
     override fun goShotsActivity() {
         loginView.loginSuccessful()

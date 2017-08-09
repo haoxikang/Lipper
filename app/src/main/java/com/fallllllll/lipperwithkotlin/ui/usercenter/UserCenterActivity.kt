@@ -31,7 +31,9 @@ class UserCenterActivity : BaseActivity() {
         userCenterImage.setImageURI(lipperUser.avatarUrl)
         userName.text = lipperUser.username
         userLocation.text = lipperUser.location
-        //userEmal.text = lipperUser.
+        userBio.text = lipperUser.bio
+        textFollowerCount.text = lipperUser.followersCount.toString()
+        textFollowingCount.text = lipperUser.followingsCount.toString()
     }
 
     private fun initAppbarBg() {

@@ -14,6 +14,8 @@
     <string name="search">Search</string>
     <string name="activity">Activity</string>
     <string name="user">User</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
     <string name="retry_hint">Failed to load.Please click on the screen to reload</string>
     <string name="no_data">no data</string>
     <string name="failed_to_load">Failed to load</string>

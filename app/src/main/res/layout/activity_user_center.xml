@@ -6,11 +6,11 @@
     android:orientation="vertical">
 
     <com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout
-        android:paddingBottom="10dp"
         android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="14dp"
+        android:paddingBottom="10dp"
         app:arc_cropDirection="cropOutside"
         app:arc_height="10dp"
         app:arc_position="bottom">
@@ -42,6 +42,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
+                android:transitionName="@string/transition_user_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -52,41 +53,93 @@
                     android:id="@+id/userCenterImage"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    app:placeholderImage="@drawable/ic_person_black"
-                    app:roundAsCircle="true"
-                    app:roundWithOverlayColor="@color/primary" />
+                    app:placeholderImage="@drawable/ic_person_black" />
             </android.support.v7.widget.CardView>
 
             <TextView
-            android:layout_marginTop="2dp"
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_marginTop="2dp"
                 android:id="@+id/userLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/white_translucent_text"
                 android:textSize="12sp" />
+
             <TextView
-                android:layout_marginTop="2dp"
-                android:id="@+id/userEmal"
+                android:id="@+id/userBio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/layoutFollower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="@string/follower"
+                        android:textColor="@color/white_translucent_text"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/textFollowerCount"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="64dp"
+                    android:id="@+id/layoutFollowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:text="@string/following"
+                        android:textColor="@color/white_translucent_text"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/textFollowingCount"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:layout_marginTop="6dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout>
+
 
 </LinearLayout>

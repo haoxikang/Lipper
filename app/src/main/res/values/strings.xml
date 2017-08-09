@@ -14,11 +14,13 @@
     <string name="activity">提醒</string>
     <string name="search">搜索</string>
     <string name="user">个人</string>
+    <string name="follower">粉丝</string>
+    <string name="following">关注</string>
     <string name="retry_hint">加载失败，请点击屏幕重试</string>
     <string name="no_data">数据为空</string>
     <string name="dribbble_login_hint">你需要先去dribbble登录才能使用此功能</string>
     <string name="failed_to_load">加载失败</string>
-    <string name="search_no_data">没有搜索到</string>
+    <string name="search_no_data">没有搜索到关键字</string>
 
     <string name="small_with_info">小图</string>
     <string name="large_with_info">大图</string>
@@ -62,6 +64,7 @@
 
     <string name="transition_search_back" translatable="false">transition_search_back</string>
     <string name="transition_dribbble_login" translatable="false">transition_dribbble_login</string>
+    <string name="transition_user_image" translatable="false">transition_user_image</string>
 
 
     <string name="open_drawer" translatable="false">open drawer</string>

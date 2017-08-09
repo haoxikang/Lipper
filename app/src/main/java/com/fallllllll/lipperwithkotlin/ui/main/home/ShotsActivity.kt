@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
+import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
@@ -23,7 +24,12 @@ import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
 import kotlinx.android.synthetic.main.activity_shots.*
 import kotlinx.android.synthetic.main.view_drawer_layout.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivity
+import javax.inject.Inject
+import android.app.Activity
+import android.util.Pair
+
 
 /**
  * Created by 康颢曦 on 2017/6/18.
@@ -44,14 +50,14 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     private val shotsListFragment by lazy {
         ShotsListFragment.newInstance(HOME_TYPE, "")
     }
-    private var presenter: ShotsActivityContract.ShotsActivityPresenter? = null
+   @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
     override fun LogOut() {
         userImage.showImage("", false)
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-        userImage.showImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, lipperUser.avatarUrl ?: "")
+        userImage.showImage(lipperUser.avatarUrl ?: "",false)
     }
 
 
@@ -69,11 +75,13 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     private fun initPresenter() {
-        if (presenter == null) {
-            presenter = ShotsActivityPresenterImpl(this)
-        }
-        presenterLifecycleHelper.addPresenter(presenter!!)
-        presenter?.onPresenterCreate()
+        DaggerShotsActivityComponent.builder()
+                .appComponent(AppApplication.instance.appComponent)
+                .shotsActivityModule(ShotsActivityModule(this))
+                .build()
+                .inject(this)
+        presenterLifecycleHelper.addPresenter(presenter)
+        presenterLifecycleHelper.onPresenterCreate()
     }
 
     private fun initToolbar() {
@@ -153,7 +161,10 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun goUserCenterActivity() {
-        startActivity<UserCenterActivity>()
+        val intent = intentFor<UserCenterActivity>()
+        val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
+                userInfoLayout, getString(R.string.transition_user_image) )
+        startActivity(intent,transitionActivityOptions.toBundle())
     }
 
 

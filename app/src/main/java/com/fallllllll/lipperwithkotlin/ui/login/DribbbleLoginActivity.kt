@@ -18,7 +18,6 @@ import javax.inject.Inject
 class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
 
     @Inject lateinit var loginPresenter: LoginContract.LoginPresenter
-    var loginModule: LoginModule? = null
     override fun loginFinish() {
         dribbbleLoginButton.visibility = View.VISIBLE
         dribbbleLoginProgressbar.visibility = View.GONE
@@ -48,7 +47,7 @@ class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
         }
         DaggerDribbbleLoginComponent.builder()
                 .appComponent(AppApplication.instance.appComponent)
-                .loginModule(loginModule ?: LoginModule(this))
+                .loginModule( LoginModule(this))
                 .build()
                 .inject(this)
         presenterLifecycleHelper.addPresenter(loginPresenter)
