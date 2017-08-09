@@ -1,6 +1,7 @@
 package com.fallllllll.lipperwithkotlin.core
 
 import android.content.Context
+import android.support.design.widget.Snackbar
 import org.jetbrains.anko.toast
 
 /**
@@ -16,11 +17,11 @@ class BaseViewUtils(val context: Context) {
     }
 
     fun showErrorDialog(s: String) {
-
+        context.toast(s)
     }
 
     fun showTopDialog(s: String) {
-
+        context.toast(s)
     }
 
     fun hideAllTopDialog() {

@@ -2,13 +2,8 @@ package com.fallllllll.lipperwithkotlin.ui.main.home
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.graphics.Color
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
-import android.support.annotation.IdRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -21,16 +16,11 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
-import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
-import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
-import com.fallllllll.lipperwithkotlin.ui.transitions.FabTransform
 import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
-import com.fallllllll.lipperwithkotlin.utils.LoginTransitionBundle
 import kotlinx.android.synthetic.main.activity_shots.*
 import kotlinx.android.synthetic.main.view_drawer_layout.*
 import org.jetbrains.anko.startActivity
@@ -54,7 +44,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     private val shotsListFragment by lazy {
         ShotsListFragment.newInstance(HOME_TYPE, "")
     }
-    var homeBottomSheetFragment: HomeBottomSheetFragment? = null
     private var presenter: ShotsActivityContract.ShotsActivityPresenter? = null
 
     override fun LogOut() {
@@ -66,18 +55,8 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
 
-    fun setPresenter(presenter: ShotsActivityContract.ShotsActivityPresenter) {
-        this.presenter = presenter
-    }
 
-    override fun showBottomSheet(homeListFilterBean: HomeListFilterBean) {
-        if (homeBottomSheetFragment == null) {
-            homeBottomSheetFragment = HomeBottomSheetFragment.newInstance(homeListFilterBean.time, homeListFilterBean.type, homeListFilterBean.sort)
-        }
-        if (!homeBottomSheetFragment!!.isAdded) {
-            homeBottomSheetFragment!!.show(supportFragmentManager, "bottomSheet")
-        }
-    }
+
 
     override fun initViewAndData() {
         setContentView(R.layout.activity_shots)
@@ -91,7 +70,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     private fun initPresenter() {
         if (presenter == null) {
-            presenter = ShotsActivityPresenter(this)
+            presenter = ShotsActivityPresenterImpl(this)
         }
         presenterLifecycleHelper.addPresenter(presenter!!)
         presenter?.onPresenterCreate()
@@ -135,9 +114,9 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
                 val options = ActivityOptions.makeSceneTransitionAnimation(this, searchMenuView, getString(R.string.transition_search_back)).toBundle()
                 startActivity(Intent(this, SearchActivity::class.java), options)
             }
-            R.id.shots_menu_activity -> {
-                presenter?.menuActivityClick()
-            }
+//            R.id.shots_menu_activity -> {
+//               presenter?.menuActivityClick()
+//            }
 
         }
         return true
@@ -161,8 +140,12 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun showMenuLoginAnimation() {
-        val menuItem  =  shotsToolbar.findViewById<View>(R.id.shots_menu_activity)
-        goLogin(Color.TRANSPARENT, R.drawable.ic_user_activity, menuItem)
+//        val menuItem  =  shotsToolbar.findViewById<View>(R.id.shots_menu_activity)
+//        val login = Intent(this, DribbbleLoginActivity::class.java)
+//        MorphTransform.addExtras(login,
+//                Color.TRANSPARENT, resources.getDimensionPixelSize(R.dimen.login_background_radius))
+//        val options = ActivityOptions.makeSceneTransitionAnimation(this, menuItem, getString(R.string.transition_dribbble_login))
+//        startActivity(login, options.toBundle())
     }
 
     override fun goUserActivity() {

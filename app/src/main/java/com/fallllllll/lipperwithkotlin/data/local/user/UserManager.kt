@@ -12,6 +12,8 @@ import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
  */
 class UserManager private constructor() {
 
+
+
    private val lipperUserFactory by lazy { LipperUserFactory() }
 
     var access_token: String by DelegatesExt.valuePreference(KEY_USER_TOKEN, "")

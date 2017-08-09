@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_search_black"
         app:showAsAction="always"
         android:title="@string/search" />
-    <item
-        app:showAsAction="always"
-        android:id="@+id/shots_menu_activity"
-        android:icon="@drawable/ic_user_activity"
-        android:title="@string/home" />
+    <!--<item-->
+        <!--app:showAsAction="always"-->
+        <!--android:id="@+id/shots_menu_activity"-->
+        <!--android:icon="@drawable/ic_user_activity"-->
+        <!--android:title="@string/home" />-->
 </menu>

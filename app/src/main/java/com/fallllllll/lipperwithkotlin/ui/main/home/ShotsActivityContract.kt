@@ -11,7 +11,6 @@ import com.fallllllll.lipperwithkotlin.utils.LoginTransitionBundle
 open class ShotsActivityContract {
      interface ShotsActivityView {
 
-        fun showBottomSheet(homeListFilterBean: HomeListFilterBean)
 
          fun showUserUI(lipperUser: LipperUser)
 
@@ -23,7 +22,6 @@ open class ShotsActivityContract {
      }
 
      interface ShotsActivityPresenter : Contract.Presenter {
-        fun showBottomSheet()
          fun menuActivityClick()
          fun userImageClick()
 

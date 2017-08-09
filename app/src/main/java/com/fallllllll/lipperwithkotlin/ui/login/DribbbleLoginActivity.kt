@@ -34,7 +34,7 @@ class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun loginSuccessful() {
-        finishAfterTransition()
+        dismiss()
     }
 
     override fun showTopDialog(s: String) {
@@ -44,7 +44,7 @@ class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
     override fun initViewAndData() {
         setContentView(R.layout.activity_dribbble_login)
         if (!FabTransform.setup(this, container)) {
-            MorphTransform.setup(this, container, ContextCompat.getColor(this, R.color.primary), 5)
+            MorphTransform.setup(this, container, ContextCompat.getColor(this, R.color.background), resources.getDimensionPixelSize(R.dimen.login_background_radius))
         }
         DaggerDribbbleLoginComponent.builder()
                 .appComponent(AppApplication.instance.appComponent)
@@ -56,10 +56,16 @@ class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
     }
 
     override fun initListeners() {
-        blankLayout.setOnClickListener { finishAfterTransition() }
+        blankLayout.setOnClickListener { dismiss() }
         dribbbleLoginButton.setOnClickListener { loginPresenter.onLoginClick() }
 
     }
 
-
+    override fun onBackPressed() {
+        dismiss()
+    }
+    private fun dismiss() {
+        dribbbleLoginHint.visibility = View.GONE
+        finishAfterTransition()
+    }
 }

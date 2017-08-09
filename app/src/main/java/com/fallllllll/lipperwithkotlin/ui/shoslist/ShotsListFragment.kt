@@ -3,20 +3,11 @@ package com.fallllllll.lipperwithkotlin.ui.shoslist
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.transition.Fade
 import android.view.View
-import android.view.animation.LayoutAnimationController
 import com.fall.generalrecyclerviewfragment.GeneralContract
 import com.fallllllll.AppApplication
-import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_LARGE
-import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_ONLY_IMAGE
-import com.fallllllll.lipperwithkotlin.core.constants.SHOTS_LAYOUT_SMALL
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
-import com.fallllllll.lipperwithkotlin.ui.main.home.HomeBottomSheetFragment
-import com.fallllllll.lipperwithkotlin.ui.main.home.SORT_KEY
-import com.fallllllll.lipperwithkotlin.ui.main.home.TIME_KEY
-import com.fallllllll.lipperwithkotlin.ui.main.home.TYPE_KEY
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.DaggerHomeListComponent
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.HomeListModule
 import com.fallllllll.lipperwithkotlin.ui.search.DaggerSearchListComponent
@@ -100,25 +91,6 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
 
     override fun getPresenter(): GeneralContract.Presenter = shotsListPresenter as GeneralContract.Presenter
 
-//    override fun changeRecyclerViewLayout(layoutType: String) {
-//        val gridLayoutManager = recyclerView.layoutManager as GridLayoutManager
-//        when (layoutType) {
-//            SHOTS_LAYOUT_LARGE -> {
-//                gridLayoutManager.spanCount = 1
-//                shotsListAdapter.changeCurrentLayoutType(layoutType)
-//            }
-//            SHOTS_LAYOUT_ONLY_IMAGE -> {
-//                gridLayoutManager.spanCount = 2
-//                shotsListAdapter.changeCurrentLayoutType(layoutType)
-//            }
-//            SHOTS_LAYOUT_SMALL -> {
-//                gridLayoutManager.spanCount = 2
-//                shotsListAdapter.changeCurrentLayoutType(layoutType)
-//
-//            }
-//        }
-//
-//    }
 
 
     override fun setErrorViewVisible(isShow: Boolean) {

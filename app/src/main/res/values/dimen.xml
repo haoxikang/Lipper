@@ -26,4 +26,6 @@
     <dimen name="shots_card_elevation">2dp</dimen>
     <dimen name="shots_card_elevation_image">0dp</dimen>
 
+    <dimen name="login_background_radius">4dp</dimen>
+
 </resources>

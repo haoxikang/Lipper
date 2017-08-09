@@ -9,12 +9,13 @@ import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
+import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
  * Created by 康颢曦 on 2017/6/18.
  */
-class ShotsActivityPresenter(val view: ShotsActivityContract.ShotsActivityView) : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
+class ShotsActivityPresenterImpl(val view: ShotsActivityContract.ShotsActivityView) : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
     override fun userImageClick() {
         if (UserManager.get().isLogin()) {
             view.goUserCenterActivity()
@@ -36,16 +37,16 @@ class ShotsActivityPresenter(val view: ShotsActivityContract.ShotsActivityView) 
     var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
     var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
 
-    override fun showBottomSheet() {
-        view.showBottomSheet(HomeListFilterBean(time, type, sort))
-    }
+
 
     override fun onPresenterCreate() {
         subscribeLoginEvent()
         if (UserManager.get().isLogin()) {
             view.showUserUI(UserManager.get().lipperUser)
         }
+    }
 
+    private fun updateUserData(){
 
     }
 
