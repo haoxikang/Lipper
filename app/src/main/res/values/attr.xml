@@ -24,8 +24,13 @@
     <declare-styleable name="ArcLayout">
         <attr name="arc_height" />
         <attr name="arc_position" />
-        <attr name="arc_cropDirection"  />
+        <attr name="arc_cropDirection" />
     </declare-styleable>
 
+
+    <attr name="aspectRatio" format="float" />
+    <declare-styleable name="ExpandingImageView">
+        <attr name="aspectRatio" />
+    </declare-styleable>
 
 </resources>

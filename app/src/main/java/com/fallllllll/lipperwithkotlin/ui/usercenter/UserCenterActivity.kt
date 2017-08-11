@@ -5,6 +5,7 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
+import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import kotlinx.android.synthetic.main.activity_user_center.*
@@ -28,7 +29,7 @@ class UserCenterActivity : BaseActivity() {
     }
 
     private fun showUI(lipperUser: LipperUser) {
-        userCenterImage.setImageURI(lipperUser.avatarUrl)
+        userCenterImage.showImage(lipperUser.avatarUrl?:"",false)
         userName.text = lipperUser.username
         userLocation.text = lipperUser.location
         userBio.text = lipperUser.bio

@@ -10,29 +10,17 @@
     android:transitionName="@string/transition_user_image"
     android:layout_marginTop="30dp"
     android:layout_gravity="center"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <android.support.v7.widget.CardView
-        android:transitionName="@string/transition_user_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:stateListAnimator="@animator/shadow_user_center_image"
-        app:cardCornerRadius="32dp">
+    android:layout_width="64dp"
+    android:layout_height="64dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/userCenterImage"
+        app:roundWithOverlayColor="@color/primary"
+        app:roundAsCircle="true"
+        android:id="@+id/userImage"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        app:placeholderImage="@drawable/ic_person_black" />
-    <com.facebook.drawee.view.SimpleDraweeView
         android:transitionName="@string/transition_dribbble_login"
-        android:id="@+id/userImage"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
         app:placeholderImage="@drawable/ic_person_black" />
-    </android.support.v7.widget.CardView>
 </LinearLayout>
 
 </LinearLayout>

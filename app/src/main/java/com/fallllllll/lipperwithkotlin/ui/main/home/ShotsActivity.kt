@@ -13,10 +13,6 @@ import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
-import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
-import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
-import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
-import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
@@ -29,6 +25,9 @@ import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 import android.app.Activity
 import android.util.Pair
+import com.fallllllll.lipperwithkotlin.core.expandFunction.*
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
 
 
 /**
@@ -102,7 +101,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     override fun initListeners() {
         userImage.setOnClickListener {
-            presenter?.userImageClick()
+            presenter.userImageClick()
         }
         shotsToolbar.setNavigationOnClickListener {
             homeDrawerLayout.openDrawer(Gravity.START, true)
@@ -161,11 +160,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun goUserCenterActivity() {
+        homeDrawerLayout.closeDrawers()
         val intent = intentFor<UserCenterActivity>()
         val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
                 userInfoLayout, getString(R.string.transition_user_image) )
         startActivity(intent,transitionActivityOptions.toBundle())
     }
-
 
 }

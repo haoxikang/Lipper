@@ -35,4 +35,4 @@ const val SHOTS_LAYOUT_ONLY_IMAGE = "shots_layout_only_image"
 const val DATA_TANK_HOME_FILTER_KEY = "data_tank_home_filter_key"
 const val SHOTS_HOME_LAYOUT_KEY = "shots_home_layout_key"
 
-const val USER_IMAGE_SIZE = 50
+const val USER_IMAGE_SIZE = 100

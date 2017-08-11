@@ -27,12 +27,12 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <com.facebook.drawee.view.SimpleDraweeView
+            <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
                 android:id="@+id/shotImage"
                 android:layout_width="0dp"
+                app:aspectRatio="1.33"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
-                app:viewAspectRatio="1.33" />
+                android:layout_weight="10" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -47,15 +47,13 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <com.facebook.drawee.view.SimpleDraweeView
+                    <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
                         android:id="@+id/userImage"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        app:roundAsCircle="true"
-                        app:roundWithOverlayColor="@android:color/white"
-                        app:viewAspectRatio="1" />
+                        app:aspectRatio="1" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
