@@ -29,7 +29,7 @@ class UserCenterActivity : BaseActivity() {
     }
 
     private fun showUI(lipperUser: LipperUser) {
-        userCenterImage.showImage(lipperUser.avatarUrl?:"",false)
+        userCenterImage.showImage(url = lipperUser.avatarUrl?:"",isCircleCrop = false)
         userName.text = lipperUser.username
         userLocation.text = lipperUser.location
         userBio.text = lipperUser.bio

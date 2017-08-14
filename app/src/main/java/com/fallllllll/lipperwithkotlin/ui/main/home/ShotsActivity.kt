@@ -52,11 +52,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
    @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
     override fun LogOut() {
-        userImage.showImage("", false)
+        userImage.showImage(url = "", isCircleCrop = true)
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-        userImage.showImage(lipperUser.avatarUrl ?: "",false)
+        userImage.showImage(url = lipperUser.avatarUrl ?: "",isCircleCrop = true)
     }
 
 
@@ -160,7 +160,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun goUserCenterActivity() {
-        homeDrawerLayout.closeDrawers()
         val intent = intentFor<UserCenterActivity>()
         val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
                 userInfoLayout, getString(R.string.transition_user_image) )

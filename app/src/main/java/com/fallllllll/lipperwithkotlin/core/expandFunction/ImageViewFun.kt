@@ -18,6 +18,9 @@ fun ImageView.showImage(x: Int = -1, y: Int = -1, url: String, isCircleCrop: Boo
     if (isCircleCrop) {
         requestOptions.transform(CircleCrop())
     }
+    if (id!=-1){
+        requestOptions.placeholder(id)
+    }
     Glide.with(context)
             .load(url)
             .apply(requestOptions)

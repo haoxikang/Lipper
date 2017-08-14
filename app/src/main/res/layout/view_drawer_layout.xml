@@ -13,14 +13,11 @@
     android:layout_width="64dp"
     android:layout_height="64dp">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        app:roundWithOverlayColor="@color/primary"
-        app:roundAsCircle="true"
+    <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
         android:id="@+id/userImage"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:transitionName="@string/transition_dribbble_login"
-        app:placeholderImage="@drawable/ic_person_black" />
+        android:transitionName="@string/transition_dribbble_login"/>
 </LinearLayout>
 
 </LinearLayout>
