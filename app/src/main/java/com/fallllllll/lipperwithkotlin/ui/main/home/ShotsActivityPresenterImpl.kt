@@ -8,7 +8,6 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
-import com.fallllllll.lipperwithkotlin.data.databean.HomeListFilterBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
@@ -23,7 +22,6 @@ class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: Sho
         if (UserManager.get().isLogin()) {
             view.goUserCenterActivity()
         } else {
-
             view.showUserImageLoginAnimation()
         }
     }
@@ -46,6 +44,8 @@ class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: Sho
         if (UserManager.get().isLogin()) {
             view.showUserUI(UserManager.get().lipperUser)
             updateUserData()
+        }else{
+            view.showUserImagePlaceHolder()
         }
     }
 
@@ -74,7 +74,7 @@ class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: Sho
                     if (it.isLogin) {
                         view.showUserUI(UserManager.get().lipperUser)
                     } else {
-                        view.LogOut()
+                        view.showUserImagePlaceHolder()
                     }
                 }, { subscribeLoginEvent() }))
     }

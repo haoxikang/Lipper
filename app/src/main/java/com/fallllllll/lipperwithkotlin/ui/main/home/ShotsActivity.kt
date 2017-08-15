@@ -12,7 +12,10 @@ import android.widget.RelativeLayout
 import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
-import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
+import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
+import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
+import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
+import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
@@ -21,13 +24,7 @@ import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
 import kotlinx.android.synthetic.main.activity_shots.*
 import kotlinx.android.synthetic.main.view_drawer_layout.*
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
 import javax.inject.Inject
-import android.app.Activity
-import android.util.Pair
-import com.fallllllll.lipperwithkotlin.core.expandFunction.*
-import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
 
 
 /**
@@ -51,12 +48,12 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
    @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
-    override fun LogOut() {
-        userImage.showImage(url = "", isCircleCrop = true)
+    override fun showUserImagePlaceHolder() {
+        userImage.showImage(url = "", isCircleCrop = true,placeHolderId = R.drawable.ic_person_black)
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-        userImage.showImage(url = lipperUser.avatarUrl ?: "",isCircleCrop = true)
+        userImage.showImage(url = lipperUser.avatarUrl ?: "",isCircleCrop = true,placeHolderId = R.drawable.ic_person_black)
     }
 
 

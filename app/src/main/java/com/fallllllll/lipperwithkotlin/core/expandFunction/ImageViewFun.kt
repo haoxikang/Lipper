@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.core.expandFunction
 
+import android.support.annotation.DrawableRes
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -10,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
  */
 
 
-fun ImageView.showImage(x: Int = -1, y: Int = -1, url: String, isCircleCrop: Boolean = false) {
+fun ImageView.showImage(x: Int = -1, y: Int = -1, url: String, isCircleCrop: Boolean = false,@DrawableRes placeHolderId:Int = -1) {
     val requestOptions = RequestOptions()
     if (x != -1 && y != -1) {
         requestOptions.override(x, y)
@@ -18,8 +19,8 @@ fun ImageView.showImage(x: Int = -1, y: Int = -1, url: String, isCircleCrop: Boo
     if (isCircleCrop) {
         requestOptions.transform(CircleCrop())
     }
-    if (id!=-1){
-        requestOptions.placeholder(id)
+    if (placeHolderId !=-1){
+        requestOptions.placeholder(placeHolderId)
     }
     Glide.with(context)
             .load(url)
