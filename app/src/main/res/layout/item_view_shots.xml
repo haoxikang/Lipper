@@ -27,7 +27,7 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
+            <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
                 android:id="@+id/shotImage"
                 android:layout_width="0dp"
                 app:aspectRatio="1.33"
@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
+                    <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
                         android:id="@+id/userImage"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

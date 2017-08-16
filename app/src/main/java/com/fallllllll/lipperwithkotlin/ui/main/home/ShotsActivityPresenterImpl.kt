@@ -17,7 +17,8 @@ import io.reactivex.rxkotlin.subscribeBy
 /**
  * Created by 康颢曦 on 2017/6/18.
  */
-class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: ShotsActivityContract.ShotsActivityView) : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
+class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: ShotsActivityContract.ShotsActivityView)
+            : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
     override fun userImageClick() {
         if (UserManager.get().isLogin()) {
             view.goUserCenterActivity()

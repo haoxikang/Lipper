@@ -29,8 +29,18 @@
 
 
     <attr name="aspectRatio" format="float" />
-    <declare-styleable name="ExpandingImageView">
+    <attr name="isCircle" format="boolean" />
+    <attr name="placeHolder" format="reference" />
+    <attr name="fallBack" format="reference" />
+    <attr name="radius" format="dimension" />
+
+
+    <declare-styleable name="GlideImageView">
         <attr name="aspectRatio" />
+        <attr name="isCircle" />
+        <attr name="placeHolder" />
+        <attr name="fallBack" />
+        <attr name="radius" />
     </declare-styleable>
 
 </resources>

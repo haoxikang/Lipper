@@ -12,8 +12,10 @@
     android:layout_width="64dp"
     android:layout_height="64dp">
 
-    <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
+    <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
+        android:scaleType="center"
         android:id="@+id/userImage"
+        android:src="@drawable/ic_person_black"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:transitionName="@string/transition_dribbble_login"/>

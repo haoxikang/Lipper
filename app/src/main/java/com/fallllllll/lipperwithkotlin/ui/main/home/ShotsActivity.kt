@@ -49,11 +49,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
    @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
     override fun showUserImagePlaceHolder() {
-        userImage.showImage(url = "", isCircleCrop = true,placeHolderId = R.drawable.ic_person_black)
+        userImage.showImage(url = "", isCircleCrop = true)
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-        userImage.showImage(url = lipperUser.avatarUrl ?: "",isCircleCrop = true,placeHolderId = R.drawable.ic_person_black)
+        userImage.showImage(url = lipperUser.avatarUrl ?: "")
     }
 
 

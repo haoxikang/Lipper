@@ -49,7 +49,7 @@
                 android:stateListAnimator="@animator/shadow_user_center_image"
                 app:cardCornerRadius="32dp">
 
-                <com.fallllllll.lipperwithkotlin.ui.view.widget.ExpandingImageView
+                <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
                     android:id="@+id/userCenterImage"
                     android:layout_width="64dp"
                     android:layout_height="64dp"/>
