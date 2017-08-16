@@ -2,6 +2,8 @@ package com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.ImageView
@@ -41,6 +43,10 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
             invalidate()
         }
 
+    init {
+        isDrawingCacheEnabled = true
+        setWillNotDraw(false)
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 
@@ -65,11 +71,17 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
     }
 
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+        if (drawable == null) {
+            return
+        }
+        if (width == 0 && height == 0) {
+            return
+        }
+        drawRadius(canvas, getBitmapFromDrawable(drawable))
     }
 
-    private fun drawRaduis(canvas: Canvas, bitmap: Bitmap?) {
-        if (bitmap!=null){
+    private fun drawRadius(canvas: Canvas, bitmap: Bitmap?) {
+        if (bitmap != null) {
             val paint = Paint()
             paint.color = 0xffffff
             paint.isAntiAlias = true
@@ -88,7 +100,21 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
 
     }
 
-//    private fun getBitmapFromDrawable(drawable: Drawable): Bitmap {
-//
-//    }
+    private fun getBitmapFromDrawable(drawable: Drawable): Bitmap? {
+        try {
+            var bitmap: Bitmap =
+                    when (drawable) {
+                        is BitmapDrawable -> getBitmapFromDrawable@ return drawable.bitmap
+                        is ColorDrawable -> Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+                        else -> Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+                    }
+            val canvas = Canvas(bitmap)
+            drawable.setBounds(0, 0, canvas.width, canvas.height)
+            drawable.draw(canvas)
+            return bitmap
+        } catch (e: OutOfMemoryError) {
+            e.printStackTrace()
+            return null
+        }
+    }
 }
