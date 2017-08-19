@@ -1,8 +1,10 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.webkit.*
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.constants.CALLBACK_URL
@@ -20,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_login_web.*
  */
 class LoginWebActivity : BaseActivity() {
 
-    var isLoadUrl = false
+  private  var isLoadUrl = false
 
     override fun initListeners() {
         webActivityToolbar.setNavigationOnClickListener { finish() }
@@ -43,8 +45,8 @@ class LoginWebActivity : BaseActivity() {
         settings.setAppCacheEnabled(true)
         settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
         settings.setSupportZoom(true)
-        webView.setWebChromeClient(ChromeClient())
-        webView.setWebViewClient(WebClient())
+        webView.webChromeClient = ChromeClient()
+        webView.webViewClient = WebClient()
         webView.loadUrl(getURl())
     }
 

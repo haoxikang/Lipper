@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.data.local.datatank
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.fallllllll.AppApplication
@@ -13,7 +14,7 @@ import kotlin.reflect.KProperty
 class ValuePreference<T>(val name: String, val default: T) : ReadWriteProperty<Any?, T> {
 
 
-    val prefs: SharedPreferences by lazy {
+  private  val prefs: SharedPreferences by lazy {
         AppApplication.instance.getSharedPreferences("default", Context.MODE_PRIVATE)
     }
 
@@ -39,6 +40,7 @@ class ValuePreference<T>(val name: String, val default: T) : ReadWriteProperty<A
 
     }
 
+    @SuppressLint("CommitPrefEdits")
     private fun putPreference(name: String, value: T) = with(prefs.edit()) {
         when (value) {
             is Long -> putLong(name, value)

@@ -25,8 +25,6 @@ const val SEARCH_TYPE = 0
 
 class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
 
-    var homeListModule: HomeListModule? = null
-    var searchListModule: SearchListModule? = null
 
     val type by lazy {
         arguments.getInt(KEY_TYPE, 1)
@@ -60,14 +58,14 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
             DaggerSearchListComponent
                     .builder()
                     .appComponent(AppApplication.instance.appComponent)
-                    .searchListModule(searchListModule ?: SearchListModule(this, word))
+                    .searchListModule(SearchListModule(this, word))
                     .build()
                     .inject(this)
         } else if (type == HOME_TYPE) {
             DaggerHomeListComponent
                     .builder()
                     .appComponent(AppApplication.instance.appComponent)
-                    .homeListModule(homeListModule ?: HomeListModule(this))
+                    .homeListModule(HomeListModule(this))
                     .build()
                     .inject(this)
             presenterLifecycleHelper.addPresenter(shotsListPresenter)

@@ -19,9 +19,9 @@ import io.reactivex.rxkotlin.subscribeBy
 class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
 
 
-    var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
-    var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
-    var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
+   private var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
+  private  var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
+  private  var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
 
 
     private var refreshDisposable: Disposable? = null

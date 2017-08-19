@@ -33,20 +33,20 @@ import javax.inject.Inject
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
 
-    val listTime: Array<String> by lazy {
+    private val listTime: Array<String> by lazy {
         resources.getStringArray(R.array.time)
     }
-    val listSort: Array<String> by lazy {
+    private val listSort: Array<String> by lazy {
         resources.getStringArray(R.array.sort)
     }
-    val listType: Array<String>by lazy {
+    private val listType: Array<String>by lazy {
         resources.getStringArray(R.array.type)
     }
 
     private val shotsListFragment by lazy {
         ShotsListFragment.newInstance(HOME_TYPE, "")
     }
-   @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
+    @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
     override fun showUserImagePlaceHolder() {
         userImage.showImage(url = "", isCircleCrop = true)
@@ -55,9 +55,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     override fun showUserUI(lipperUser: LipperUser) {
         userImage.showImage(url = lipperUser.avatarUrl ?: "")
     }
-
-
-
 
 
     override fun initViewAndData() {
@@ -159,8 +156,8 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     override fun goUserCenterActivity() {
         val intent = intentFor<UserCenterActivity>()
         val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
-                userInfoLayout, getString(R.string.transition_user_image) )
-        startActivity(intent,transitionActivityOptions.toBundle())
+                userInfoLayout, getString(R.string.transition_user_image))
+        startActivity(intent, transitionActivityOptions.toBundle())
     }
 
 }

@@ -17,8 +17,8 @@ import io.reactivex.rxkotlin.subscribeBy
 /**
  * Created by 康颢曦 on 2017/6/18.
  */
-class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: ShotsActivityContract.ShotsActivityView)
-            : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
+class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, private val view: ShotsActivityContract.ShotsActivityView)
+    : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
     override fun userImageClick() {
         if (UserManager.get().isLogin()) {
             view.goUserCenterActivity()
@@ -35,9 +35,9 @@ class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: Sho
         }
     }
 
-    var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
-    var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
-    var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
+    private var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
+    private var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
+    private var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
 
 
     override fun onPresenterCreate() {
@@ -45,7 +45,7 @@ class ShotsActivityPresenterImpl(val dribbbleModel: DribbbleModel, val view: Sho
         if (UserManager.get().isLogin()) {
             view.showUserUI(UserManager.get().lipperUser)
             updateUserData()
-        }else{
+        } else {
             view.showUserImagePlaceHolder()
         }
     }
