@@ -2,7 +2,7 @@ package com.fallllllll.lipperwithkotlin.ui.login
 
 import android.net.Uri
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
+import com.fallllllll.lipperwithkotlin.core.expandFunction.isTokenOutOfDate
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
@@ -13,7 +13,6 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.local.user.UserToken
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import java.util.concurrent.TimeUnit
@@ -86,7 +85,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
     private fun error(throwable: Throwable) {
         loginView.hideAllTopDialog()
         loginView.loginFinish()
-        if (throwable.checkToken()) {
+        if (throwable.isTokenOutOfDate()) {
             loginView.showErrorDialog(loginView.getString(R.string.login_expire))
             UserManager.get().logOut()
         } else {

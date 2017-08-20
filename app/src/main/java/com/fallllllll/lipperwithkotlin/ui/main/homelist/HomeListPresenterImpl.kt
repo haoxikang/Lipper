@@ -84,7 +84,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsLi
         compositeDisposable.add(RxBus.get().toFlowable<ShotsListFilterEvent>()
                 .subscribeBy({
                     stopLoading()
-                    if (time != it.time || sort != it.sort || type != it.type) {
+                    if (isListFilterChanged(it)) {
                         time = it.time
                         sort = it.sort
                         type = it.type
@@ -93,5 +93,6 @@ class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsLi
                 }, { subscribeListFilterEvent() }))
     }
 
-
+private fun isListFilterChanged(shotsListFilterEvent: ShotsListFilterEvent)
+        = (time != shotsListFilterEvent.time || sort != shotsListFilterEvent.sort || type != shotsListFilterEvent.type)
 }

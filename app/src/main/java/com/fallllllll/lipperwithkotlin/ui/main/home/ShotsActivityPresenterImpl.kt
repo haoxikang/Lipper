@@ -4,7 +4,7 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_SORT
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TIME
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TYPE
-import com.fallllllll.lipperwithkotlin.core.expandFunction.checkToken
+import com.fallllllll.lipperwithkotlin.core.expandFunction.isTokenOutOfDate
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
@@ -63,7 +63,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
     }
 
     private fun onError(throwable: Throwable) {
-        if (throwable.checkToken()) {
+        if (throwable.isTokenOutOfDate()) {
             view.showErrorDialog(view.getString(R.string.login_expire))
             UserManager.get().logOut()
         }

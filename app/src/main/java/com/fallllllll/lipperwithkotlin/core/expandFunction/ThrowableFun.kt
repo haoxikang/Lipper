@@ -7,14 +7,14 @@ import com.fallllllll.lipperwithkotlin.core.exception.HTTP_ERROR
  * Created by fallllllll on 2017/6/9/009.
  * GitHub :  https://github.com/348476129/Lipper
  */
-fun Throwable.checkTooManyRequest(): Boolean {
+fun Throwable.isTooManyRequest(): Boolean {
     if (this is APIException && httpExceptionCode == HTTP_ERROR && code == 423) {
         return true
     }
     return false
 }
 
-fun Throwable.checkToken(): Boolean {
+fun Throwable.isTokenOutOfDate(): Boolean {
     if (this is APIException && httpExceptionCode == HTTP_ERROR && code == 401) {
         return true
     }
