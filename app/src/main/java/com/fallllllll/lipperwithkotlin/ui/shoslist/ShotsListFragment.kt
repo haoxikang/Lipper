@@ -15,8 +15,8 @@ import com.fallllllll.lipperwithkotlin.ui.search.SearchListModule
 import javax.inject.Inject
 
 /**
- * Created by fallllllll on 2017/6/19/019.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/19/019.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 const val KEY_TYPE = "ShotsListFragment.keytype"
 const val KEY_WORD = "ShotsListFragment.keyword"

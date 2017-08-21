@@ -17,8 +17,8 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.WebLoginBackEvent
 import kotlinx.android.synthetic.main.activity_login_web.*
 
 /**
- * Created by fallllllll on 2017/6/14/014.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/14/014.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class LoginWebActivity : BaseActivity() {
 

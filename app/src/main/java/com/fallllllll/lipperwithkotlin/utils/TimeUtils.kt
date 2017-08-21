@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Created by fallllllll on 2017/7/14/014.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/14/014.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 fun getTime(s: String?): String? {
     if (s.isNullOrEmpty()) {

@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.view_list_error.view.*
 import org.jetbrains.anko.doAsync
 
 /**
- * Created by fallllllll on 2017/5/27/027.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/5/27/027.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseView {
     protected lateinit var errorView: View

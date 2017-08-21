@@ -1,15 +1,10 @@
 package com.fallllllll.lipperwithkotlin.data.local.user
 
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_CREATED_AT
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_TOKEN_SCOPE
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_TOKEN_TYPE
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_USER_TOKEN
-import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class UserToken {
     val access_token: String?=null

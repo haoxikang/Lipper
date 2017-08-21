@@ -11,8 +11,8 @@ import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 import com.fallllllll.lipperwithkotlin.core.presenter.PresenterLifecycleHelper
 
 /**
- * Created by fallllllll on 2017/5/27/027.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/5/27/027.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 abstract class BaseFragment : Fragment(), Contract.BaseView {
     private lateinit var baseViewUtils: BaseViewUtils

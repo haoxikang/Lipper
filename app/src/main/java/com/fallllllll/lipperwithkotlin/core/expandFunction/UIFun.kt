@@ -9,8 +9,8 @@ import android.util.TypedValue
 import android.view.View
 
 /**
- * Created by fallllllll on 2017/6/12/012.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/12/012.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 fun Activity.getStatusBarHeight(): Int {
     var statusBarHeight = -1

@@ -6,8 +6,8 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
 
 /**
- * Created by fallllllll on 2017/7/18/018.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/18/018.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
  const val CROP_INSIDE = 0
  const val CROP_OUTSIDE = 1

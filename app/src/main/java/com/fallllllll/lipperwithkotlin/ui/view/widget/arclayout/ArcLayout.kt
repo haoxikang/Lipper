@@ -16,8 +16,8 @@ import android.graphics.Canvas.ALL_SAVE_FLAG
 
 
 /**
- * Created by fallllllll on 2017/7/18/018.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/18/018.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ArcLayout(context: Context, attributeSet: AttributeSet?, defStyle: Int) : FrameLayout(context, attributeSet, defStyle) {
     constructor(context: Context) : this(context, null)

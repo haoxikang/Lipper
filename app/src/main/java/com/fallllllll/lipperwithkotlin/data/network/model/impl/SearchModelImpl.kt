@@ -5,8 +5,8 @@ import com.fallllllll.lipperwithkotlin.data.network.model.SearchModel
 import com.fallllllll.lipperwithkotlin.data.network.service.SearchService
 
 /**
- * Created by fallllllll on 2017/7/5/005.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/5/005.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class SearchModelImpl private constructor(private  val searchService: SearchService) : SearchModel {
 

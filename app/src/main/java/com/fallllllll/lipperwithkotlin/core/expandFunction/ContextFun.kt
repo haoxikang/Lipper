@@ -5,8 +5,8 @@ import android.os.ResultReceiver
 import android.view.inputmethod.InputMethodManager
 
 /**
- * Created by fallllllll on 2017/6/9/009.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/9/009.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 fun android.view.View.showIme() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -12,8 +12,8 @@ import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 /**
- * Created by fallllllll on 2017/6/30/030.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/30/030.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class DribbbleLoginActivity : BaseActivity(), LoginContract.LoginView {
 

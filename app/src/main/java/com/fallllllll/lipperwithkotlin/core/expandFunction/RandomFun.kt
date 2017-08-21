@@ -3,8 +3,8 @@ package com.fallllllll.lipperwithkotlin.core.expandFunction
 import java.util.*
 
 /**
- * Created by fallllllll on 2017/6/9/009.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/9/009.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 fun getRandomString(length: Int): String {
     val base = "abcdefghijklmnopqrstuvwxyz0123456789"

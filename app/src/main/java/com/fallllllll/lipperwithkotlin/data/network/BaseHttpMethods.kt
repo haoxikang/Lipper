@@ -13,8 +13,8 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 const val DEFAULT_TIMEOUT = 15L
 

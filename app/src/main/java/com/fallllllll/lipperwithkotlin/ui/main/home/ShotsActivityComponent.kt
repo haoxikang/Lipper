@@ -4,7 +4,8 @@ import com.fallllllll.lipperwithkotlin.core.dagger.AppComponent
 import dagger.Component
 
 /**
- * Created by qqq34 on 2017/8/9.
+ * Created by fall on 2017/8/9.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Component(dependencies = arrayOf(AppComponent::class),modules = arrayOf(ShotsActivityModule::class))
 interface ShotsActivityComponent {

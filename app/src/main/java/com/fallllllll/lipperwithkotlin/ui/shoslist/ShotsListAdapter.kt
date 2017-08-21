@@ -9,14 +9,13 @@ import com.fall.generalrecyclerviewfragment.GeneralDataController
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
 import com.fallllllll.lipperwithkotlin.core.expandFunction.numberToK
-import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.utils.getTime
 import kotlinx.android.synthetic.main.item_view_shots.view.*
 
 /**
- * Created by fallllllll on 2017/6/19/019.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/19/019.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHolder>(), GeneralAdapter {
     private lateinit var context: android.content.Context
@@ -46,13 +45,13 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
             with(shotBean) {
                 with(itemView) {
                     userImage.setOnClickListener {itemClick}
-                    userImage.showImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "",true)
+                    userImage.loadImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "")
 
 
                     if (!images?.hidpi.isNullOrEmpty() && !animated) {
-                        shotImage.showImage(url = images?.hidpi ?: "", isCircleCrop = false)
+                        shotImage.loadImage(url = images?.hidpi ?: "")
                     } else {
-                        shotImage.showImage(isCircleCrop = false,url = images?.normal ?: "")
+                        shotImage.loadImage(url = images?.normal ?: "")
                     }
                     userName.text = user?.name
                     shotTime.text = "${getTime(updatedAt)}"

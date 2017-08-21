@@ -15,7 +15,8 @@ import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
- * Created by 康颢曦 on 2017/6/18.
+ * Created by fall on 2017/6/18.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, private val view: ShotsActivityContract.ShotsActivityView)
     : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {

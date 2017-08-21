@@ -4,7 +4,8 @@ package com.fallllllll.lipperwithkotlin.utils
 import android.util.Log
 
 /**
- * Created by fallllllll on 2017/3/16.
+ * Created by fall on 2017/3/16.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 
 object LogUtils {

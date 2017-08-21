@@ -5,8 +5,8 @@ import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import dagger.Component
 
 /**
- * Created by fallllllll on 2017/6/19/019.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/19/019.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(HomeListModule::class))
 interface HomeListComponent {

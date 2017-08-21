@@ -7,8 +7,8 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class LogInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

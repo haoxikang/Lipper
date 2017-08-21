@@ -10,8 +10,8 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 
 /**
- * Created by fallllllll on 2017/7/5/005.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/5/005.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 
 

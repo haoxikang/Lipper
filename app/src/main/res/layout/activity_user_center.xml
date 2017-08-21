@@ -51,6 +51,7 @@
 
                 <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
                     android:id="@+id/userCenterImage"
+                    app:isCircle="true"
                     android:layout_width="64dp"
                     android:layout_height="64dp"/>
             </android.support.v7.widget.CardView>

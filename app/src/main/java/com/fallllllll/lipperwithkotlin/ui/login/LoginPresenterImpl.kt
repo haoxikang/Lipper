@@ -18,8 +18,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import java.util.concurrent.TimeUnit
 
 /**
- * Created by fallllllll on 2017/6/13/013.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/13/013.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
                          private val oauthModel: OauthModel,

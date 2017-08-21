@@ -10,8 +10,8 @@ import com.fallllllll.lipperwithkotlin.R
 import java.util.*
 
 /**
- * Created by fallllllll on 2017/7/17/017.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/17/017.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class BubbleView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : View(context, attributeSet, defStyle) {
     constructor(context: Context) : this(context, null)

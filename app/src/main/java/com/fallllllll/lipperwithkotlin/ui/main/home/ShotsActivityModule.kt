@@ -5,7 +5,8 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Created by qqq34 on 2017/8/9.
+ * Created by fall on 2017/8/9.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Module
 class ShotsActivityModule(val shotsActivityView: ShotsActivityContract.ShotsActivityView) {

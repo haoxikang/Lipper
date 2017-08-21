@@ -8,8 +8,8 @@ import okhttp3.Request
 import okhttp3.Response
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class LipperInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

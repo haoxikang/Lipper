@@ -7,9 +7,14 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
 
 /**
- * Created by qqq34 on 2017/8/11.
+ * Created by fall on 2017/8/11.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(context, attributeSet) {
     private val setting =
@@ -27,17 +32,17 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
             invalidate()
         }
 
-    var placeHolder = -1
+    var placeHolder = setting.placeHolder
         set(value) {
             field = value
             invalidate()
         }
-    var fallBack = -1
+    var fallBack = setting.fallBack
         set(value) {
             field = value
             invalidate()
         }
-    var radius = 0
+    var radius = setting.radius
         set(value) {
             field = value
             invalidate()
@@ -77,13 +82,21 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
         if (width == 0 && height == 0) {
             return
         }
-        drawRadius(canvas, getBitmapFromDrawable(drawable))
+        if (radius > 0) {
+            drawRadius(canvas, getBitmapFromDrawable(drawable))
+        } else {
+            super.onDraw(canvas)
+        }
+
     }
 
+    /**
+     *  如果使用圆角 将会失去缩放方式
+     */
     private fun drawRadius(canvas: Canvas, bitmap: Bitmap?) {
         if (bitmap != null) {
             val paint = Paint()
-            paint.color = 0xffffff
+            paint.color = 0xffffffff.toInt()
             paint.isAntiAlias = true
             canvas.saveLayer(0f, 0f, width.toFloat(), height.toFloat(), null)
             val rectF = RectF(0f, 0f, width.toFloat(), height.toFloat())
@@ -102,7 +115,7 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
 
     private fun getBitmapFromDrawable(drawable: Drawable): Bitmap? {
         try {
-            var bitmap: Bitmap =
+            val bitmap: Bitmap =
                     when (drawable) {
                         is BitmapDrawable -> getBitmapFromDrawable@ return drawable.bitmap
                         is ColorDrawable -> Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
@@ -116,5 +129,27 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
             e.printStackTrace()
             return null
         }
+    }
+
+    fun loadImage(x: Int = -1, y: Int = -1, url: String) {
+        LogUtils.d(placeHolder.toString())
+        val requestOptions = RequestOptions()
+        if (x != -1 && y != -1) {
+            requestOptions.override(x, y)
+        }
+        if (placeHolder != -1) {
+            requestOptions.placeholder(placeHolder)
+        }
+        if (fallBack != -1) {
+            requestOptions.fallback(fallBack)
+        }
+        if (isCircle) {
+            requestOptions.transform(CircleCrop())
+        }
+
+        Glide.with(context)
+                .load(url)
+                .apply(requestOptions)
+                .into(this)
     }
 }

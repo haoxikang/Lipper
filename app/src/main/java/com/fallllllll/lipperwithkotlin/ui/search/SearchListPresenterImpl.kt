@@ -10,8 +10,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
- * Created by fallllllll on 2017/7/6/006.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/6/006.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class SearchListPresenterImpl(val model: SearchModel, val shotsListView: ShotsListContract.ShotsListView, val kewWord: String) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
     private val per_page = 10

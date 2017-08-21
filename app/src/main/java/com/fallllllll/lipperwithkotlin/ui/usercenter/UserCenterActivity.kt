@@ -5,14 +5,13 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
-import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import kotlinx.android.synthetic.main.activity_user_center.*
 
 /**
- * Created by fallllllll on 2017/7/18/018.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/18/018.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class UserCenterActivity : BaseActivity() {
     override fun initListeners() {
@@ -29,7 +28,7 @@ class UserCenterActivity : BaseActivity() {
     }
 
     private fun showUI(lipperUser: LipperUser) {
-        userCenterImage.showImage(url = lipperUser.avatarUrl?:"",isCircleCrop = false)
+        userCenterImage.loadImage(url = lipperUser.avatarUrl?:"")
         userName.text = lipperUser.username
         userLocation.text = lipperUser.location
         userBio.text = lipperUser.bio

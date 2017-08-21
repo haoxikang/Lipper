@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 
 /**
- * Created by fallllllll on 2017/6/28/028.
+ * Created by fall on 2017/6/28/028.
  * GitHub :  https://github.com/348476129/Lipper
  */
 class PopTransition(context: Context, attributeSet: AttributeSet):Visibility(context,attributeSet) {

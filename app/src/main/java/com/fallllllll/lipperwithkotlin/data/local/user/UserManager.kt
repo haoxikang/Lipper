@@ -7,8 +7,8 @@ import com.fallllllll.lipperwithkotlin.core.constants.KEY_USER_TOKEN
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class UserManager private constructor() {
 

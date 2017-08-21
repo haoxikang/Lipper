@@ -11,8 +11,8 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Created by fallllllll on 2017/6/1/001.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/1/001.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Module
 class AppModule(val context: Context) {

@@ -1,8 +1,8 @@
 package com.fallllllll.lipperwithkotlin.core.constants
 
 /**
- * Created by fallllllll on 2017/4/22/022.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/4/22/022.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 
 

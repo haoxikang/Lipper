@@ -1,11 +1,13 @@
 package com.fallllllll.lipperwithkotlin.ui.main.homelist
 
-import com.fallllllll.lipperwithkotlin.core.constants.*
+import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_SORT
+import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TIME
+import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TYPE
+import com.fallllllll.lipperwithkotlin.core.constants.PAGE_COUNT
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BaseListPresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEvent
-import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsMenuLayoutEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
@@ -13,8 +15,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
- * Created by fallllllll on 2017/6/19/019.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/19/019.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
 

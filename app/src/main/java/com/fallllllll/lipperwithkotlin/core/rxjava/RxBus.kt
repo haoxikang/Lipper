@@ -6,8 +6,8 @@ import io.reactivex.processors.FlowableProcessor
 import io.reactivex.processors.PublishProcessor
 
 /**
- * Created by fallllllll on 2017/5/31/031.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/5/31/031.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 
 class RxBus private constructor() {

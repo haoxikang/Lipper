@@ -8,8 +8,8 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 /**
- * Created by fallllllll on 2017/6/1/001.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/1/001.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ValuePreference<T>(val name: String, val default: T) : ReadWriteProperty<Any?, T> {
 

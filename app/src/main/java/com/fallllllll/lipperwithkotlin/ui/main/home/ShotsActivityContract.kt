@@ -4,7 +4,8 @@ import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 
 /**
- * Created by 康颢曦 on 2017/6/18.
+ * Created by fall on 2017/6/18.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 open class ShotsActivityContract {
      interface ShotsActivityView :Contract.BaseView{

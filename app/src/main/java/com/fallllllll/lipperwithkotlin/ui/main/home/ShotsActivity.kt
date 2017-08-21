@@ -15,7 +15,6 @@ import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
-import com.fallllllll.lipperwithkotlin.core.expandFunction.showImage
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
@@ -28,7 +27,8 @@ import javax.inject.Inject
 
 
 /**
- * Created by 康颢曦 on 2017/6/18.
+ * Created by fall on 2017/6/18.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
@@ -49,11 +49,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
     override fun showUserImagePlaceHolder() {
-        userImage.showImage(url = "", isCircleCrop = true)
+        userImage.loadImage(url = "")
     }
 
     override fun showUserUI(lipperUser: LipperUser) {
-        userImage.showImage(url = lipperUser.avatarUrl ?: "")
+        userImage.loadImage(url = lipperUser.avatarUrl ?: "")
     }
 
 

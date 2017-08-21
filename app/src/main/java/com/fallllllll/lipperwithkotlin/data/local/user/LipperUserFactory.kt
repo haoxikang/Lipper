@@ -6,7 +6,8 @@ import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import org.jetbrains.anko.doAsync
 
 /**
- * Created by qqq34 on 2017/8/3.
+ * Created by fall on 2017/8/3.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class LipperUserFactory {
   private  val gson by lazy { AppApplication.instance.gson }

@@ -5,8 +5,8 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlin.properties.Delegates
 
 /**
- * Created by fallllllll on 2017/5/27/027.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/5/27/027.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 abstract class BaseListPresenter : GeneralPresenter(), Contract.Presenter {
     protected lateinit var compositeDisposable: CompositeDisposable

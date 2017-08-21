@@ -4,8 +4,8 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserToken
 import io.reactivex.Flowable
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 interface OauthModel {
      fun getToken(code: String): Flowable<UserToken>

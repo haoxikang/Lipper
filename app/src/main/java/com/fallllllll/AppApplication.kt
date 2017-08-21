@@ -7,8 +7,8 @@ import com.fallllllll.lipperwithkotlin.core.dagger.DaggerAppComponent
 import com.google.gson.Gson
 
 /**
- * Created by fallllllll on 2017/6/1/001.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/1/001.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class AppApplication :Application(){
 

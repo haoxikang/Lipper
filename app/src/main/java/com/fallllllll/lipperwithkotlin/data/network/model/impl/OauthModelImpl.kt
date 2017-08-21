@@ -12,8 +12,8 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 
 /**
- * Created by fallllllll on 2017/6/2/002.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/2/002.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class OauthModelImpl private constructor(private val oauthService: OauthService) : OauthModel {
 

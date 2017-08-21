@@ -52,6 +52,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
+                        app:isCircle="true"
                         app:aspectRatio="1" />
 
                     <LinearLayout

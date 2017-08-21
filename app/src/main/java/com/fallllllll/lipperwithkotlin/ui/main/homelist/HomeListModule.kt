@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Created by fallllllll on 2017/6/19/019.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/19/019.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Module
 class HomeListModule(val shotsListView: ShotsListContract.ShotsListView) {

@@ -3,8 +3,8 @@ package com.fallllllll.lipperwithkotlin.ui.shoslist
 import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 
 /**
- * Created by fallllllll on 2017/6/19/019.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/6/19/019.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ShotsListContract {
      interface ShotsListView : Contract.BaseView {

@@ -9,15 +9,14 @@ import org.jsoup.nodes.Element
 import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 
 /**
- * Created by fallllllll on 2017/7/5/005.
- * GitHub :  https://github.com/348476129/Lipper
+ * Created by fall on 2017/7/5/005.
+ * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class DribbbleSearchConverter private constructor() : Converter<ResponseBody, List<ShotBean>> {
     private val HOST = "https://dribbble.com"
