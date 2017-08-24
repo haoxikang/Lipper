@@ -46,7 +46,6 @@ class UserCenterActivity : BaseActivity() {
 
             userCenterBubble.layoutParams.height = h
             userCenterBubble.layoutParams.width = w
-
         }
     }
 

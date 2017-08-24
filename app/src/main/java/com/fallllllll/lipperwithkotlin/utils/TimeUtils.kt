@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.utils
 
+import android.os.Build
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,3 +23,4 @@ fun getTime(s: String?): String? {
     }
 
 }
+

@@ -4,14 +4,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.fall.generalrecyclerviewfragment.GeneralAdapter
 import com.fall.generalrecyclerviewfragment.GeneralDataController
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
+import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
 import com.fallllllll.lipperwithkotlin.core.expandFunction.numberToK
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.utils.getTime
 import kotlinx.android.synthetic.main.item_view_shots.view.*
+import org.jetbrains.anko.px2dip
 
 /**
  * Created by fall on 2017/6/19/019.
@@ -26,7 +29,7 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
 
     override fun onBindViewHolder(holder: ShotsListAdapter.ShotsListViewHolder, position: Int) {
         val shotBean = stringGeneralDataController.datas[position]
-        holder.bindView(shotBean)
+        holder.bindView(position, shotBean)
     }
 
     override fun getItemCount(): Int = stringGeneralDataController.datas.size
@@ -41,10 +44,19 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
     override fun getGeneralDataController() = stringGeneralDataController
 
     inner class ShotsListViewHolder(view: View, val itemClick: (ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
-        fun bindView(shotBean: ShotBean) {
+        fun bindView(position: Int, shotBean: ShotBean) {
             with(shotBean) {
                 with(itemView) {
-                    userImage.setOnClickListener {itemClick}
+
+                    if (position == 0) {
+
+                        val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
+                        layoutParams.topMargin = context.dpTopx(10).toInt()
+                        itemShotCardView.requestLayout()
+                    }
+
+                    itemShotCardView.setOnClickListener { }
+                    userImage.setOnClickListener { itemClick }
                     userImage.loadImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "")
 
 

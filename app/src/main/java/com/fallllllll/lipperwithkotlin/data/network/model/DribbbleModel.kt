@@ -9,7 +9,7 @@ import io.reactivex.Flowable
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 interface DribbbleModel {
-     fun getShot(list: String, timeframe: String, sort: String, page: String): Flowable<List<ShotBean>>
+     fun getShot(list: String, timeFrame: String, sort: String, page: String): Flowable<List<ShotBean>>
 
      fun getUserInfo(token:String): Flowable<LipperUser>
 }

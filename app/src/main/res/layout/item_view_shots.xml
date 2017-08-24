@@ -7,18 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp"
     android:transitionName="layout">
 
     <android.support.v7.widget.CardView
-
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:id="@+id/itemShotCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:stateListAnimator="@animator/default_item_click_animator"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="2dp"
-        app:cardMaxElevation="3dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -30,9 +31,9 @@
             <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
                 android:id="@+id/shotImage"
                 android:layout_width="0dp"
-                app:aspectRatio="1.33"
                 android:layout_height="wrap_content"
-                android:layout_weight="10" />
+                android:layout_weight="10"
+                app:aspectRatio="1.33" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,6 +41,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="9"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -52,8 +54,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_margin="6dp"
-                        app:isCircle="true"
-                        app:aspectRatio="1" />
+                        app:aspectRatio="1"
+                        app:isCircle="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -112,7 +114,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:gravity="center_vertical"
                         android:id="@+id/viewsText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -122,12 +123,12 @@
                         android:drawableLeft="@drawable/ic_visibility_grey"
                         android:drawablePadding="2dp"
                         android:ellipsize="end"
+                        android:gravity="center_vertical"
                         android:maxLines="1"
                         android:textColor="@color/secondary_text"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:gravity="center_vertical"
                         android:id="@+id/commentText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -136,12 +137,12 @@
                         android:drawableLeft="@drawable/ic_comment"
                         android:drawablePadding="2dp"
                         android:ellipsize="end"
+                        android:gravity="center_vertical"
                         android:maxLines="1"
                         android:textColor="@color/secondary_text"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:gravity="center_vertical"
                         android:id="@+id/likeText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -150,6 +151,7 @@
                         android:drawableLeft="@drawable/ic_favorite_pink"
                         android:drawablePadding="2dp"
                         android:ellipsize="end"
+                        android:gravity="center_vertical"
                         android:maxLines="1"
                         android:textColor="@color/secondary_text"
                         android:textSize="10sp" />
