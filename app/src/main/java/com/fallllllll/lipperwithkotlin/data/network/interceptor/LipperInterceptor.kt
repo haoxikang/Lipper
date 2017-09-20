@@ -19,7 +19,7 @@ class LipperInterceptor : Interceptor {
         if (UserManager.get().isLogin()) {
             requestBuilder.header("Authorization", "Bearer " + UserManager.get().access_token)
         } else {
-            if (original.headers().get("Authorization").isNullOrEmpty()){
+            if (original.headers().get("Authorization").isNullOrEmpty()) {
                 requestBuilder.header("Authorization", "Bearer " + CLIENT_ACCESS_TOKEN)
             }
 
@@ -28,4 +28,11 @@ class LipperInterceptor : Interceptor {
         return chain.proceed(request)
     }
 
+    fun test(vararg a: String?) {
+        a.isEmpty()
+    }
+
+    fun test2() {
+        test()
+    }
 }

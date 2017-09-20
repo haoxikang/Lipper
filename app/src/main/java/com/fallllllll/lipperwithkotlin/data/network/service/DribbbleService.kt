@@ -11,6 +11,7 @@ import retrofit2.http.Query
  * Created by fall on 2017/6/2/002.
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
+
 interface DribbbleService {
     @GET("shots")
      fun getShot(@Query("list") list: String, @Query("timeframe") timeframe: String, @Query("sort") sort: String, @Query("page") page: String, @Query("per_page") perPage: String): Flowable<List<ShotBean>>

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LipperWithKotlin.iml" filepath="$PROJECT_DIR$/.idea/LipperWithKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RetrofitAnnotation/RetrofitAnnotation.iml" filepath="$PROJECT_DIR$/RetrofitAnnotation/RetrofitAnnotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RetrofitAnnotationProcessor/RetrofitAnnotationProcessor.iml" filepath="$PROJECT_DIR$/RetrofitAnnotationProcessor/RetrofitAnnotationProcessor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

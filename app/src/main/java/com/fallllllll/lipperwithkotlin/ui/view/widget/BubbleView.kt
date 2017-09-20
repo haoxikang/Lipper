@@ -46,7 +46,7 @@ class BubbleView(context: Context, attributeSet: AttributeSet?, defStyle: Int) :
 
     init {
         val a = context.theme.obtainStyledAttributes(attributeSet, R.styleable.BubbleView, defStyle, 0)
-        (0..a.indexCount - 1)
+        (0 until a.indexCount)
                 .map { a.getIndex(it) }
                 .forEach {
                     when (it) {
@@ -56,7 +56,7 @@ class BubbleView(context: Context, attributeSet: AttributeSet?, defStyle: Int) :
 
                 }
         a.recycle()
-        (0..bubbleCount - 1)
+        (0 until bubbleCount)
                 .forEach {
                     val paint = Paint(Paint.ANTI_ALIAS_FLAG)
                     paint.color = bubbleColor
@@ -98,7 +98,7 @@ class BubbleView(context: Context, attributeSet: AttributeSet?, defStyle: Int) :
         postInvalidateDelayed(Math.abs(runTime - 16))
     }
 
-    fun collisionDetectingAndChangeSpeed(bubble: Bubble) {
+    private fun collisionDetectingAndChangeSpeed(bubble: Bubble) {
 
         val left = left
         val top = top

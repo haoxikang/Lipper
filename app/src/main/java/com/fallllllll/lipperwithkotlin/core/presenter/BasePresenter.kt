@@ -15,7 +15,7 @@ abstract class BasePresenter : Contract.Presenter {
     }
 
     override fun detach() {
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
 
     }
 }

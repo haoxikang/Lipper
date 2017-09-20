@@ -11,7 +11,6 @@ import com.google.gson.Gson
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class AppApplication :Application(){
-
      val appComponent: AppComponent by lazy {
          DaggerAppComponent.builder()
                  .appModule(AppModule(this))

@@ -159,5 +159,4 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
                 userInfoLayout, getString(R.string.transition_user_image))
         startActivity(intent, transitionActivityOptions.toBundle())
     }
-
 }
