@@ -1,6 +1,9 @@
 package com.fallllllll.lipperwithkotlin.data.network.service
 
 import android.support.annotation.StringDef
+import com.fall.retrofitannotation.RetrofitService
+import com.fallllllll.lipperwithkotlin.core.constants.BASE_URL
+import com.fallllllll.lipperwithkotlin.core.constants.DRIBBBLE_HOST
 import com.fallllllll.lipperwithkotlin.core.constants.SORT_POPULAR
 import com.fallllllll.lipperwithkotlin.core.constants.SORT_RECENT
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
@@ -14,9 +17,8 @@ import retrofit2.http.Query
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 
-
+@RetrofitService(DRIBBBLE_HOST)
 interface SearchService {
-
     @Retention(AnnotationRetention.SOURCE)
     @StringDef(SORT_POPULAR, SORT_RECENT)
     annotation class SortOrder

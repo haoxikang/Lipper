@@ -27,12 +27,4 @@ class LipperInterceptor : Interceptor {
         val request = requestBuilder.build()
         return chain.proceed(request)
     }
-
-    fun test(vararg a: String?) {
-        a.isEmpty()
-    }
-
-    fun test2() {
-        test()
-    }
 }

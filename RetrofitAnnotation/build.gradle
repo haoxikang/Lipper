@@ -7,3 +7,8 @@ dependencies {
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
+dependencies {
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+
+}

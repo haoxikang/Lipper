@@ -37,7 +37,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.0.0'
     //网络相关
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'org.jsoup:jsoup:1.10.3'
     //Rx

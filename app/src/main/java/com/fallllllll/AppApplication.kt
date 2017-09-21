@@ -4,6 +4,7 @@ import android.app.Application
 import com.fallllllll.lipperwithkotlin.core.dagger.AppComponent
 import com.fallllllll.lipperwithkotlin.core.dagger.AppModule
 import com.fallllllll.lipperwithkotlin.core.dagger.DaggerAppComponent
+import com.fallllllll.retrofit.Greeter
 import com.google.gson.Gson
 
 /**
