@@ -7,6 +7,7 @@ import com.fallllllll.lipperwithkotlin.data.network.interceptor.LipperIntercepto
 import com.fallllllll.lipperwithkotlin.data.network.interceptor.LogInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,8 +17,10 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by qqq34 on 2017/9/21.
  */
+const val DEFAULT_TIMEOUT = 15L
+
 @DefaultBuilder
-class DefaultRetrofitBuilder : RetrofitBuilderFactory {
+open class DefaultRetrofitBuilder : RetrofitBuilderFactory {
     override fun getBuilder(): Retrofit.Builder {
         val cacheFile = File(AppApplication.instance.externalCacheDir.toString() + "/okHttpCache", "lipper")
         val cacheSize = 10 * 1024 * 1024L
@@ -30,8 +33,11 @@ class DefaultRetrofitBuilder : RetrofitBuilderFactory {
                 .addNetworkInterceptor(LipperInterceptor())
                 .addNetworkInterceptor(LogInterceptor())
                 .build())
-                .addConverterFactory(GsonConverterFactory.create(AppApplication.instance.gson))
+                .addConverterFactory(getConverterFactory())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+
     }
+
+    open fun getConverterFactory(): Converter.Factory = GsonConverterFactory.create(AppApplication.instance.gson)
 
 }

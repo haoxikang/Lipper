@@ -4,9 +4,9 @@ import com.fallllllll.lipperwithkotlin.core.constants.CALLBACK_URL
 import com.fallllllll.lipperwithkotlin.core.constants.CLIENT_ID
 import com.fallllllll.lipperwithkotlin.core.constants.CLIENT_SECRET
 import com.fallllllll.lipperwithkotlin.data.local.user.UserToken
-import com.fallllllll.lipperwithkotlin.data.network.OauthHttpMethods
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import com.fallllllll.lipperwithkotlin.data.network.service.OauthService
+import com.fallllllll.lipperwithkotlin.data.network.service.OauthServiceHttpMethods
 import io.reactivex.Flowable
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -18,7 +18,7 @@ import okhttp3.RequestBody
 class OauthModelImpl private constructor(private val oauthService: OauthService) : OauthModel {
 
     companion object {
-        fun getInstance(): OauthModelImpl = OauthModelImpl(OauthHttpMethods().service)
+        fun getInstance(): OauthModelImpl = OauthModelImpl(OauthServiceHttpMethods().service)
     }
 
 

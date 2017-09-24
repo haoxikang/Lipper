@@ -1,6 +1,7 @@
 package com.fall.retrofitannotationprocessor
 
 import com.fall.retrofitannotation.DefaultBuilder
+import com.fall.retrofitannotation.RetrofitBuilder
 import com.fall.retrofitannotation.RetrofitBuilderFactory
 import com.fall.retrofitannotation.RetrofitService
 import javax.annotation.processing.*
@@ -19,7 +20,7 @@ open class RetrofitProcessor : AbstractProcessor() {
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
         val annotations = LinkedHashSet<String>()
         annotations.add(RetrofitService::class.java.canonicalName)
-        annotations.add(RetrofitBuilderFactory::class.java.canonicalName)
+        annotations.add(RetrofitBuilder::class.java.canonicalName)
         annotations.add(DefaultBuilder::class.java.canonicalName)
         return annotations
     }
@@ -35,10 +36,12 @@ open class RetrofitProcessor : AbstractProcessor() {
                     if (it.getAnnotation(DefaultBuilder::class.java) != null) {
                         generator.defaultBuilderElement = it as TypeElement
                     }
+                    if (it.getAnnotation(RetrofitBuilder::class.java) != null) {
+                        generator.retrofitBuilderElements.add(it as TypeElement)
+                    }
                     it.getAnnotation(RetrofitService::class.java) != null
                 }
                 .forEach {
-
                     generator.element = it as TypeElement
                     generator.generate()
 

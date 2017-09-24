@@ -22,3 +22,6 @@ interface DribbbleService {
      fun getUserInfo(@Header("Authorization") token:String): Flowable<LipperUser>
 
 }
+fun main(args:Array<String>){
+    print(Class.forName("com.fallllllll.lipperwithkotlin.data.network.service.DribbbleService").canonicalName)
+}
