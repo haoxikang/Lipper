@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
  * Created by qqq34 on 2017/9/21.
  */
 @DefaultBuilder
-class DefaultRetofitBuilder : RetrofitBuilderFactory {
+class DefaultRetrofitBuilder : RetrofitBuilderFactory {
     override fun getBuilder(): Retrofit.Builder {
         val cacheFile = File(AppApplication.instance.externalCacheDir.toString() + "/okHttpCache", "lipper")
         val cacheSize = 10 * 1024 * 1024L
