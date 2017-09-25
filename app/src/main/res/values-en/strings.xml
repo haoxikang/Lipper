@@ -27,6 +27,10 @@
 
     <string name="apply_filters">APPLY FILTERS</string>
 
+    <string name="dialog_sort_name">Sort by</string>
+    <string name="dialog_time_name">Time limit</string>
+    <string name="dialog_type_name">Types</string>
+
     <string-array name="home_page">
         <item>Home</item>
         <item>Search</item>

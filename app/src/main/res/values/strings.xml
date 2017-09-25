@@ -26,6 +26,9 @@
     <string name="large_with_info">大图</string>
     <string name="only_image">仅图片</string>
 
+    <string name="dialog_sort_name">排序</string>
+    <string name="dialog_time_name">时间</string>
+    <string name="dialog_type_name">类型</string>
 
     <string name="apply_filters">确定</string>
     <string name="no_tags" translatable="false">no tags</string>

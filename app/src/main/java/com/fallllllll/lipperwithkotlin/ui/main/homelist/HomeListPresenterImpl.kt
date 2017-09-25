@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.main.homelist
 
+import android.util.Log
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_SORT
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TIME
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TYPE
@@ -11,6 +12,7 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEv
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -18,12 +20,12 @@ import io.reactivex.rxkotlin.subscribeBy
  * Created by fall on 2017/6/19/019.
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
-class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
+class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView: ShotsListContract.ShotsListView) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
 
 
-   private var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
-  private  var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
-  private  var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
+    private var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
+    private var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
+    private var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
 
 
     private var refreshDisposable: Disposable? = null
@@ -67,18 +69,18 @@ class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsLi
     }
 
     private fun disposeLoadNext() {
-        if (!(loadNextDisposable?.isDisposed ?: true)) {
+        if (loadNextDisposable?.isDisposed == false) {
             loadNextDisposable?.dispose()
         }
     }
 
     private fun disposeRefresh() {
-        if (!(refreshDisposable?.isDisposed ?: true)) {
+        if (refreshDisposable?.isDisposed == false) {
             refreshDisposable?.dispose()
         }
     }
 
-    fun initRxBus() {
+    private fun initRxBus() {
         subscribeListFilterEvent()
     }
 
@@ -86,15 +88,10 @@ class HomeListPresenterImpl(val model: DribbbleModel, val shotsListView: ShotsLi
         compositeDisposable.add(RxBus.get().toFlowable<ShotsListFilterEvent>()
                 .subscribeBy({
                     stopLoading()
-                    if (isListFilterChanged(it)) {
-                        time = it.time
-                        sort = it.sort
-                        type = it.type
-                        checkAndRefreshData()
-                    }
+                    checkAndRefreshData()
                 }, { subscribeListFilterEvent() }))
     }
 
-private fun isListFilterChanged(shotsListFilterEvent: ShotsListFilterEvent)
-        = (time != shotsListFilterEvent.time || sort != shotsListFilterEvent.sort || type != shotsListFilterEvent.type)
+//    private fun isListFilterChanged(shotsListFilterEvent: ShotsListFilterEvent)
+//            = (time != shotsListFilterEvent.time || sort != shotsListFilterEvent.sort || type != shotsListFilterEvent.type)
 }

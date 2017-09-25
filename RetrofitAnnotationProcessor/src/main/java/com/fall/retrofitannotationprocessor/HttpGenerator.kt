@@ -11,7 +11,7 @@ import javax.tools.StandardLocation
 /**
  * Created by qqq34 on 2017/9/22.
  */
-class HttpGenerator(val filer: Filer) {
+class HttpGenerator(private val filer: Filer) {
     lateinit var element: TypeElement
     var defaultBuilderElement: TypeElement? = null
     val retrofitBuilderElements: MutableList<TypeElement>   by lazy { ArrayList<TypeElement>() }

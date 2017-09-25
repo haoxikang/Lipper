@@ -26,10 +26,10 @@ const val SEARCH_TYPE = 0
 class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
 
 
-    val type by lazy {
+    private val type by lazy {
         arguments.getInt(KEY_TYPE, 1)
     }
-    val word: String by lazy {
+    private val word: String by lazy {
         arguments.getString(KEY_WORD, "")
     }
 
@@ -82,13 +82,12 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView {
     override fun getAdapter(): RecyclerView.Adapter<*> = shotsListAdapter
 
     override fun getLayoutManager(): RecyclerView.LayoutManager {
-            return GridLayoutManager(context, 1)
+        return GridLayoutManager(context, 1)
 
 
     }
 
     override fun getPresenter(): GeneralContract.Presenter = shotsListPresenter as GeneralContract.Presenter
-
 
 
     override fun setErrorViewVisible(isShow: Boolean) {

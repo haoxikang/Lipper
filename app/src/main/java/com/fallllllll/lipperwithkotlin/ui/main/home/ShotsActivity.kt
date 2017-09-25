@@ -1,9 +1,11 @@
 package com.fallllllll.lipperwithkotlin.ui.main.home
 
 import android.app.ActivityOptions
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -31,7 +33,6 @@ import javax.inject.Inject
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
-
 
     private val listTime: Array<String> by lazy {
         resources.getStringArray(R.array.time)
@@ -61,7 +62,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         setContentView(R.layout.activity_shots)
         initToolbar()
         initDrawerLayout()
-        initTabText()
         setImageTranslucent()
         showFragment()
         initPresenter()
@@ -94,6 +94,10 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun initListeners() {
+
+        textSort.setOnClickListener { presenter.sortTextClick() }
+        textTime.setOnClickListener { presenter.timeTextClick() }
+        textType.setOnClickListener { presenter.typeTextClick() }
         userImage.setOnClickListener {
             presenter.userImageClick()
         }
@@ -102,11 +106,27 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         }
     }
 
-    private fun initTabText() {
-        textSort.text = listSort[0]
-        textTime.text = listTime[0]
-        textType.text = listType[0]
+    override fun showTabText(sort: String, type: String, time: String) {
+
+        val sortMap = HomeFilterMapCreater.getSortMap(this)
+        textSort.text = sortMap[sort]
+
+        val timeMap = HomeFilterMapCreater.getTimeMap(this)
+        textTime.text = timeMap[time]
+
+        val typeMap = HomeFilterMapCreater.getTypeMap(this)
+        textType.text = typeMap[type]
     }
+
+//    private fun getTabName(map: Map<String, String>, value: String): String {
+//        map.forEach {
+//            if (it.value == value) {
+//                return it.key
+//            }
+//        }
+//        return getTabName(map, "")
+//    }
+
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
@@ -158,5 +178,71 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
                 userInfoLayout, getString(R.string.transition_user_image))
         startActivity(intent, transitionActivityOptions.toBundle())
+    }
+
+    override fun showChoiceSortDialog(name: String) {
+        val map = HomeFilterMapCreater.getSortMap(this)
+        val position = getSelectedPosition(listSort, map, name)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.dialog_sort_name))
+        builder.setSingleChoiceItems(listSort, position, { _, i ->
+            val s = listSort[i]
+            if (s == textSort.text) return@setSingleChoiceItems
+            textSort.text = s
+            presenter.changeSort(getKeyFromPosition(listSort, map, i))
+            builder.create()
+        })
+        builder.show()
+    }
+
+    override fun showChoiceTypeDialog(name: String) {
+        val map = HomeFilterMapCreater.getTypeMap(this)
+        val position = getSelectedPosition(listType, map, name)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.dialog_type_name))
+        builder.setSingleChoiceItems(listType, position, { _, i ->
+            val s = listType[i]
+            if (s == textType.text) return@setSingleChoiceItems
+            textType.text = s
+            presenter.changeType(getKeyFromPosition(listType, map, i))
+        })
+        builder.show()
+    }
+
+    override fun showChoiceTimeDialog(name: String) {
+        val map = HomeFilterMapCreater.getTimeMap(this)
+        val position = getSelectedPosition(listTime, map, name)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.dialog_time_name))
+        builder.setSingleChoiceItems(listTime, position, { _, i ->
+            val s = listTime[i]
+            if (s == textTime.text) return@setSingleChoiceItems
+            textTime.text = s
+            presenter.changeTime(getKeyFromPosition(listTime, map, i))
+        })
+        builder.show()
+    }
+
+    private fun getKeyFromPosition(valueList: Array<String>, map: Map<String, String>, position: Int): String {
+        val s = valueList[position]
+        map.forEach {
+            if (it.value == s) {
+                return it.key
+            }
+        }
+        return ""
+    }
+
+    private fun getSelectedPosition(valueList: Array<String>, map: Map<String, String>, name: String): Int {
+        val value = map[name]
+        (0 until valueList.size)
+                .forEach {
+                    if (valueList[it] == value) {
+                        return it
+                    }
+                }
+        return 0
+
+
     }
 }

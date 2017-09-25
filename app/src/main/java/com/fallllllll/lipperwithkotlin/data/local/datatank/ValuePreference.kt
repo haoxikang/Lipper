@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
  * Created by fall on 2017/6/1/001.
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
-class ValuePreference<T>(val name: String, val default: T) : ReadWriteProperty<Any?, T> {
+class ValuePreference<T>(val name: String, private val default: T) : ReadWriteProperty<Any?, T> {
 
 
   private  val prefs: SharedPreferences by lazy {

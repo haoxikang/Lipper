@@ -9,9 +9,11 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
+import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
+import com.fallllllll.lipperwithkotlin.utils.LogUtils
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
@@ -20,6 +22,42 @@ import io.reactivex.rxkotlin.subscribeBy
  */
 class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, private val view: ShotsActivityContract.ShotsActivityView)
     : BasePresenter(), ShotsActivityContract.ShotsActivityPresenter {
+
+
+
+    private var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
+    private var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
+    private var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
+
+
+    override fun sortTextClick() {
+        view.showChoiceSortDialog(sort)
+    }
+
+    override fun timeTextClick() {
+        view.showChoiceTimeDialog(time)
+    }
+
+    override fun typeTextClick() {
+        view.showChoiceTypeDialog(type)
+    }
+    override fun changeSort(name: String) {
+        sort = name
+        RxBus.get().post(ShotsListFilterEvent(time, sort, type))
+    }
+
+    override fun changeTime(name: String) {
+        time = name
+        RxBus.get().post(ShotsListFilterEvent(time, sort, type))
+
+    }
+
+    override fun changeType(name: String) {
+        type = name
+        RxBus.get().post(ShotsListFilterEvent(time, sort, type))
+    }
+
+
     override fun userImageClick() {
         if (UserManager.get().isLogin()) {
             view.goUserCenterActivity()
@@ -36,12 +74,9 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
         }
     }
 
-    private var time: String by DelegatesExt.valuePreference(KEY_FILTER_TIME, "")
-    private var sort: String by DelegatesExt.valuePreference(KEY_FILTER_SORT, "")
-    private var type: String by DelegatesExt.valuePreference(KEY_FILTER_TYPE, "")
-
 
     override fun onPresenterCreate() {
+        view.showTabText(sort, type, time)
         subscribeLoginEvent()
         if (UserManager.get().isLogin()) {
             view.showUserUI(UserManager.get().lipperUser)
