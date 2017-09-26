@@ -119,6 +119,8 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         shotsListAdapter.itemClick = {
             showToast("点击了${it.id}")
         }
-        shotsListAdapter.itemClick = likeAndUnlikePresenter::likeShot
+        shotsListAdapter.favoriteClick = {
+            _, shotBean -> likeAndUnlikePresenter.likeShot(shotBean)
+        }
     }
 }

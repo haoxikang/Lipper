@@ -10,12 +10,10 @@ import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, private val view: LikeAndUnlikeContract.LikeAndUnlikeView) :
         BasePresenter(), LikeAndUnlikeContract.LikeAndUnlikePresenter {
     override fun likeShot(shotBean: ShotBean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 
     override fun onPresenterCreate() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
