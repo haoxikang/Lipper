@@ -5,9 +5,8 @@ import com.fallllllll.lipperwithkotlin.core.constants.BASE_URL
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import io.reactivex.Flowable
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 /**
  * Created by fall on 2017/6/2/002.
@@ -21,7 +20,9 @@ interface DribbbleService {
     @GET("user")
      fun getUserInfo(@Header("Authorization") token:String): Flowable<LipperUser>
 
-}
-fun main(args:Array<String>){
-    print(Class.forName("com.fallllllll.lipperwithkotlin.data.network.service.DribbbleService").canonicalName)
+    @POST("shots/{shotsId}/like")
+    fun likeAShot(@Path("shotsId") shotsId:String):Flowable<RequestBody>
+
+    @DELETE("shots/{shotsId}/like")
+    fun unlikeAShot(@Path("shotsId") shotsId:String):Flowable<RequestBody>
 }

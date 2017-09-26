@@ -14,7 +14,6 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.numberToK
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.utils.getTime
 import kotlinx.android.synthetic.main.item_view_shots.view.*
-import org.jetbrains.anko.px2dip
 
 /**
  * Created by fall on 2017/6/19/019.
@@ -22,7 +21,8 @@ import org.jetbrains.anko.px2dip
  */
 class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHolder>(), GeneralAdapter {
     private lateinit var context: android.content.Context
-    var itemClick: (ShotBean) -> Unit = {}
+     var itemClick: (ShotBean) -> Unit = {}
+     var favoriteClick: (Int,ShotBean) -> Unit = { _, _ ->  }
     private val stringGeneralDataController: GeneralDataController<ShotBean> by lazy {
         GeneralDataController<ShotBean>(this)
     }
@@ -38,12 +38,12 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShotsListAdapter.ShotsListViewHolder {
         context = parent.context
         val view = LayoutInflater.from(context).inflate(R.layout.item_view_shots, parent, false)
-        return ShotsListViewHolder(view, itemClick)
+        return ShotsListViewHolder(view, itemClick, favoriteClick)
     }
 
     override fun getGeneralDataController() = stringGeneralDataController
 
-    inner class ShotsListViewHolder(view: View, val itemClick: (ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
+    inner class ShotsListViewHolder(view: View, private val itemClick: (ShotBean) -> Unit, private val favoriteClick: (Int,ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
         fun bindView(position: Int, shotBean: ShotBean) {
             with(shotBean) {
                 with(itemView) {
@@ -55,8 +55,8 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                         itemShotCardView.requestLayout()
                     }
 
-                    itemShotCardView.setOnClickListener { }
-                    userImage.setOnClickListener { itemClick }
+                    itemShotCardView.setOnClickListener { itemClick(shotBean) }
+                    userImage.setOnClickListener { }
                     userImage.loadImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "")
 
 
@@ -77,6 +77,7 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     commentText.text = shotBean.commentsCount?.numberToK()
                     viewsText.text = shotBean.viewsCount?.numberToK()
                     likeText.text = shotBean.likesCount?.numberToK()
+                    likeText.setOnClickListener { favoriteClick(position,shotBean) }
                 }
             }
 

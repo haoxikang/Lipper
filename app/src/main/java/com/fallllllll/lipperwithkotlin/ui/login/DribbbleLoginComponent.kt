@@ -1,6 +1,7 @@
 package com.fallllllll.lipperwithkotlin.ui.login
 
 import com.fallllllll.lipperwithkotlin.core.dagger.AppComponent
+import com.fallllllll.lipperwithkotlin.ui.search.SearchListModule
 import dagger.Component
 
 /**

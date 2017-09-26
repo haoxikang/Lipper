@@ -1,7 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.main.home
 
 import android.app.ActivityOptions
-import android.content.DialogInterface
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
@@ -81,9 +80,10 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         shotsToolbar.title = ""
         val layoutParams = shotsToolbar.layoutParams as RelativeLayout.LayoutParams
         layoutParams.topMargin = getStatusBarHeight()
-        toolbarLayout.post {
-            toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
-        }
+        toolbarLayout.layoutParams.height = resources.getDimensionPixelSize(R.dimen.home_toolbar_layout)+getStatusBarHeight()
+//        toolbarLayout.post {
+//            toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
+//        }
         setSupportActionBar(shotsToolbar)
     }
 

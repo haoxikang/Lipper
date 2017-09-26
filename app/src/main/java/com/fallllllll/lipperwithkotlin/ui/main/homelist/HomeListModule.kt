@@ -10,7 +10,7 @@ import dagger.Provides
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Module
-class HomeListModule(val shotsListView: ShotsListContract.ShotsListView) {
+class HomeListModule(private val shotsListView: ShotsListContract.ShotsListView) {
     @Provides
     fun provideShotsListPresenter(dribbbleModel: DribbbleModel): ShotsListContract.ShotsListPresenter = HomeListPresenterImpl(dribbbleModel, shotsListView)
 }

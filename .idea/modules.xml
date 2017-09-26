@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LipperWithKotlin.iml" filepath="$PROJECT_DIR$/LipperWithKotlin.iml" />
-      <module fileurl="file://E:\kaifa\LipperWithKotlin\LipperWithKotlin.iml" filepath="E:\kaifa\LipperWithKotlin\LipperWithKotlin.iml" />
       <module fileurl="file://G:\LipperWithKotlin\LipperWithKotlin\.idea\LipperWithKotlin.iml" filepath="G:\LipperWithKotlin\LipperWithKotlin\.idea\LipperWithKotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/RetrofitAnnotation/RetrofitAnnotation.iml" filepath="$PROJECT_DIR$/RetrofitAnnotation/RetrofitAnnotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/RetrofitAnnotationProcessor/RetrofitAnnotationProcessor.iml" filepath="$PROJECT_DIR$/RetrofitAnnotationProcessor/RetrofitAnnotationProcessor.iml" />

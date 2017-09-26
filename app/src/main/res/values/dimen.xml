@@ -28,4 +28,6 @@
 
     <dimen name="login_background_radius">4dp</dimen>
 
+    <dimen name="home_toolbar_layout">94dp</dimen>
+
 </resources>

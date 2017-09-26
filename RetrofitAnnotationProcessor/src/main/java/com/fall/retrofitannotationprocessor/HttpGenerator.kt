@@ -27,11 +27,11 @@ class HttpGenerator(private val filer: Filer) {
         val builderElement: TypeElement
 
         retrofitBuilderElements.forEach {
-
-           if (it.getAnnotation(RetrofitBuilder::class.java).servicePaths.contains(qualifiedName)) {
+            if (it.getAnnotation(RetrofitBuilder::class.java).servicePaths.contains(qualifiedName)) {
                 retrofitBuilderElement = it
-         }
+            }
         }
+
 
         if (retrofitBuilderElement == null && defaultBuilderElement == null) {
             throw NoSuchElementException("Missing retrofitBuilder")

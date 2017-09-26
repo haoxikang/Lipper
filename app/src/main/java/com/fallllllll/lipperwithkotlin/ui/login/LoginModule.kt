@@ -11,7 +11,7 @@ import dagger.Provides
  */
 @Module
 
- class LoginModule(val loginView: LoginContract.LoginView) {
+ class LoginModule(private val loginView: LoginContract.LoginView) {
     @Provides
     fun provideLoginPresenter(dribbbleModel: DribbbleModel, oauthModel: OauthModel):
             LoginContract.LoginPresenter = LoginPresenterImpl(dribbbleModel, oauthModel, loginView)

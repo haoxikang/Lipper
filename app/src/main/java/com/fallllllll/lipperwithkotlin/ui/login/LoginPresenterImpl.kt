@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
                          private val oauthModel: OauthModel,
                          private val loginView: LoginContract.LoginView) : BasePresenter(), LoginContract.LoginPresenter {
-    lateinit var token: UserToken
+    private lateinit var token: UserToken
     override fun goShotsActivity() {
         loginView.loginSuccessful()
     }

@@ -9,7 +9,7 @@ import dagger.Provides
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Module
-class ShotsActivityModule(val shotsActivityView: ShotsActivityContract.ShotsActivityView) {
+class ShotsActivityModule(private val shotsActivityView: ShotsActivityContract.ShotsActivityView) {
     @Provides
     fun provideShotsActivityPresenter(dribbbleModel: DribbbleModel):
             ShotsActivityContract.ShotsActivityPresenter = ShotsActivityPresenterImpl(dribbbleModel,shotsActivityView)

@@ -114,6 +114,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:paddingTop="12dp"
                         android:id="@+id/viewsText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -129,6 +130,8 @@
                         android:textSize="10sp" />
 
                     <TextView
+                        android:paddingTop="12dp"
+
                         android:id="@+id/commentText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -143,12 +146,13 @@
                         android:textSize="10sp" />
 
                     <TextView
+                        android:paddingTop="12dp"
                         android:id="@+id/likeText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
-                        android:drawableLeft="@drawable/ic_favorite_pink"
+                        android:drawableLeft="@drawable/ic_favorite_grey"
                         android:drawablePadding="2dp"
                         android:ellipsize="end"
                         android:gravity="center_vertical"
