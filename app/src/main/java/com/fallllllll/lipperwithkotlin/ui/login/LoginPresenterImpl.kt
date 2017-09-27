@@ -64,11 +64,10 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
     private fun updateUserData(): Disposable {
         loginView.beforeLogin()
         loginView.showTopDialog(loginView.getString(R.string.under_login))
-        val disposable = dribbbleModel.getUserInfo(UserManager.get().access_token)
+        return  dribbbleModel.getUserInfo(UserManager.get().access_token)
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
-        return disposable
     }
 
 
@@ -93,7 +92,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
         }
     }
 
-    fun subscribeWebLoginEvent() {
+    private fun subscribeWebLoginEvent() {
         compositeDisposable.add(RxBus.get().toFlowable<WebLoginBackEvent>()
                 .subscribeBy({
                     getUserData(Uri.parse(it.url).getQueryParameter("code"))

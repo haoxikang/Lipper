@@ -8,8 +8,11 @@ import com.fall.generalrecyclerviewfragment.GeneralContract
 import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
+import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeContract
 import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeModule
+import com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter.ShotLikesContract
+import com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter.ShotLikesModule
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.DaggerHomeListComponent
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.HomeListModule
 import com.fallllllll.lipperwithkotlin.ui.search.DaggerSearchListComponent
@@ -25,7 +28,7 @@ const val KEY_WORD = "ShotsListFragment.keyword"
 const val HOME_TYPE = 1
 const val SEARCH_TYPE = 0
 
-class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, LikeAndUnlikeContract.LikeAndUnlikeView {
+class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, LikeAndUnlikeContract.LikeAndUnlikeView, ShotLikesContract.ShotLikesView {
 
 
     private val type by lazy {
@@ -52,6 +55,9 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
     @Inject
     lateinit var likeAndUnlikePresenter: LikeAndUnlikeContract.LikeAndUnlikePresenter
 
+    @Inject
+    lateinit var shotLikesPresenter: ShotLikesContract.ShotLikesPresenter
+
     private val shotsListAdapter by lazy {
         ShotsListAdapter()
     }
@@ -65,6 +71,7 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
                     .appComponent(AppApplication.instance.appComponent)
                     .searchListModule(SearchListModule(this, word))
                     .likeAndUnlikeModule(LikeAndUnlikeModule(this))
+                    .shotLikesModule(ShotLikesModule(this))
                     .build()
                     .inject(this)
         } else if (type == HOME_TYPE) {
@@ -73,10 +80,12 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
                     .appComponent(AppApplication.instance.appComponent)
                     .homeListModule(HomeListModule(this))
                     .likeAndUnlikeModule(LikeAndUnlikeModule(this))
+                    .shotLikesModule(ShotLikesModule(this))
                     .build()
                     .inject(this)
             presenterLifecycleHelper.addPresenter(shotsListPresenter)
             presenterLifecycleHelper.addPresenter(likeAndUnlikePresenter)
+            presenterLifecycleHelper.addPresenter(shotLikesPresenter)
         }
 
     }
@@ -85,6 +94,7 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         super.onViewCreated(view, savedInstanceState)
         recyclerView.clipToPadding = false
         recyclerView.setPadding(0, 0, 0, activity.getNavigationBarHeight())
+        shotLikesPresenter.onPresenterCreate()
     }
 
     override fun getAdapter(): RecyclerView.Adapter<*> = shotsListAdapter
@@ -114,13 +124,19 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         shotsListAdapter.notifyItemChanged(position)
     }
 
+    override fun getShotLikesFail() {
+    }
+
+    override fun getShotLikesSuccess(shots: List<ShotBean>) {
+    }
+
     override fun initListeners() {
         super.initListeners()
         shotsListAdapter.itemClick = {
             showToast("点击了${it.id}")
         }
-        shotsListAdapter.favoriteClick = {
-            _, shotBean -> likeAndUnlikePresenter.likeShot(shotBean)
+        shotsListAdapter.favoriteClick = { _, shotBean ->
+            likeAndUnlikePresenter.likeShot(shotBean)
         }
     }
 }

@@ -10,7 +10,7 @@ import dagger.Provides
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 @Module
-class SearchListModule(val shotsListView: ShotsListContract.ShotsListView, val keyWord: String) {
+class SearchListModule(private val shotsListView: ShotsListContract.ShotsListView, private val keyWord: String) {
     @Provides
     fun provideSearchListPresenter(searchModel: SearchModel): ShotsListContract.ShotsListPresenter = SearchListPresenterImpl(searchModel, shotsListView, keyWord)
 }

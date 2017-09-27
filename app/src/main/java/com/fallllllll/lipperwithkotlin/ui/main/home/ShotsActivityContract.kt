@@ -11,7 +11,7 @@ open class ShotsActivityContract {
     interface ShotsActivityView : Contract.BaseView {
 
 
-        fun showUserUI(lipperUser: LipperUser)
+        fun showUserUI(lipperUser: LipperUser?)
 
         fun showUserImagePlaceHolder()
         fun showMenuLoginAnimation()

@@ -15,14 +15,17 @@ import retrofit2.http.*
 @RetrofitService(BASE_URL)
 interface DribbbleService {
     @GET("shots")
-     fun getShot(@Query("list") list: String, @Query("timeframe") timeframe: String, @Query("sort") sort: String, @Query("page") page: String, @Query("per_page") perPage: String): Flowable<List<ShotBean>>
+    fun getShots(@Query("list") list: String, @Query("timeframe") timeframe: String, @Query("sort") sort: String, @Query("page") page: String, @Query("per_page") perPage: String): Flowable<List<ShotBean>>
 
     @GET("user")
-     fun getUserInfo(@Header("Authorization") token:String): Flowable<LipperUser>
+    fun getUserInfo(@Header("Authorization") token: String): Flowable<LipperUser>
 
     @POST("shots/{shotsId}/like")
-    fun likeAShot(@Path("shotsId") shotsId:String):Flowable<RequestBody>
+    fun likeAShot(@Path("shotsId") shotsId: String): Flowable<RequestBody>
 
     @DELETE("shots/{shotsId}/like")
-    fun unlikeAShot(@Path("shotsId") shotsId:String):Flowable<RequestBody>
+    fun unlikeAShot(@Path("shotsId") shotsId: String): Flowable<RequestBody>
+
+    @GET("users/{userId}/likes")
+    fun getUserLikes(@Path("userId") userId: String): Flowable<List<ShotBean>>
 }

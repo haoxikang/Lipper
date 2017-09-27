@@ -52,8 +52,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         userImage.loadImage(url = "")
     }
 
-    override fun showUserUI(lipperUser: LipperUser) {
-        userImage.loadImage(url = lipperUser.avatarUrl ?: "")
+    override fun showUserUI(lipperUser: LipperUser?) {
+        if (lipperUser!=null){
+            userImage.loadImage(url = lipperUser.avatarUrl ?: "")
+
+        }
     }
 
 

@@ -1,10 +1,10 @@
 package com.fallllllll.lipperwithkotlin.data.local.user
 
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_CREATED_AT
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_TOKEN_SCOPE
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_TOKEN_TYPE
-import com.fallllllll.lipperwithkotlin.core.constants.KEY_USER_TOKEN
+import com.fallllllll.lipperwithkotlin.core.constants.*
+import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
+import com.fallllllll.lipperwithkotlin.data.local.datatank.ObjectTanker
+import com.google.gson.reflect.TypeToken
 
 /**
  * Created by fall on 2017/6/2/002.
@@ -13,22 +13,30 @@ import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 class UserManager private constructor() {
 
 
-
-   private val lipperUserFactory by lazy { LipperUserFactory() }
+    private val lipperUserTanker by lazy { ObjectTanker<LipperUser>(KEY_LIPPER_USER) }
+    private val userLikeTanker by lazy { ObjectTanker<List<ShotBean>>(KEY_USER_LIKES) }
 
     var access_token: String by DelegatesExt.valuePreference(KEY_USER_TOKEN, "")
     var token_type: String by DelegatesExt.valuePreference(KEY_TOKEN_TYPE, "")
     var scope: String by DelegatesExt.valuePreference(KEY_TOKEN_SCOPE, "")
     var created_at: Int by DelegatesExt.valuePreference(KEY_CREATED_AT, -1)
 
-    var lipperUser = lipperUserFactory.createLipperUser()
+    var lipperUser = lipperUserTanker.create(LipperUser::class.java)
+
+    var shotBeanList = userLikeTanker.create(object : TypeToken<List<ShotBean>>() {}.type)
 
 
     fun updateUser(lipperUser: LipperUser) {
         this.lipperUser = lipperUser
-        lipperUserFactory.updateLipperUser(lipperUser)
+        lipperUserTanker.update(lipperUser)
 
     }
+
+    fun updateUserLike(shots: List<ShotBean>) {
+        this.shotBeanList = shots
+        userLikeTanker.update(shots)
+    }
+
 
     fun updateToken(userToken: UserToken) {
         with(userToken) {
@@ -46,8 +54,9 @@ class UserManager private constructor() {
         scope = ""
         created_at = -1
         token_type = ""
-        lipperUser = LipperUser()
-        lipperUserFactory.updateLipperUser(lipperUser)
+        userLikeTanker.update(ArrayList())
+
+        lipperUserTanker.update(LipperUser())
     }
 
     companion object {

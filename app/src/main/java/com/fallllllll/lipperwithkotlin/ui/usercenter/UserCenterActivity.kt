@@ -27,13 +27,16 @@ class UserCenterActivity : BaseActivity() {
 
     }
 
-    private fun showUI(lipperUser: LipperUser) {
-        userCenterImage.loadImage(url = lipperUser.avatarUrl ?: "")
-        userName.text = lipperUser.username
-        userLocation.text = lipperUser.location
-        userBio.text = lipperUser.bio
-        textFollowerCount.text = lipperUser.followersCount.toString()
-        textFollowingCount.text = lipperUser.followingsCount.toString()
+    private fun showUI(lipperUser: LipperUser?) {
+        if (lipperUser!=null){
+            userCenterImage.loadImage(url = lipperUser.avatarUrl ?: "")
+            userName.text = lipperUser.username
+            userLocation.text = lipperUser.location
+            userBio.text = lipperUser.bio
+            textFollowerCount.text = lipperUser.followersCount.toString()
+            textFollowingCount.text = lipperUser.followingsCount.toString()
+        }
+
     }
 
     private fun initAppbarBg() {
