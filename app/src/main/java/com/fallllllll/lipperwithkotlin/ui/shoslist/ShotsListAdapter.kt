@@ -51,14 +51,14 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
         fun bindView(position: Int, shotBean: ShotBean) {
             with(shotBean) {
                 with(itemView) {
-
+                    val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
                     if (position == 0) {
-
-                        val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
                         layoutParams.topMargin = context.dpTopx(10).toInt()
-                        itemShotCardView.requestLayout()
+                    }else{
+                        val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
+                        layoutParams.topMargin = context.dpTopx(0).toInt()
                     }
-
+                    itemShotCardView.requestLayout()
                     itemShotCardView.setOnClickListener { itemClick(shotBean) }
                     userImage.setOnClickListener { }
                     userImage.loadImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "")
