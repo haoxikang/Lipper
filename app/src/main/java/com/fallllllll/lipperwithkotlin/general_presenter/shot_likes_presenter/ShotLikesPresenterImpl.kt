@@ -18,14 +18,23 @@ class ShotLikesPresenterImpl(private val dribbbleModel: DribbbleModel, private v
         compositeDisposable.add(dribbbleModel.getUserLikes(UserManager.get().lipperUser?.id.toString())
                 .commonChange()
                 .subscribeBy({
-                    LogUtils.d(it.size.toString())
+                    if (it.isNotEmpty()) {
+                        UserManager.get().updateUserLike(it)
+                        view.getShotLikesSuccess(it)
+                    } else {
+                        view.getShotLikesFail()
+                    }
                 }, {
+                    view.getShotLikesFail()
 
                 }))
     }
 
     override fun onPresenterCreate() {
         registerLoginEvent()
+        if (UserManager.get().isLogin()) {
+            getShotLikes()
+        }
     }
 
     private fun registerLoginEvent() {
@@ -35,7 +44,7 @@ class ShotLikesPresenterImpl(private val dribbbleModel: DribbbleModel, private v
                             if (it.isLogin) {
                                 getShotLikes()
                             } else {
-
+                                view.cleanLikes()
                             }
                         }, { registerLoginEvent() }
                 ))

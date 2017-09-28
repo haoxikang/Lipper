@@ -6,6 +6,7 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BaseListPresenter
 import com.fallllllll.lipperwithkotlin.data.network.model.SearchModel
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
+import com.fallllllll.lipperwithkotlin.utils.changeLikeStatus
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -13,7 +14,7 @@ import io.reactivex.rxkotlin.subscribeBy
  * Created by fall on 2017/7/6/006.
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
-class SearchListPresenterImpl(val model: SearchModel, val shotsListView: ShotsListContract.ShotsListView, val kewWord: String) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
+class SearchListPresenterImpl(val model: SearchModel, private val shotsListView: ShotsListContract.ShotsListView, private val kewWord: String) : BaseListPresenter(), ShotsListContract.ShotsListPresenter {
     private val per_page = 10
     private var refreshDisposable: Disposable? = null
     private var loadNextDisposable: Disposable? = null
@@ -22,6 +23,7 @@ class SearchListPresenterImpl(val model: SearchModel, val shotsListView: ShotsLi
         disposeRefresh()
         shotsListView.setErrorViewVisible(false)
         refreshDisposable = model.search(kewWord, SORT_POPULAR, "1")
+                .map { it.changeLikeStatus() }
                 .commonChange()
                 .subscribeBy({
                     if (it.isEmpty()) {
@@ -39,6 +41,7 @@ class SearchListPresenterImpl(val model: SearchModel, val shotsListView: ShotsLi
     override fun loadNextPageData(page: Int) {
         disposeLoadNext()
         loadNextDisposable = model.search(kewWord, SORT_POPULAR, page.toString())
+                .map { it.changeLikeStatus() }
                 .commonChange()
                 .subscribeBy({
                     if (it.size < per_page) {
@@ -56,13 +59,13 @@ class SearchListPresenterImpl(val model: SearchModel, val shotsListView: ShotsLi
     }
 
     private fun disposeLoadNext() {
-        if (!(loadNextDisposable?.isDisposed ?: true)) {
+        if (loadNextDisposable?.isDisposed == false) {
             loadNextDisposable?.dispose()
         }
     }
 
     private fun disposeRefresh() {
-        if (!(refreshDisposable?.isDisposed ?: true)) {
+        if (refreshDisposable?.isDisposed == false) {
             refreshDisposable?.dispose()
         }
     }

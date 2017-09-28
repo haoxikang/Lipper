@@ -62,7 +62,7 @@ data class ShotBean(
         val tags: List<String>? = null,
 
         @field:SerializedName("likes_count")
-        val likesCount: Int? = null,
+        var likesCount: Int = 0,
 
         @field:SerializedName("comments_count")
         val commentsCount: Int? = null,
@@ -83,5 +83,6 @@ data class ShotBean(
         val projectsUrl: String? = null,
 
         @field:SerializedName("user")
-        val user: User? = null
+        val user: User? = null,
+        var isLike:Boolean = false
 )

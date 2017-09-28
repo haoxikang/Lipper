@@ -1,10 +1,10 @@
 package com.fallllllll.lipperwithkotlin.data.network.model
 
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import io.reactivex.Flowable
-import retrofit2.http.GET
-import retrofit2.http.Path
+import okhttp3.RequestBody
 
 /**
  * Created by fall on 2017/6/2/002.
@@ -15,5 +15,9 @@ interface DribbbleModel {
 
      fun getUserInfo(token:String): Flowable<LipperUser>
 
-    fun getUserLikes(userId: String): Flowable<List<ShotBean>>
+    fun getUserLikes(userId: String): Flowable<List<UserLikesBean>>
+
+    fun likeAShot(shotsId: String): Flowable<RequestBody>
+
+    fun unlikeAShot(shotsId: String): Flowable<RequestBody>
 }

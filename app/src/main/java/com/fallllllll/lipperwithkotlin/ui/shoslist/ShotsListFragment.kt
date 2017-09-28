@@ -9,6 +9,7 @@ import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeContract
 import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeModule
 import com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter.ShotLikesContract
@@ -116,18 +117,26 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         }
     }
 
-    override fun unlike(position: Int) {
-        shotsListAdapter.notifyItemChanged(position)
-    }
+
 
     override fun like(position: Int) {
         shotsListAdapter.notifyItemChanged(position)
     }
 
     override fun getShotLikesFail() {
+
     }
 
-    override fun getShotLikesSuccess(shots: List<ShotBean>) {
+    override fun getShotLikesSuccess(shots: List<UserLikesBean>) {
+        if (recyclerView.adapter != null) {
+            shotsListAdapter.updateLikeState()
+        }
+    }
+
+    override fun cleanLikes() {
+        if (recyclerView.adapter != null) {
+            shotsListAdapter.cleanLikeState()
+        }
     }
 
     override fun initListeners() {
@@ -135,8 +144,8 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         shotsListAdapter.itemClick = {
             showToast("点击了${it.id}")
         }
-        shotsListAdapter.favoriteClick = { _, shotBean ->
-            likeAndUnlikePresenter.likeShot(shotBean)
+        shotsListAdapter.favoriteClick = { position, shotBean ->
+            likeAndUnlikePresenter.likeShot(shotBean,position)
         }
     }
 }

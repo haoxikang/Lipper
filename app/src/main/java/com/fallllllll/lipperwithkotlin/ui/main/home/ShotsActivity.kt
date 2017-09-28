@@ -17,6 +17,7 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
@@ -53,7 +54,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun showUserUI(lipperUser: LipperUser?) {
-        if (lipperUser!=null){
+        if (lipperUser != null) {
             userImage.loadImage(url = lipperUser.avatarUrl ?: "")
 
         }
@@ -83,7 +84,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         shotsToolbar.title = ""
         val layoutParams = shotsToolbar.layoutParams as RelativeLayout.LayoutParams
         layoutParams.topMargin = getStatusBarHeight()
-        toolbarLayout.layoutParams.height = resources.getDimensionPixelSize(R.dimen.home_toolbar_layout)+getStatusBarHeight()
+        toolbarLayout.layoutParams.height = resources.getDimensionPixelSize(R.dimen.home_toolbar_layout) + getStatusBarHeight()
 //        toolbarLayout.post {
 //            toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
 //        }
@@ -97,7 +98,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun initListeners() {
-
+        loginOut.setOnClickListener {
+            if (UserManager.get().isLogin()) {
+                UserManager.get().logOut()
+            }
+        }
         textSort.setOnClickListener { presenter.sortTextClick() }
         textTime.setOnClickListener { presenter.timeTextClick() }
         textType.setOnClickListener { presenter.typeTextClick() }

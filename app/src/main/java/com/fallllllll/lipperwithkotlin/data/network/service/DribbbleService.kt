@@ -3,6 +3,7 @@ package com.fallllllll.lipperwithkotlin.data.network.service
 import com.fall.retrofitannotation.RetrofitService
 import com.fallllllll.lipperwithkotlin.core.constants.BASE_URL
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import io.reactivex.Flowable
 import okhttp3.RequestBody
@@ -27,5 +28,5 @@ interface DribbbleService {
     fun unlikeAShot(@Path("shotsId") shotsId: String): Flowable<RequestBody>
 
     @GET("users/{userId}/likes")
-    fun getUserLikes(@Path("userId") userId: String): Flowable<List<ShotBean>>
+    fun getUserLikes(@Path("userId") userId: String): Flowable<List<UserLikesBean>>
 }

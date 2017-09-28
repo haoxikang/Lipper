@@ -1,6 +1,5 @@
 package com.fallllllll.lipperwithkotlin.ui.main.homelist
 
-import android.util.Log
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_SORT
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TIME
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TYPE
@@ -12,7 +11,7 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEv
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
+import com.fallllllll.lipperwithkotlin.utils.changeLikeStatus
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -42,6 +41,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
         disposeRefresh()
         shotsListView.setErrorViewVisible(false)
         refreshDisposable = model.getShot(type, time, sort, "1")
+                .map { it.changeLikeStatus() }
                 .commonChange()
                 .subscribeBy({
                     refreshFinish(it)
@@ -52,7 +52,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
     override fun loadNextPageData(page: Int) {
         disposeLoadNext()
         loadNextDisposable = model.getShot(type, time, sort, page.toString())
-                .commonChange()
+                .map { it.changeLikeStatus() }
                 .subscribeBy({
                     if (it.size < PAGE_COUNT) {
                         loadLastPageDataFinish(it)
@@ -92,6 +92,4 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
                 }, { subscribeListFilterEvent() }))
     }
 
-//    private fun isListFilterChanged(shotsListFilterEvent: ShotsListFilterEvent)
-//            = (time != shotsListFilterEvent.time || sort != shotsListFilterEvent.sort || type != shotsListFilterEvent.type)
 }

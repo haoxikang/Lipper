@@ -1,5 +1,7 @@
 package com.fallllllll.lipperwithkotlin.ui.shoslist
 
+import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,8 @@ import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
 import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
 import com.fallllllll.lipperwithkotlin.core.expandFunction.numberToK
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.utils.changeLikeStatus
+import com.fallllllll.lipperwithkotlin.utils.cleanLikesStatus
 import com.fallllllll.lipperwithkotlin.utils.getTime
 import kotlinx.android.synthetic.main.item_view_shots.view.*
 
@@ -21,8 +25,8 @@ import kotlinx.android.synthetic.main.item_view_shots.view.*
  */
 class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHolder>(), GeneralAdapter {
     private lateinit var context: android.content.Context
-     var itemClick: (ShotBean) -> Unit = {}
-     var favoriteClick: (Int,ShotBean) -> Unit = { _, _ ->  }
+    var itemClick: (ShotBean) -> Unit = {}
+    var favoriteClick: (Int, ShotBean) -> Unit = { _, _ -> }
     private val stringGeneralDataController: GeneralDataController<ShotBean> by lazy {
         GeneralDataController<ShotBean>(this)
     }
@@ -43,7 +47,7 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
 
     override fun getGeneralDataController() = stringGeneralDataController
 
-    inner class ShotsListViewHolder(view: View, private val itemClick: (ShotBean) -> Unit, private val favoriteClick: (Int,ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
+    inner class ShotsListViewHolder(view: View, private val itemClick: (ShotBean) -> Unit, private val favoriteClick: (Int, ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
         fun bindView(position: Int, shotBean: ShotBean) {
             with(shotBean) {
                 with(itemView) {
@@ -77,11 +81,27 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     commentText.text = shotBean.commentsCount?.numberToK()
                     viewsText.text = shotBean.viewsCount?.numberToK()
                     likeText.text = shotBean.likesCount?.numberToK()
-                    likeText.setOnClickListener { favoriteClick(position,shotBean) }
+                    val drawableLeft: Drawable = if (shotBean.isLike) {
+                        ContextCompat.getDrawable(context, R.drawable.ic_favorite_pink)
+                    } else {
+                        ContextCompat.getDrawable(context, R.drawable.ic_favorite_grey)
+                    }
+                    likeText.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null)
+
+                    likeText.setOnClickListener { favoriteClick(position, shotBean) }
                 }
             }
 
 
         }
+    }
+
+    fun updateLikeState() {
+        stringGeneralDataController.datas.changeLikeStatus()
+        notifyDataSetChanged()
+    }
+    fun cleanLikeState(){
+        stringGeneralDataController.datas.cleanLikesStatus()
+        notifyDataSetChanged()
     }
 }
