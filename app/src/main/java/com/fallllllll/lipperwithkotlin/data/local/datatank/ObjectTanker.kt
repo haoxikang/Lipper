@@ -18,7 +18,7 @@ class ObjectTanker<T>(objectKye: String ) {
         return gson.fromJson(objectJson,type)
     }
 
-    fun update(t: T) {
+  fun update(t: T) {
         doAsync {
             objectJson = gson.toJson(t)
         }

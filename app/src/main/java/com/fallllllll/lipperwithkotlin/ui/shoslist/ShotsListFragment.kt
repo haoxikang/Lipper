@@ -8,7 +8,6 @@ import com.fall.generalrecyclerviewfragment.GeneralContract
 import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
-import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeContract
 import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeModule
@@ -84,10 +83,13 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
                     .shotLikesModule(ShotLikesModule(this))
                     .build()
                     .inject(this)
-            presenterLifecycleHelper.addPresenter(shotsListPresenter)
-            presenterLifecycleHelper.addPresenter(likeAndUnlikePresenter)
-            presenterLifecycleHelper.addPresenter(shotLikesPresenter)
+
+
         }
+        presenterLifecycleHelper.addPresenter(shotsListPresenter)
+        presenterLifecycleHelper.addPresenter(likeAndUnlikePresenter)
+        presenterLifecycleHelper.addPresenter(shotLikesPresenter)
+        shotLikesPresenter.onPresenterCreate()
 
     }
 
@@ -95,7 +97,6 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         super.onViewCreated(view, savedInstanceState)
         recyclerView.clipToPadding = false
         recyclerView.setPadding(0, 0, 0, activity.getNavigationBarHeight())
-        shotLikesPresenter.onPresenterCreate()
     }
 
     override fun getAdapter(): RecyclerView.Adapter<*> = shotsListAdapter

@@ -2,7 +2,7 @@ package com.fallllllll.lipperwithkotlin.data.local.user
 
 import com.fallllllll.lipperwithkotlin.core.constants.*
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
-import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.data.databean.User
 import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
@@ -17,7 +17,7 @@ class UserManager private constructor() {
 
 
     private val lipperUserTanker by lazy { ObjectTanker<LipperUser>(KEY_LIPPER_USER) }
-    private val userLikeTanker by lazy { ObjectTanker<List<UserLikesBean>>(KEY_USER_LIKES) }
+    private val userLikeTanker by lazy { ObjectTanker<MutableList<UserLikesBean>>(KEY_USER_LIKES) }
 
     var access_token: String by DelegatesExt.valuePreference(KEY_USER_TOKEN, "")
     var token_type: String by DelegatesExt.valuePreference(KEY_TOKEN_TYPE, "")
@@ -26,20 +26,50 @@ class UserManager private constructor() {
 
     var lipperUser = lipperUserTanker.create(LipperUser::class.java)
 
-    var shotBeanList = userLikeTanker.create(object : TypeToken<List<UserLikesBean>>() {}.type)
+    private val userLikeList = userLikeTanker.create(object : TypeToken<MutableList<UserLikesBean>>() {}.type)
+        get() {
+            if (field == null) {
+                return mutableListOf()
+            }
+            return field
+        }
 
+
+    @Synchronized
+    fun updateUserLike(shots: List<UserLikesBean>) {
+        userLikeList!!.clear()
+        userLikeList!!.addAll(shots)
+        userLikeTanker.update(userLikeList!!)
+    }
+
+    @Synchronized
+    fun addUserLike(userLikesBean: UserLikesBean) {
+        userLikeList!!.add(userLikesBean)
+        userLikeTanker.update(userLikeList!!)
+    }
+
+    @Synchronized
+    fun removeUserLike(id: String) {
+        var userLikeBean: UserLikesBean? = null
+        userLikeList!!.forEach {
+            if (it.shot?.id.toString() == id) {
+                userLikeBean = it
+            }
+        }
+        userLikeList!!.remove(userLikeBean)
+        userLikeTanker.update(userLikeList!!)
+    }
+
+
+    fun getUserLikes(): List<UserLikesBean> {
+        return userLikeList!!.toList()
+    }
 
     fun updateUser(lipperUser: LipperUser) {
         this.lipperUser = lipperUser
         lipperUserTanker.update(lipperUser)
 
     }
-
-    fun updateUserLike(shots: List<UserLikesBean>) {
-        this.shotBeanList = shots
-        userLikeTanker.update(shots)
-    }
-
 
     fun updateToken(userToken: UserToken) {
         with(userToken) {
@@ -57,6 +87,7 @@ class UserManager private constructor() {
         scope = ""
         created_at = -1
         token_type = ""
+        userLikeList?.clear()
         userLikeTanker.update(ArrayList())
         lipperUserTanker.update(LipperUser())
         RxBus.get().post(LoginEvent(false))

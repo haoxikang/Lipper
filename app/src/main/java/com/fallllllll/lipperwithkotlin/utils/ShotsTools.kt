@@ -7,12 +7,12 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
  * Created by qqq34 on 2017/9/28.
  */
 fun List<ShotBean>.changeLikeStatus(): List<ShotBean> {
-    if (UserManager.get().isLogin() && UserManager.get().shotBeanList != null) {
-        val userLikes = UserManager.get().shotBeanList
+    if (UserManager.get().isLogin()) {
+        val userLikes = UserManager.get().getUserLikes()
 
-        userLikes!!.forEach { userLikes ->
+        userLikes.forEach { userLikeList ->
             this.forEach {
-                if (it.id == userLikes.shot?.id) {
+                if (it.id == userLikeList.shot?.id) {
                     it.isLike = true
                 }
             }
@@ -20,8 +20,9 @@ fun List<ShotBean>.changeLikeStatus(): List<ShotBean> {
     }
     return this
 }
-fun List<ShotBean>.cleanLikesStatus(){
+
+fun List<ShotBean>.cleanLikesStatus() {
     this.forEach {
-        it.isLike=false
+        it.isLike = false
     }
 }

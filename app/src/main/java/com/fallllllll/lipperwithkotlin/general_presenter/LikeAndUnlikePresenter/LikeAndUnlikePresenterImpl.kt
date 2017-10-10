@@ -3,6 +3,8 @@ package com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
+import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
+import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -31,7 +33,11 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
     private fun unLike(shotBean: ShotBean, position: Int) {
         compositeDisposable.add(dribbbleModel.unlikeAShot(shotBean.id.toString())
                 .commonChange()
-                .subscribeBy({}, {
+                .subscribeBy({
+                    if (UserManager.get().isLogin()){
+                        deleteFromUserLikeList(shotBean.id.toString())
+                    }
+                }, {
                     doLike(shotBean, position)
                 }))
     }
@@ -40,10 +46,24 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
         compositeDisposable.add(dribbbleModel.likeAShot(shotBean.id.toString())
                 .commonChange()
                 .subscribeBy(
-                        {}, {
+                        {
+                            if (UserManager.get().isLogin()) {
+                                it.shot = shotBean
+                                addToUserLikeList(it)
+                            } else {
+                                doUnLike(shotBean, position)
+                            }
+                        }, {
                     doUnLike(shotBean, position)
-                }
-                ))
+                }))
+    }
+
+    private fun addToUserLikeList(userLikesBean: UserLikesBean) {
+        UserManager.get().addUserLike(userLikesBean)
+    }
+
+    private fun deleteFromUserLikeList(id: String) {
+        UserManager.get().removeUserLike(id)
     }
 
     private fun doLike(shotBean: ShotBean, position: Int) {

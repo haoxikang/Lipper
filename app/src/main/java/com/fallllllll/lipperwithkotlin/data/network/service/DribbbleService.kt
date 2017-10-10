@@ -2,6 +2,7 @@ package com.fallllllll.lipperwithkotlin.data.network.service
 
 import com.fall.retrofitannotation.RetrofitService
 import com.fallllllll.lipperwithkotlin.core.constants.BASE_URL
+import com.fallllllll.lipperwithkotlin.data.databean.NormalBean
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
@@ -22,7 +23,7 @@ interface DribbbleService {
     fun getUserInfo(@Header("Authorization") token: String): Flowable<LipperUser>
 
     @POST("shots/{shotsId}/like")
-    fun likeAShot(@Path("shotsId") shotsId: String): Flowable<RequestBody>
+    fun likeAShot(@Path("shotsId") shotsId: String): Flowable<UserLikesBean>
 
     @DELETE("shots/{shotsId}/like")
     fun unlikeAShot(@Path("shotsId") shotsId: String): Flowable<RequestBody>
