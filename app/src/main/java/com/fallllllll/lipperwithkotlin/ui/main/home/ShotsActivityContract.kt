@@ -13,7 +13,7 @@ open class ShotsActivityContract {
 
         fun showUserUI(lipperUser: LipperUser?)
 
-        fun showUserImagePlaceHolder()
+        fun showLogoutUI()
         fun showMenuLoginAnimation()
         fun showUserImageLoginAnimation()
         fun goUserActivity()

@@ -23,7 +23,7 @@ import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
 import kotlinx.android.synthetic.main.activity_shots.*
-import kotlinx.android.synthetic.main.view_drawer_layout.*
+import kotlinx.android.synthetic.main.view_navigation.view.*
 import org.jetbrains.anko.intentFor
 import javax.inject.Inject
 
@@ -33,6 +33,8 @@ import javax.inject.Inject
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
+
+    private val headerView :View by lazy { navigationView.getHeaderView(0) }
 
     private val listTime: Array<String> by lazy {
         resources.getStringArray(R.array.time)
@@ -49,15 +51,38 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
     @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
-    override fun showUserImagePlaceHolder() {
-        userImage.loadImage(url = "")
+    override fun showLogoutUI() {
+        headerView.userImage.loadImage(url = "")
+        headerView.userName.visibility=View.GONE
+        headerView.addressText.visibility=View.GONE
+        headerView.descriptionText.visibility=View.GONE
+        headerView.followLayout.visibility = View.GONE
+
     }
 
     override fun showUserUI(lipperUser: LipperUser?) {
         if (lipperUser != null) {
-            userImage.loadImage(url = lipperUser.avatarUrl ?: "")
+            headerView.userImage.loadImage(url = lipperUser.avatarUrl ?: "")
 
+            if (!lipperUser.username.isNullOrEmpty()){
+                headerView.userName.visibility=View.VISIBLE
+                headerView.userName.text = lipperUser.username
+            }
+            if (!lipperUser.location.isNullOrEmpty()){
+                headerView.addressText.visibility=View.VISIBLE
+                headerView.addressText.text = lipperUser.location
+            }
+            if (!lipperUser.bio.isNullOrEmpty()){
+                headerView.descriptionText.visibility=View.VISIBLE
+                headerView.descriptionText.text = lipperUser.bio
+            }
+
+            headerView.followLayout.visibility = View.VISIBLE
+            headerView.followingCount.text = lipperUser.followingsCount.toString()
+            headerView.followerCount.text = lipperUser.followersCount.toString()
         }
+
+
     }
 
 
@@ -85,9 +110,6 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         val layoutParams = shotsToolbar.layoutParams as RelativeLayout.LayoutParams
         layoutParams.topMargin = getStatusBarHeight()
         toolbarLayout.layoutParams.height = resources.getDimensionPixelSize(R.dimen.home_toolbar_layout) + getStatusBarHeight()
-//        toolbarLayout.post {
-//            toolbarLayout.layoutParams.height = toolbarLayout.height + getStatusBarHeight()
-//        }
         setSupportActionBar(shotsToolbar)
     }
 
@@ -98,7 +120,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun initListeners() {
-        loginOut.setOnClickListener {
+        headerView.logOut.setOnClickListener {
             if (UserManager.get().isLogin()) {
                 UserManager.get().logOut()
             }
@@ -106,7 +128,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         textSort.setOnClickListener { presenter.sortTextClick() }
         textTime.setOnClickListener { presenter.timeTextClick() }
         textType.setOnClickListener { presenter.typeTextClick() }
-        userImage.setOnClickListener {
+        headerView.userImage.setOnClickListener {
             presenter.userImageClick()
         }
         shotsToolbar.setNavigationOnClickListener {
@@ -165,7 +187,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     }
 
     override fun showUserImageLoginAnimation() {
-        goLogin(ContextCompat.getColor(this, R.color.primary), R.drawable.ic_person_black, userImage)
+        goLogin(ContextCompat.getColor(this, R.color.primary), R.drawable.ic_person_black, headerView.userImage)
     }
 
     override fun showMenuLoginAnimation() {
@@ -184,7 +206,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     override fun goUserCenterActivity() {
         val intent = intentFor<UserCenterActivity>()
         val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
-                userInfoLayout, getString(R.string.transition_user_image))
+                headerView.userInfoLayout, getString(R.string.transition_user_image))
         startActivity(intent, transitionActivityOptions.toBundle())
     }
 

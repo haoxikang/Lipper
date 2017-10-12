@@ -95,10 +95,12 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>
 
-    <include
-        layout="@layout/view_drawer_layout"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start" />
+    <android.support.design.widget.NavigationView
+        android:layout_gravity = "start"
+        android:id="@+id/navigationView"
+        app:headerLayout="@layout/view_navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+    </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>
 

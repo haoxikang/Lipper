@@ -67,16 +67,16 @@ data class LipperUser(
         val followersUrl: String? = null,
 
         @field:SerializedName("buckets_count")
-        val bucketsCount: Int? = null,
+        val bucketsCount: Int = 0,
 
         @field:SerializedName("followings_count")
-        val followingsCount: Int? = null,
+        val followingsCount: Int = 0,
 
         @field:SerializedName("rebounds_received_count")
-        val reboundsReceivedCount: Int? = null,
+        val reboundsReceivedCount: Int = 0,
 
         @field:SerializedName("likes_count")
-        val likesCount: Int? = null,
+        val likesCount: Int = 0,
 
         @field:SerializedName("teams_url")
         val teamsUrl: String? = null,

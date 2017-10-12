@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:background="@color/primary">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:layout_marginRight="-192dp"
+        android:alpha="0.05"
+        android:scaleType="center"
+        android:src="@drawable/ic_dribbble_logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="36dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/userInfoLayout"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:orientation="vertical"
+                android:transitionName="@string/transition_user_image">
+
+                <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
+                    android:id="@+id/userImage"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:scaleType="center"
+                    android:transitionName="@string/transition_dribbble_login"
+                    app:isCircle="true"
+                    app:placeHolder="@drawable/ic_person_black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_marginLeft="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:visibility="gone"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:id="@+id/userName"
+                    android:textSize="16sp"
+                    android:textColor="@color/white_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/addressText"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/white_translucent_text"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/descriptionText"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/white_translucent_text"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+<LinearLayout
+    android:id="@+id/followLayout"
+    android:layout_marginTop="24dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="center"
+            android:textColor="@color/white_translucent_text"
+            android:text="@string/following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/followingCount"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white_text"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="96dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="center"
+            android:textColor="@color/white_translucent_text"
+            android:text="@string/follower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/followerCount"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white_text"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="退出登录" />
+</RelativeLayout>

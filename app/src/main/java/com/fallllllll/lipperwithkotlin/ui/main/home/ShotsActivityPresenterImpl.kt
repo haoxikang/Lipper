@@ -13,7 +13,6 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEv
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
-import com.fallllllll.lipperwithkotlin.utils.LogUtils
 import io.reactivex.rxkotlin.subscribeBy
 
 /**
@@ -82,7 +81,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
             view.showUserUI(UserManager.get().lipperUser)
             updateUserData()
         } else {
-            view.showUserImagePlaceHolder()
+            view.showLogoutUI()
         }
     }
 
@@ -111,7 +110,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
                     if (it.isLogin) {
                         view.showUserUI(UserManager.get().lipperUser)
                     } else {
-                        view.showUserImagePlaceHolder()
+                        view.showLogoutUI()
                     }
                 }, { subscribeLoginEvent() }))
     }
