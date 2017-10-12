@@ -16,6 +16,10 @@
     <string name="user">User</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
+    <string name="buckets">Buckets</string>
+    <string name="likes">Likes</string>
+    <string name="teams">Teams</string>
+    <string name="projects">Projects</string>
     <string name="retry_hint">Failed to load.Please click on the screen to reload</string>
     <string name="no_data">no data</string>
     <string name="failed_to_load">Failed to load</string>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <group android:checkableBehavior="none">
+            <item
+                android:icon="@drawable/ic_bucket_grey"
+                android:id="@+id/buckets"
+                android:title="@string/buckets"/>
+            <item
+                android:id="@+id/likes"
+                android:title="@string/likes"
+                android:icon="@drawable/ic_favorite_grey"/>
+            <item
+                android:id="@+id/teams"
+                android:title="@string/teams"
+                android:icon="@drawable/ic_group_grey_24dp"/>
+            <item
+                android:id="@+id/projects"
+                android:title="@string/projects"
+                android:icon="@drawable/ic_folder_grey_24dp"/>
+        </group>
+</menu>

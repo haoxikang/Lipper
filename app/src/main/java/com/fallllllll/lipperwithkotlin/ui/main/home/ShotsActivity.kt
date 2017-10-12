@@ -117,6 +117,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         val drawerToggle = ActionBarDrawerToggle(this, homeDrawerLayout, shotsToolbar, R.string.open_drawer, R.string.close_drawer)
         drawerToggle.syncState()
         homeDrawerLayout.addDrawerListener(drawerToggle)
+        headerView.navigationLayout.post {
+            val h = headerView.navigationLayout.height
+            headerView.navigationBubble.layoutParams.height=h
+            headerView.backView.layoutParams.height=h
+        }
     }
 
     override fun initListeners() {

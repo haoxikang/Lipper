@@ -16,6 +16,10 @@
     <string name="user">个人</string>
     <string name="follower">粉丝</string>
     <string name="following">关注</string>
+    <string name="buckets">桶</string>
+    <string name="likes">喜欢的作品</string>
+    <string name="teams">小组</string>
+    <string name="projects">项目</string>
     <string name="retry_hint">加载失败，请点击屏幕重试</string>
     <string name="no_data">数据为空</string>
     <string name="dribbble_login_hint">你需要先去dribbble登录才能使用此功能</string>

@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/navigationLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
-    android:background="@color/primary">
+    android:layout_height="wrap_content">
 
-    <ImageView
+    <View
+        android:id="@+id/backView"
+        android:background="@mipmap/bg_clean"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
-        android:layout_marginRight="-192dp"
-        android:alpha="0.05"
-        android:scaleType="center"
-        android:src="@drawable/ic_dribbble_logo" />
+        android:layout_height="wrap_content"/>
 
+    <com.fallllllll.lipperwithkotlin.ui.view.widget.BubbleView
+        android:id="@+id/navigationBubble"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bubbleColor="@color/defaultBubbleColor"
+        app:bubbleCount="4" />
     <LinearLayout
+        android:padding="12dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <LinearLayout
+                android:layout_gravity="center"
                 android:id="@+id/userInfoLayout"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -34,8 +41,8 @@
 
                 <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
                     android:id="@+id/userImage"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:scaleType="center"
                     android:transitionName="@string/transition_dribbble_login"
@@ -55,7 +62,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:id="@+id/userName"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textColor="@color/white_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -80,19 +87,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+
         </LinearLayout>
+
 <LinearLayout
     android:id="@+id/followLayout"
     android:layout_marginTop="24dp"
     android:orientation="horizontal"
     android:layout_gravity="center"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:layout_weight="1"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:textSize="12sp"
             android:layout_gravity="center"
             android:textColor="@color/white_translucent_text"
             android:text="@string/following"
@@ -103,12 +114,13 @@
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
             android:textColor="@color/white_text"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
-        android:layout_marginLeft="96dp"
+        android:layout_weight="1"
+
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -116,6 +128,7 @@
             android:layout_gravity="center"
             android:textColor="@color/white_translucent_text"
             android:text="@string/follower"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -123,14 +136,16 @@
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
             android:textColor="@color/white_text"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
+
     </LinearLayout>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/logOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
