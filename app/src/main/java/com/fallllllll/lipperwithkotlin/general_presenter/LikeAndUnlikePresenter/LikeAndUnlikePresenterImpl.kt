@@ -16,6 +16,10 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
 
 
     override fun likeShot(shotBean: ShotBean, position: Int) {
+        if (!UserManager.instance.isLogin()){
+            view.showLikeLoginAnimation()
+            return
+        }
         if (shotBean.isLike) {
             doUnLike(shotBean, position)
             unLike(shotBean, position)
@@ -34,7 +38,7 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
         compositeDisposable.add(dribbbleModel.unlikeAShot(shotBean.id.toString())
                 .commonChange()
                 .subscribeBy({
-                    if (UserManager.get().isLogin()){
+                    if (UserManager.instance.isLogin()){
                         deleteFromUserLikeList(shotBean.id.toString())
                     }
                 }, {
@@ -47,7 +51,7 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
                 .commonChange()
                 .subscribeBy(
                         {
-                            if (UserManager.get().isLogin()) {
+                            if (UserManager.instance.isLogin()) {
                                 it.shot = shotBean
                                 addToUserLikeList(it)
                             } else {
@@ -59,11 +63,11 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
     }
 
     private fun addToUserLikeList(userLikesBean: UserLikesBean) {
-        UserManager.get().addUserLike(userLikesBean)
+        UserManager.instance.addUserLike(userLikesBean)
     }
 
     private fun deleteFromUserLikeList(id: String) {
-        UserManager.get().removeUserLike(id)
+        UserManager.instance.removeUserLike(id)
     }
 
     private fun doLike(shotBean: ShotBean, position: Int) {

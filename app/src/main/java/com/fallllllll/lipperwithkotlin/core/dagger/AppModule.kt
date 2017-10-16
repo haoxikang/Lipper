@@ -18,13 +18,13 @@ import dagger.Provides
 class AppModule(val context: Context) {
 
     @Provides
-    fun provideDribbbleModel(): DribbbleModel = DribbbleModelImpl.getInstance()
+    fun provideDribbbleModel(): DribbbleModel = DribbbleModelImpl.instance
 
     @Provides
-    fun provideOauthModel(): OauthModel = OauthModelImpl.getInstance()
+    fun provideOauthModel(): OauthModel = OauthModelImpl.instance
 
     @Provides
-    fun provideSearchModel(): SearchModel = SearchModelImpl.getInstance()
+    fun provideSearchModel(): SearchModel = SearchModelImpl.instance
 
     @Provides
     fun provideContext() = context

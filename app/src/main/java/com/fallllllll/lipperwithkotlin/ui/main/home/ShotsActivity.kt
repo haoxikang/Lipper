@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
+import android.util.Pair
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -126,8 +127,8 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     override fun initListeners() {
         headerView.logOut.setOnClickListener {
-            if (UserManager.get().isLogin()) {
-                UserManager.get().logOut()
+            if (UserManager.instance.isLogin()) {
+                UserManager.instance.logOut()
             }
         }
         textSort.setOnClickListener { presenter.sortTextClick() }
@@ -210,8 +211,13 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     override fun goUserCenterActivity() {
         val intent = intentFor<UserCenterActivity>()
-        val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,
-                headerView.userInfoLayout, getString(R.string.transition_user_image))
+        val userLayoutViewPair = Pair<View,String>(headerView.userInfoLayout,getString(R.string.transition_user_image))
+        val userNameViewPair = Pair<View,String>(headerView.userName,getString(R.string.transition_user_name))
+        val userLocationViewPair = Pair<View,String>(headerView.addressText,getString(R.string.transition_user_location))
+        val userBioViewPair = Pair<View,String>(headerView.descriptionText,getString(R.string.transition_user_bio))
+        val userFollowerViewPair = Pair<View,String>(headerView.layoutFollower,getString(R.string.transition_user_follower))
+        val userFollowingViewPair = Pair<View,String>(headerView.layoutFollowing,getString(R.string.transition_user_following))
+        val transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(this,userLayoutViewPair,userNameViewPair,userLocationViewPair,userBioViewPair,userFollowerViewPair,userFollowingViewPair)
         startActivity(intent, transitionActivityOptions.toBundle())
     }
 
@@ -277,7 +283,13 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
                     }
                 }
         return 0
+    }
 
-
+    override fun onBackPressed() {
+        if (homeDrawerLayout.isDrawerOpen(navigationView)){
+            homeDrawerLayout.closeDrawers()
+            return
+        }
+        super.onBackPressed()
     }
 }

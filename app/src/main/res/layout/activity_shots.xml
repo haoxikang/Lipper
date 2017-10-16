@@ -7,7 +7,7 @@
     android:fitsSystemWindows="false">
 
     <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/shots_root_layout"
+        android:id="@+id/shotRootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -48,13 +48,13 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
 
         subscribeWebLoginEvent()
 
-        if (UserManager.get().isLogin()) {
+        if (UserManager.instance.isLogin()) {
             compositeDisposable.add(updateUserData())
         }
     }
 
     override fun onLoginClick() {
-        if (UserManager.get().isLogin()) {
+        if (UserManager.instance.isLogin()) {
             compositeDisposable.add(updateUserData())
         } else {
             loginView.goWebActivity()
@@ -64,7 +64,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
     private fun updateUserData(): Disposable {
         loginView.beforeLogin()
         loginView.showTopDialog(loginView.getString(R.string.under_login))
-        return  dribbbleModel.getUserInfo(UserManager.get().access_token)
+        return  dribbbleModel.getUserInfo(UserManager.instance.access_token)
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
                 .subscribeBy({ next(it) }, { error(it) })
@@ -73,9 +73,9 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
 
     private fun next(lipperUser: LipperUser, token: UserToken? = null) {
         if (token != null) {
-            UserManager.get().updateToken(token)
+            UserManager.instance.updateToken(token)
         }
-        UserManager.get().updateUser(lipperUser)
+        UserManager.instance.updateUser(lipperUser)
         loginView.hideAllTopDialog()
         loginView.loginSuccessful()
         RxBus.get().post(LoginEvent(true))
@@ -86,7 +86,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
         loginView.loginFinish()
         if (throwable.isTokenOutOfDate()) {
             loginView.showErrorDialog(loginView.getString(R.string.login_expire))
-            UserManager.get().logOut()
+            UserManager.instance.logOut()
         } else {
             loginView.showErrorDialog(loginView.getString(R.string.login_failed))
         }

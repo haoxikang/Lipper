@@ -18,7 +18,7 @@ import okhttp3.RequestBody
 class OauthModelImpl private constructor(private val oauthService: OauthService) : OauthModel {
 
     companion object {
-        fun getInstance(): OauthModelImpl = OauthModelImpl(OauthServiceHttpMethods().service)
+        val instance :OauthModelImpl by lazy {OauthModelImpl(OauthServiceHttpMethods().service)  }
     }
 
 

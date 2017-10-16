@@ -10,7 +10,7 @@ import com.fallllllll.lipperwithkotlin.data.network.service.SearchServiceHttpMet
 class SearchModelImpl private constructor(private  val searchService: SearchService) : SearchModel {
 
     companion object {
-        fun getInstance(): SearchModelImpl = SearchModelImpl(SearchServiceHttpMethods().service)
+        val instance:SearchModelImpl by lazy{SearchModelImpl(SearchServiceHttpMethods().service)}
     }
 
     override fun search(query: String, sort: String, page: String) = searchService.search(query, sort, page,"identity")

@@ -37,7 +37,7 @@ fun Activity.setImageTranslucent() {
     window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
 }
- fun BaseActivity.goLogin(color: Int, @DrawableRes drawableId: Int, view: View) {
+ fun Activity.goLogin(color: Int, @DrawableRes drawableId: Int, view: View) {
     val intent = Intent(this, DribbbleLoginActivity::class.java)
     FabTransform.addExtras(intent, color, drawableId)
     val options = ActivityOptions.makeSceneTransitionAnimation(

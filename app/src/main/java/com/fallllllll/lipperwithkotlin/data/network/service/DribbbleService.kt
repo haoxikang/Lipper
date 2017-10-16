@@ -30,4 +30,7 @@ interface DribbbleService {
 
     @GET("users/{userId}/likes")
     fun getUserLikes(@Path("userId") userId: String): Flowable<List<UserLikesBean>>
+
+    @GET("users/following/shots")
+    fun getUserFollowingShots(@Query("page") page: String, @Query("per_page") perPage: String):Flowable<List<ShotBean>>
 }

@@ -7,6 +7,8 @@ import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.local.datatank.ObjectTanker
+import com.fallllllll.lipperwithkotlin.data.network.model.impl.DribbbleModelImpl
+import com.fallllllll.lipperwithkotlin.data.network.service.DribbbleServiceHttpMethods
 import com.google.gson.reflect.TypeToken
 
 /**
@@ -94,10 +96,7 @@ class UserManager private constructor() {
     }
 
     companion object {
-        fun get(): UserManager = Inner.userManager
+        val instance: UserManager by lazy { UserManager()}
     }
 
-    private object Inner {
-        val userManager = UserManager()
-    }
 }

@@ -15,11 +15,11 @@ import io.reactivex.rxkotlin.subscribeBy
 class ShotLikesPresenterImpl(private val dribbbleModel: DribbbleModel, private val view: ShotLikesContract.ShotLikesView) :
         BasePresenter(), ShotLikesContract.ShotLikesPresenter {
     override fun getShotLikes() {
-        compositeDisposable.add(dribbbleModel.getUserLikes(UserManager.get().lipperUser?.id.toString())
+        compositeDisposable.add(dribbbleModel.getUserLikes(UserManager.instance.lipperUser?.id.toString())
                 .commonChange()
                 .subscribeBy({
                     if (it.isNotEmpty()) {
-                        UserManager.get().updateUserLike(it)
+                        UserManager.instance.updateUserLike(it)
                         view.getShotLikesSuccess(it)
                     } else {
                         view.getShotLikesFail()
@@ -32,7 +32,7 @@ class ShotLikesPresenterImpl(private val dribbbleModel: DribbbleModel, private v
 
     override fun onPresenterCreate() {
         registerLoginEvent()
-        if (UserManager.get().isLogin()) {
+        if (UserManager.instance.isLogin()) {
             getShotLikes()
         }
     }

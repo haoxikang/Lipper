@@ -72,6 +72,11 @@
     <string name="transition_search_back" translatable="false">transition_search_back</string>
     <string name="transition_dribbble_login" translatable="false">transition_dribbble_login</string>
     <string name="transition_user_image" translatable="false">transition_user_image</string>
+    <string name="transition_user_name" translatable="false">transition_user_name</string>
+    <string name="transition_user_location" translatable="false">transition_user_location</string>
+    <string name="transition_user_bio" translatable="false">transition_user_bio</string>
+    <string name="transition_user_follower" translatable="false">transition_user_follower</string>
+    <string name="transition_user_following" translatable="false">transition_user_following</string>
 
 
     <string name="open_drawer" translatable="false">open drawer</string>

@@ -9,6 +9,7 @@ import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 class LikeAndUnlikeContract{
     interface LikeAndUnlikeView{
         fun like(position:Int)
+        fun showLikeLoginAnimation()
     }
     interface LikeAndUnlikePresenter: Contract.Presenter{
         fun likeShot(shotBean: ShotBean,position: Int)

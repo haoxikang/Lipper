@@ -15,7 +15,7 @@ class HomeFilterMapCreater {
 
         fun getSortMap(context: Context) =
                 if (sortMap.isEmpty()) {
-                    val listSortKey = arrayOf(POPULARITY, RECENT, VIEWS, COMENTS)
+                    val listSortKey = arrayOf(POPULARITY, RECENT, VIEWS, COMMENTS)
                     val listSortValue = context.resources.getStringArray(R.array.sort)
                     for (i in 0 until listSortValue.size) {
                         sortMap.put(listSortKey[i], listSortValue[i])

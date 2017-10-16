@@ -36,6 +36,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <LinearLayout
+            android:paddingEnd="48dp"
+            android:paddingStart="48dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -65,7 +67,8 @@
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:transitionName="@string/transition_user_name" />
 
             <TextView
                 android:id="@+id/userLocation"
@@ -75,17 +78,18 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/white_translucent_text"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:transitionName="@string/transition_user_location" />
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/userBio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:maxLines="1"
                 android:textColor="@android:color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:transitionName="@string/transition_user_bio" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -97,7 +101,8 @@
                     android:id="@+id/layoutFollower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:transitionName="@string/transition_user_follower">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -122,7 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="64dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:transitionName="@string/transition_user_following">
 
                     <TextView
                         android:layout_width="wrap_content"

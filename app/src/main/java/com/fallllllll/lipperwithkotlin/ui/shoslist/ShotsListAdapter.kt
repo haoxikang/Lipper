@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.item_view_shots.view.*
 class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHolder>(), GeneralAdapter {
     private lateinit var context: android.content.Context
     var itemClick: (ShotBean) -> Unit = {}
-    var favoriteClick: (Int, ShotBean) -> Unit = { _, _ -> }
+    var favoriteClick: (View, Int, ShotBean) -> Unit = { _, _, _ -> }
     private val stringGeneralDataController: GeneralDataController<ShotBean> by lazy {
         GeneralDataController<ShotBean>(this)
     }
@@ -47,14 +47,14 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
 
     override fun getGeneralDataController() = stringGeneralDataController
 
-    inner class ShotsListViewHolder(view: View, private val itemClick: (ShotBean) -> Unit, private val favoriteClick: (Int, ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
+    inner class ShotsListViewHolder(view: View, private val itemClick: (ShotBean) -> Unit, private val favoriteClick: (View, Int, ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
         fun bindView(position: Int, shotBean: ShotBean) {
             with(shotBean) {
                 with(itemView) {
                     val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
                     if (position == 0) {
                         layoutParams.topMargin = context.dpTopx(10).toInt()
-                    }else{
+                    } else {
                         val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
                         layoutParams.topMargin = context.dpTopx(0).toInt()
                     }
@@ -81,14 +81,20 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     commentText.text = shotBean.commentsCount?.numberToK()
                     viewsText.text = shotBean.viewsCount?.numberToK()
                     likeText.text = shotBean.likesCount?.numberToK()
-                    val drawableLeft: Drawable = if (shotBean.isLike) {
-                        ContextCompat.getDrawable(context, R.drawable.ic_favorite_pink)
+                    if (shotBean.isLike) {
+                        likeImage.setImageResource(R.drawable.ic_favorite_pink)
                     } else {
-                        ContextCompat.getDrawable(context, R.drawable.ic_favorite_grey)
+                        likeImage.setImageResource(R.drawable.ic_favorite_grey)
                     }
-                    likeText.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null)
+                    likeLayout.setOnClickListener { favoriteClick(likeImage, position, shotBean) }
 
-                    likeText.setOnClickListener { favoriteClick(position, shotBean) }
+                    if (shotBean.animated) {
+                        gitView.visibility = View.VISIBLE
+                    } else {
+                        gitView.visibility = View.GONE
+
+                    }
+
                 }
             }
 
@@ -100,7 +106,8 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
         stringGeneralDataController.datas.changeLikeStatus()
         notifyDataSetChanged()
     }
-    fun cleanLikeState(){
+
+    fun cleanLikeState() {
         stringGeneralDataController.datas.cleanLikesStatus()
         notifyDataSetChanged()
     }

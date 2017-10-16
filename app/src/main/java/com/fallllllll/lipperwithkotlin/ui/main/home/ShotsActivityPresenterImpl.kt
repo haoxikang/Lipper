@@ -58,7 +58,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
 
 
     override fun userImageClick() {
-        if (UserManager.get().isLogin()) {
+        if (UserManager.instance.isLogin()) {
             view.goUserCenterActivity()
         } else {
             view.showUserImageLoginAnimation()
@@ -66,7 +66,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
     }
 
     override fun menuActivityClick() {
-        if (UserManager.get().isLogin()) {
+        if (UserManager.instance.isLogin()) {
             view.goUserActivity()
         } else {
             view.showMenuLoginAnimation()
@@ -77,8 +77,8 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
     override fun onPresenterCreate() {
         view.showTabText(sort, type, time)
         subscribeLoginEvent()
-        if (UserManager.get().isLogin()) {
-            view.showUserUI(UserManager.get().lipperUser)
+        if (UserManager.instance.isLogin()) {
+            view.showUserUI(UserManager.instance.lipperUser)
             updateUserData()
         } else {
             view.showLogoutUI()
@@ -86,7 +86,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
     }
 
     private fun updateUserData() {
-        val userManager = UserManager.get()
+        val userManager = UserManager.instance
         dribbbleModel.getUserInfo(userManager.access_token)
                 .commonChange()
                 .subscribeBy({
@@ -100,7 +100,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
     private fun onError(throwable: Throwable) {
         if (throwable.isTokenOutOfDate()) {
             view.showErrorDialog(view.getString(R.string.login_expire))
-            UserManager.get().logOut()
+            UserManager.instance.logOut()
         }
     }
 
@@ -108,7 +108,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
         compositeDisposable.add(RxBus.get().toFlowable<LoginEvent>()
                 .subscribeBy({
                     if (it.isLogin) {
-                        view.showUserUI(UserManager.get().lipperUser)
+                        view.showUserUI(UserManager.instance.lipperUser)
                     } else {
                         view.showLogoutUI()
                     }

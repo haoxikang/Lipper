@@ -1,6 +1,5 @@
 package com.fallllllll.lipperwithkotlin.data.network.model
 
-import com.fallllllll.lipperwithkotlin.data.databean.NormalBean
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
@@ -21,4 +20,6 @@ interface DribbbleModel {
     fun likeAShot(shotsId: String): Flowable<UserLikesBean>
 
     fun unlikeAShot(shotsId: String): Flowable<RequestBody>
+
+    fun getUserFollowingShots(page: String):Flowable<List<ShotBean>>
 }

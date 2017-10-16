@@ -23,7 +23,7 @@ class UserCenterActivity : BaseActivity() {
         setImageTranslucent()
         initToolbar()
         initAppbarBg()
-        showUI(UserManager.get().lipperUser)
+        showUI(UserManager.instance.lipperUser)
 
     }
 
@@ -32,7 +32,7 @@ class UserCenterActivity : BaseActivity() {
             userCenterImage.loadImage(url = lipperUser.avatarUrl ?: "")
             userName.text = lipperUser.username
             userLocation.text = lipperUser.location
-            userBio.text = lipperUser.bio
+            userBio.text = lipperUser.bio?.replace("\n"," ")
             textFollowerCount.text = lipperUser.followersCount.toString()
             textFollowingCount.text = lipperUser.followingsCount.toString()
         }

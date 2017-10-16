@@ -20,7 +20,7 @@ const val EVER = "ever"
 const val NOW = ""
 
 
-const val COMENTS = "comments"
+const val COMMENTS = "comments"
 const val RECENT = "recent"
 const val VIEWS = "views"
 const val POPULARITY = ""

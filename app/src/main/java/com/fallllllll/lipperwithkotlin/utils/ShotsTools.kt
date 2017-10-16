@@ -7,8 +7,8 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
  * Created by qqq34 on 2017/9/28.
  */
 fun List<ShotBean>.changeLikeStatus(): List<ShotBean> {
-    if (UserManager.get().isLogin()) {
-        val userLikes = UserManager.get().getUserLikes()
+    if (UserManager.instance.isLogin()) {
+        val userLikes = UserManager.instance.getUserLikes()
 
         userLikes.forEach { userLikeList ->
             this.forEach {
