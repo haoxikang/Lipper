@@ -3,6 +3,7 @@ package com.fallllllll.lipperwithkotlin.ui.usercenter
 import android.widget.FrameLayout
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
+import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_user_center.*
 class UserCenterActivity : BaseActivity() {
     override fun initListeners() {
         userCenterToolbar.setNavigationOnClickListener { finishAfterTransition() }
+        uploadButton.setOnClickListener { showToast("点击了上传") }
     }
 
     override fun initViewAndData() {
@@ -23,7 +25,9 @@ class UserCenterActivity : BaseActivity() {
         setImageTranslucent()
         initToolbar()
         initAppbarBg()
+        initFloatActionButton()
         showUI(UserManager.instance.lipperUser)
+        showFragment()
 
     }
 
@@ -37,8 +41,14 @@ class UserCenterActivity : BaseActivity() {
             textFollowingCount.text = lipperUser.followingsCount.toString()
         }
 
+
+
     }
 
+    private fun initFloatActionButton(){
+       val layoutParams= uploadButton.layoutParams  as FrameLayout.LayoutParams
+        layoutParams.bottomMargin = getNavigationBarHeight()
+    }
     private fun initAppbarBg() {
         appbarLayout.post {
             val h = appbarLayout.height
@@ -58,5 +68,12 @@ class UserCenterActivity : BaseActivity() {
         layoutParams.topMargin = getStatusBarHeight()
         setSupportActionBar(userCenterToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+    private fun showFragment() {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.userCenterShotsListContainer, UserCenterShotsListFragment())
+        fragmentTransaction.commit()
+
     }
 }

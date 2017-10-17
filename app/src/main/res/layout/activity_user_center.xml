@@ -9,8 +9,7 @@
         android:id="@+id/appbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="14dp"
-        android:paddingBottom="10dp"
+        android:elevation="24dp"
         app:arc_cropDirection="cropOutside"
         app:arc_height="10dp"
         app:arc_position="bottom">
@@ -36,12 +35,13 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <LinearLayout
-            android:paddingEnd="48dp"
-            android:paddingStart="48dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingEnd="48dp"
+            android:paddingStart="48dp">
 
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
@@ -82,11 +82,11 @@
                 android:transitionName="@string/transition_user_location" />
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/userBio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:transitionName="@string/transition_user_bio" />
@@ -153,9 +153,23 @@
     </com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout.ArcLayout>
 
     <FrameLayout
-        android:id="@+id/userCenterShotsListContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp" />
+        android:layout_marginTop="-12dp">
+
+        <FrameLayout
+            android:id="@+id/userCenterShotsListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/uploadButton"
+            android:src="@drawable/ic_cloud_upload_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="24dp"
+            app:backgroundTint="@color/primary" />
+    </FrameLayout>
+
 </LinearLayout>

@@ -21,7 +21,6 @@ class SearchListPresenterImpl(val model: SearchModel, private val shotsListView:
     private var canShowError = true
     override fun refreshData() {
         disposeRefresh()
-        shotsListView.setErrorViewVisible(false)
         refreshDisposable = model.search(kewWord, SORT_POPULAR, "1")
                 .map { it.changeLikeStatus() }
                 .commonChange()

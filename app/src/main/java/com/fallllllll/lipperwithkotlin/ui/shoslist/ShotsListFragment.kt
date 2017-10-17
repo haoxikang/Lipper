@@ -2,7 +2,6 @@ package com.fallllllll.lipperwithkotlin.ui.shoslist
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -21,7 +20,6 @@ import com.fallllllll.lipperwithkotlin.ui.main.homelist.DaggerHomeListComponent
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.HomeListModule
 import com.fallllllll.lipperwithkotlin.ui.search.DaggerSearchListComponent
 import com.fallllllll.lipperwithkotlin.ui.search.SearchListModule
-import kotlinx.android.synthetic.main.view_navigation.view.*
 import javax.inject.Inject
 
 /**
@@ -41,7 +39,7 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
     private val word: String by lazy {
         arguments.getString(KEY_WORD, "")
     }
-    private lateinit var currentLikeView:View
+    private lateinit var currentLikeView: View
 
 
     companion object {
@@ -125,7 +123,6 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
     }
 
 
-
     override fun like(position: Int) {
         shotsListAdapter.notifyItemChanged(position)
     }
@@ -151,11 +148,12 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
         shotsListAdapter.itemClick = {
             showToast("点击了${it.id}")
         }
-        shotsListAdapter.favoriteClick = { likeText,position, shotBean ->
+        shotsListAdapter.favoriteClick = { likeText, position, shotBean ->
             currentLikeView = likeText
-            likeAndUnlikePresenter.likeShot(shotBean,position)
+            likeAndUnlikePresenter.likeShot(shotBean, position)
         }
     }
+
     override fun showLikeLoginAnimation() {
         activity.goLogin(Color.WHITE, R.drawable.ic_favorite_grey, currentLikeView)
     }

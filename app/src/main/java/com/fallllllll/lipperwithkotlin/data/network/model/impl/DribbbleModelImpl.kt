@@ -14,6 +14,7 @@ import io.reactivex.Flowable
  */
 class DribbbleModelImpl private constructor(private val dribbbleService: DribbbleService) : DribbbleModel {
 
+
     companion object {
 
         val instance: DribbbleModelImpl by lazy { DribbbleModelImpl(DribbbleServiceHttpMethods().service) }
@@ -26,5 +27,5 @@ class DribbbleModelImpl private constructor(private val dribbbleService: Dribbbl
     override fun likeAShot(shotsId: String) = dribbbleService.likeAShot(shotsId)
     override fun unlikeAShot(shotsId: String) = dribbbleService.unlikeAShot(shotsId)
     override fun getUserFollowingShots(page: String)=dribbbleService.getUserFollowingShots(page, PAGE_COUNT.toString())
-
+    override fun getUserShots(page: String)=dribbbleService.getUserShots(page, PAGE_COUNT.toString())
 }

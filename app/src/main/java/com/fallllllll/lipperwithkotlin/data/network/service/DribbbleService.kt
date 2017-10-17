@@ -33,4 +33,9 @@ interface DribbbleService {
 
     @GET("users/following/shots")
     fun getUserFollowingShots(@Query("page") page: String, @Query("per_page") perPage: String):Flowable<List<ShotBean>>
+
+    @GET("user/shots")
+    fun getUserShots(@Query("page") page: String, @Query("per_page") perPage: String):Flowable<List<ShotBean>>
+
+
 }

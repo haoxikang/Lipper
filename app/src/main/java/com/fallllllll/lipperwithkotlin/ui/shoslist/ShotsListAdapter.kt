@@ -1,7 +1,5 @@
 package com.fallllllll.lipperwithkotlin.ui.shoslist
 
-import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +53,6 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     if (position == 0) {
                         layoutParams.topMargin = context.dpTopx(10).toInt()
                     } else {
-                        val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
                         layoutParams.topMargin = context.dpTopx(0).toInt()
                     }
                     itemShotCardView.requestLayout()
@@ -80,7 +77,7 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     }
                     commentText.text = shotBean.commentsCount?.numberToK()
                     viewsText.text = shotBean.viewsCount?.numberToK()
-                    likeText.text = shotBean.likesCount?.numberToK()
+                    likeText.text = shotBean.likesCount.numberToK()
                     if (shotBean.isLike) {
                         likeImage.setImageResource(R.drawable.ic_favorite_pink)
                     } else {

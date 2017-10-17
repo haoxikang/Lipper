@@ -11,9 +11,9 @@ import okhttp3.RequestBody
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
 interface DribbbleModel {
-     fun getShot(list: String, timeFrame: String, sort: String, page: String): Flowable<List<ShotBean>>
+    fun getShot(list: String, timeFrame: String, sort: String, page: String): Flowable<List<ShotBean>>
 
-     fun getUserInfo(token:String): Flowable<LipperUser>
+    fun getUserInfo(token: String): Flowable<LipperUser>
 
     fun getUserLikes(userId: String): Flowable<List<UserLikesBean>>
 
@@ -21,5 +21,8 @@ interface DribbbleModel {
 
     fun unlikeAShot(shotsId: String): Flowable<RequestBody>
 
-    fun getUserFollowingShots(page: String):Flowable<List<ShotBean>>
+    fun getUserFollowingShots(page: String): Flowable<List<ShotBean>>
+
+    fun getUserShots(page: String): Flowable<List<ShotBean>>
+
 }
