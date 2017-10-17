@@ -1,4 +1,4 @@
-# LipperWithKotlin
+# Lipper
 Android studio 版本 3.0 canary 7 
 
 SDK 版本 26
