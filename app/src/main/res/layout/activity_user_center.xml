@@ -58,6 +58,15 @@
                     app:isCircle="true" />
             </android.support.v7.widget.CardView>
 
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="-18dp"
+                android:src="@drawable/ic_choice_image"
+                android:elevation="48dp" />
+
+
             <TextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
@@ -164,11 +173,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/uploadButton"
-            android:src="@drawable/ic_cloud_upload_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_cloud_upload_black_24dp"
             app:backgroundTint="@color/primary" />
     </FrameLayout>
 

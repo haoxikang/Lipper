@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.usercenter
 
+import android.view.View
 import android.widget.FrameLayout
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
@@ -31,24 +32,31 @@ class UserCenterActivity : BaseActivity() {
 
     }
 
+
     private fun showUI(lipperUser: LipperUser?) {
-        if (lipperUser!=null){
+        if (lipperUser != null) {
             userCenterImage.loadImage(url = lipperUser.avatarUrl ?: "")
             userName.text = lipperUser.username
             userLocation.text = lipperUser.location
-            userBio.text = lipperUser.bio?.replace("\n"," ")
+            userBio.text = lipperUser.bio?.replace("\n", " ")
             textFollowerCount.text = lipperUser.followersCount.toString()
             textFollowingCount.text = lipperUser.followingsCount.toString()
+            if (lipperUser.type == "Player") {
+                uploadButton.visibility = View.VISIBLE
+            } else {
+                uploadButton.visibility = View.GONE
+
+            }
         }
 
 
-
     }
 
-    private fun initFloatActionButton(){
-       val layoutParams= uploadButton.layoutParams  as FrameLayout.LayoutParams
+    private fun initFloatActionButton() {
+        val layoutParams = uploadButton.layoutParams as FrameLayout.LayoutParams
         layoutParams.bottomMargin = getNavigationBarHeight()
     }
+
     private fun initAppbarBg() {
         appbarLayout.post {
             val h = appbarLayout.height
@@ -69,6 +77,7 @@ class UserCenterActivity : BaseActivity() {
         setSupportActionBar(userCenterToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
     private fun showFragment() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
