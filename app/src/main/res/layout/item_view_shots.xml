@@ -41,10 +41,10 @@
                 <ImageView
                     android:layout_margin="4dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@mipmap/ic_gif"
+                    android:src="@drawable/ic_gif_tag"
                     android:id="@+id/gitView"
-                    android:layout_width="18dp"
-                    android:layout_height="10dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
 
 

@@ -2,6 +2,7 @@ package com.fallllllll.lipperwithkotlin.data.databean
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class Images(
@@ -14,4 +15,4 @@ data class Images(
 
 	@field:SerializedName("teaser")
 	val teaser: String? = null
-)
+):Serializable

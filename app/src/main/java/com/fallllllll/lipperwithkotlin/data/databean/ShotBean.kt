@@ -2,6 +2,7 @@ package com.fallllllll.lipperwithkotlin.data.databean
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 data class ShotBean(
@@ -85,4 +86,4 @@ data class ShotBean(
         @field:SerializedName("user")
         val user: User? = null,
         var isLike:Boolean = false
-)
+):Serializable

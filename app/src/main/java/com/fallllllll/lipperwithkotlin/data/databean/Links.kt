@@ -1,6 +1,7 @@
 package com.fallllllll.lipperwithkotlin.data.databean
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class Links(
@@ -10,4 +11,4 @@ data class Links(
 
 	@field:SerializedName("web")
 	val web: String? = null
-)
+):Serializable

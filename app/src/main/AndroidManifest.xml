@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.home.ShotsActivity"
-            android:theme="@style/ShotsActivityTheme" >
+            android:theme="@style/ShotsActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +34,9 @@
         <activity
             android:name=".ui.login.DribbbleLoginActivity"
             android:theme="@style/DribbbleLoginTheme" />
-        <activity android:name=".ui.usercenter.UserCenterActivity"/>
+        <activity android:name=".ui.usercenter.UserCenterActivity" />
+        <activity android:name=".ui.shot.ShotActivity"
+            android:theme="@style/ShotsDetailTheme"/>
     </application>
 
 </manifest>

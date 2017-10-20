@@ -14,6 +14,7 @@ class GlideImageViewSetting(val context: Context, attributeSet: AttributeSet?) {
     var placeHolder = -1
     var fallBack = -1
     var radius = 0
+    var canPlayGif=false
 
     init {
         if (attributeSet != null) {

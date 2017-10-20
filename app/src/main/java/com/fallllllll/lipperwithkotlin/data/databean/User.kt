@@ -1,6 +1,7 @@
 package com.fallllllll.lipperwithkotlin.data.databean
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class User(
 
@@ -90,4 +91,4 @@ data class User(
 
 	@field:SerializedName("username")
 	val username: String? = null
-)
+):Serializable

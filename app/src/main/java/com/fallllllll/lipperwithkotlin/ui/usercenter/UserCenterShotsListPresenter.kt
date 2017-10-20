@@ -21,6 +21,8 @@ class UserCenterShotsListPresenter(val model: DribbbleModel) : BaseListPresenter
                 .subscribeBy({
                     refreshFinish(it)
                     canShowError = false
+                }, {
+                    if (canShowError) onRefreshError() else onRefreshError()
                 })
     }
 

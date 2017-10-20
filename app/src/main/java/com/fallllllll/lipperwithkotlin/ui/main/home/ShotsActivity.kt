@@ -17,12 +17,14 @@ import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getStatusBarHeight
 import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
 import com.fallllllll.lipperwithkotlin.core.expandFunction.setImageTranslucent
+import com.fallllllll.lipperwithkotlin.core.expandFunction.setTranslucentStatusBarAndNavigationBar
 import com.fallllllll.lipperwithkotlin.data.local.user.LipperUser
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
+import kotlinx.android.synthetic.main.activity_shot.*
 import kotlinx.android.synthetic.main.activity_shots.*
 import kotlinx.android.synthetic.main.view_navigation.view.*
 import org.jetbrains.anko.intentFor
@@ -91,7 +93,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
         setContentView(R.layout.activity_shots)
         initToolbar()
         initDrawerLayout()
-        setImageTranslucent()
+        setTranslucentStatusBarAndNavigationBar()
         showFragment()
         initPresenter()
     }

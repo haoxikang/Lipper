@@ -20,14 +20,14 @@ import com.fallllllll.lipperwithkotlin.ui.transitions.FabTransform
  * 简单型状态栏(ToolBar)
  */
 fun Activity.setOrdinaryToolbar() {
-    window.statusBarColor =ContextCompat.getColor(this, R.color.primary_dark)
+    window.statusBarColor = ContextCompat.getColor(this, R.color.primary_dark)
 }
 
 /**
  * 图片全屏透明状态栏（图片位于状态栏下面）
  */
 fun Activity.setImageTransparent() {
-    window.decorView.systemUiVisibility =View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 }
 
 /**
@@ -37,10 +37,18 @@ fun Activity.setImageTranslucent() {
     window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
 }
- fun Activity.goLogin(color: Int, @DrawableRes drawableId: Int, view: View) {
+
+fun Activity.goLogin(color: Int, @DrawableRes drawableId: Int, view: View) {
     val intent = Intent(this, DribbbleLoginActivity::class.java)
     FabTransform.addExtras(intent, color, drawableId)
     val options = ActivityOptions.makeSceneTransitionAnimation(
             this, view, getString(R.string.transition_dribbble_login))
     startActivity(intent, options.toBundle())
+}
+
+fun Activity.setTranslucentStatusBarAndNavigationBar() {
+    window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+    window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
 }

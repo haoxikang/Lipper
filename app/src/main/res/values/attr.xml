@@ -33,6 +33,7 @@
     <attr name="placeHolder" format="reference" />
     <attr name="fallBack" format="reference" />
     <attr name="radius" format="dimension" />
+    <attr name="can" format="dimension" />
 
 
     <declare-styleable name="GlideImageView">

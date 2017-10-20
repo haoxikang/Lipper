@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <transitionSet>
+        <targets>
+            <target android:excludeId="@id/shotImage" />
+        </targets>
+        <transition
+            class="com.fallllllll.lipperwithkotlin.ui.transitions.StaggeredDistanceSlide"
+            android:duration="350"
+            android:interpolator="@android:interpolator/linear_out_slow_in"
+            app:spread="5" />
+        <fade
+            android:duration="100"
+            android:interpolator="@android:interpolator/linear"
+            android:startDelay="250" />
+    </transitionSet>
+</transitionSet>

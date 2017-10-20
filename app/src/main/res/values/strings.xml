@@ -77,6 +77,8 @@
     <string name="transition_user_bio" translatable="false">transition_user_bio</string>
     <string name="transition_user_follower" translatable="false">transition_user_follower</string>
     <string name="transition_user_following" translatable="false">transition_user_following</string>
+    <string name="transition_shot" translatable="false">shot</string>
+    <string name="transition_shot_background" translatable="false">shot_background</string>
 
 
     <string name="open_drawer" translatable="false">open drawer</string>
