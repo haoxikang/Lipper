@@ -8,6 +8,7 @@ import com.fallllllll.AppApplication
 import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
+import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 import javax.inject.Inject
 
 /**
@@ -32,7 +33,7 @@ class UserCenterShotsListFragment:BaseListFragment() {
                 .userShotsListModule(UserShotsListModule())
                 .build()
                 .inject(this)
-
+presenterLifecycleHelper.addPresenter(userCenterShotsListPresenter as Contract.Presenter)
 
     }
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

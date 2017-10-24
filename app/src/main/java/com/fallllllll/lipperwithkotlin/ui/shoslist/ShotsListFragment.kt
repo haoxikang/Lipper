@@ -21,7 +21,6 @@ import com.fallllllll.lipperwithkotlin.ui.main.homelist.HomeListModule
 import com.fallllllll.lipperwithkotlin.ui.search.DaggerSearchListComponent
 import com.fallllllll.lipperwithkotlin.ui.search.SearchListModule
 import com.fallllllll.lipperwithkotlin.ui.shot.ShotActivity
-import kotlinx.android.synthetic.main.activity_shot.*
 import javax.inject.Inject
 
 /**

@@ -30,4 +30,9 @@
 
     <dimen name="home_toolbar_layout">94dp</dimen>
 
+    <dimen name="shot_toolbar_height">120dp</dimen>
+    <dimen name="shot_back_height">48dp</dimen>
+
+
+
 </resources>
