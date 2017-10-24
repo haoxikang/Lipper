@@ -55,7 +55,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
     @Inject lateinit var presenter: ShotsActivityContract.ShotsActivityPresenter
 
     override fun showLogoutUI() {
-        headerView.userImage.loadImage(url = "")
+        headerView.userImage.loadWithUrl(url = "")
         headerView.userName.visibility=View.GONE
         headerView.addressText.visibility=View.GONE
         headerView.descriptionText.visibility=View.GONE
@@ -65,7 +65,7 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     override fun showUserUI(lipperUser: LipperUser?) {
         if (lipperUser != null) {
-            headerView.userImage.loadImage(url = lipperUser.avatarUrl ?: "")
+            headerView.userImage.loadWithUrl(url = lipperUser.avatarUrl ?: "")
 
             if (!lipperUser.username.isNullOrEmpty()){
                 headerView.userName.visibility=View.VISIBLE

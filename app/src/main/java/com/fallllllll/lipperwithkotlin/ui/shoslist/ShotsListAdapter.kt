@@ -58,14 +58,10 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     itemShotCardView.requestLayout()
                     itemShotCardView.setOnClickListener { itemClick(shotImage, shotBean) }
                     userImage.setOnClickListener { }
-                    userImage.loadImage(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "")
+                    userImage.loadWithUrl(USER_IMAGE_SIZE, USER_IMAGE_SIZE, user?.avatarUrl ?: "")
 
 
-                    if (!images?.hidpi.isNullOrEmpty() && !animated) {
-                        shotImage.loadImage(url = images?.hidpi ?: "")
-                    } else {
-                        shotImage.loadImage(url = images?.normal ?: "")
-                    }
+                    shotImage.loadWithUrl(url = getHDImage())
                     userName.text = user?.name
                     shotTime.text = "${getTime(updatedAt)}"
                     if (tags == null || tags.isEmpty()) {

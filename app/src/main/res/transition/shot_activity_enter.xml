@@ -3,16 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <transitionSet>
         <targets>
+            <target android:excludeId="@android:id/navigationBarBackground" />
+            <target android:excludeId="@android:id/statusBarBackground" />
             <target android:excludeId="@id/shotImage" />
         </targets>
         <transition
             class="com.fallllllll.lipperwithkotlin.ui.transitions.StaggeredDistanceSlide"
+            app:spread="5"
             android:duration="350"
-            android:interpolator="@android:interpolator/linear_out_slow_in"
-            app:spread="5" />
+            android:interpolator="@android:interpolator/linear_out_slow_in" />
+        <!-- Delay fading in so that the shared element transition on the background
+             has time to run -->
         <fade
+            android:startDelay="250"
             android:duration="100"
-            android:interpolator="@android:interpolator/linear"
-            android:startDelay="250" />
+            android:interpolator="@android:interpolator/linear" />
     </transitionSet>
 </transitionSet>

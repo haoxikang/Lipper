@@ -59,7 +59,11 @@ class DribbbleSearchConverter private constructor() : Converter<ResponseBody, Li
                 , images = Images(imaUrl, null, null)
                 , animated = element.select("div.gif-indicator").first() != null
                 , createdAt = createAt
-                , likesCount = element.select("li.views").first().child(0)
+                , likesCount = element.select("li.fav").first().child(0)
+                .text().replace(",".toRegex(), "").toInt()
+                , commentsCount = element.select("li.cmnt").first().child(0)
+                .text().replace(",".toRegex(), "").toInt()
+                , viewsCount = element.select("li.views").first().child(0)
                 .text().replace(",".toRegex(), "").toInt()
                 , user = parsePlayer(element.select("h2").first())
         )

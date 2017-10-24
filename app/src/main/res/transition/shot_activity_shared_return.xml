@@ -2,7 +2,7 @@
 
 <changeBounds xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:interpolator/fast_out_slow_in"
-    android:duration="350">
+    android:duration="250">
     <targets>
         <target android:targetId="@id/shotImage"/>
         <target android:targetId="@id/shotBackground"/>

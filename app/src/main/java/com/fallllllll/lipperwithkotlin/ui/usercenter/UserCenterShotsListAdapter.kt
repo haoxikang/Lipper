@@ -38,11 +38,8 @@ class UserCenterShotsListAdapter : RecyclerView.Adapter<UserCenterShotsListAdapt
     inner class UserCenterShotsListViewHolder(view: View, private val itemClick: (ShotBean) -> Unit) : RecyclerView.ViewHolder(view) {
         fun bindView(shotBean: ShotBean) {
             itemView.onlyImageCardView.setOnClickListener { itemClick.invoke(shotBean) }
-            if (!shotBean.images?.hidpi.isNullOrEmpty() && !shotBean.animated) {
-                itemView.shotImage.loadImage(url = shotBean.images?.hidpi ?: "")
-            } else {
-                itemView.shotImage.loadImage(url = shotBean.images?.normal ?: "")
-            }
+            itemView.shotImage.loadWithUrl(url = shotBean.getHDImage())
+
         }
     }
 }

@@ -35,7 +35,7 @@ class UserCenterActivity : BaseActivity() {
 
     private fun showUI(lipperUser: LipperUser?) {
         if (lipperUser != null) {
-            userCenterImage.loadImage(url = lipperUser.avatarUrl ?: "")
+            userCenterImage.loadWithUrl(url = lipperUser.avatarUrl ?: "")
             userName.text = lipperUser.username
             userLocation.text = lipperUser.location
             userBio.text = lipperUser.bio?.replace("\n", " ")

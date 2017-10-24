@@ -86,4 +86,17 @@ data class ShotBean(
         @field:SerializedName("user")
         val user: User? = null,
         var isLike:Boolean = false
-):Serializable
+):Serializable{
+        fun getBestImage() = if (!images?.hidpi.isNullOrEmpty() && !animated) {
+                       images?.hidpi?:""
+                } else {
+                        images?.normal ?: ""
+                }
+
+        fun getHDImage()= if (!images?.hidpi.isNullOrEmpty()) {
+                images?.hidpi?:""
+        } else {
+                images?.normal ?: ""
+        }
+
+}

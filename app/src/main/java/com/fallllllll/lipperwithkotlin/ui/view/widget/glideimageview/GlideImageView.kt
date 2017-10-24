@@ -8,9 +8,17 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.Transition
 import com.fallllllll.lipperwithkotlin.utils.LogUtils
+import kotlin.coroutines.experimental.buildIterator
 
 /**
  * Created by fall on 2017/8/11.
@@ -47,6 +55,7 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
             field = value
             invalidate()
         }
+
 
     init {
         isDrawingCacheEnabled = true
@@ -131,8 +140,54 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
         }
     }
 
-    fun loadImage(x: Int = -1, y: Int = -1, url: String) {
-        LogUtils.d(placeHolder.toString())
+    fun loadWithUrl(x: Int = -1, y: Int = -1, url: String, canPlayGif: Boolean=false, onLoadFinish: (bitmap: Bitmap?) -> Unit = {}) {
+        if (canPlayGif && url.endsWith("gif", true)) {
+            loadImageWithGif(url, onLoadFinish)
+        } else {
+            loadImage(x, y, url, onLoadFinish)
+        }
+    }
+
+    private fun loadImage(x: Int = -1, y: Int = -1, url: String, onLoadFinish: (bitmap: Bitmap?) -> Unit = {}) {
+
+        Glide.with(context)
+                .asBitmap()
+                .load(url)
+                .apply(getRequestOptions(x, y))
+                .listener(object : RequestListener<Bitmap> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        onLoadFinish.invoke(resource)
+                        return false
+                    }
+
+                })
+                .into(this)
+    }
+
+    private fun loadImageWithGif(url: String, onLoadFinish: (bitmap: Bitmap?) -> Unit = {}) {
+        Glide.with(context)
+                .asGif()
+                .load(url)
+                .apply(getRequestOptions())
+                .listener(object : RequestListener<GifDrawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<GifDrawable>?, isFirstResource: Boolean): Boolean {
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: GifDrawable?, model: Any?, target: Target<GifDrawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        onLoadFinish.invoke(resource?.firstFrame)
+                        return false
+                    }
+
+                })
+                .into(this)
+    }
+
+    private fun getRequestOptions(x: Int = -1, y: Int = -1): RequestOptions {
         val requestOptions = RequestOptions()
         if (x != -1 && y != -1) {
             requestOptions.override(x, y)
@@ -146,10 +201,32 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
         if (isCircle) {
             requestOptions.transform(CircleCrop())
         }
+        return requestOptions
+    }
 
-        Glide.with(context)
-                .load(url)
-                .apply(requestOptions)
-                .into(this)
+    private fun getBitmap(drawable: Drawable?): Bitmap? {
+        if (drawable == null) return null
+        if (drawable is GifDrawable) {
+            return drawable.firstFrame
+        }
+        if (drawable is BitmapDrawable) {
+            return drawable.bitmap
+        }
+        return null
+    }
+
+    inner class LoadBitmapTarget(private val onLoadFinish: (bitmap: Bitmap?) -> Unit) : SimpleTarget<Bitmap>() {
+        override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+            setImageBitmap(resource)
+            onLoadFinish.invoke(resource)
+        }
+    }
+
+    inner class LoadGifTarget(private val onLoadFinish: (bitmap: Bitmap?) -> Unit) : SimpleTarget<GifDrawable>() {
+        override fun onResourceReady(resource: GifDrawable?, transition: Transition<in GifDrawable>?) {
+            setImageDrawable(resource)
+            LogUtils.d("gif加载成功")
+            onLoadFinish.invoke(resource?.firstFrame)
+        }
     }
 }
