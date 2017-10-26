@@ -29,6 +29,7 @@ private const val SHOT_BEAN_KEY = "shotActivity.shotbean.key"
 
 class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
 
+
     private var isExitAnim = true
     private val location = intArrayOf(0, 0)
 
@@ -61,6 +62,7 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
             shotImage.loadWithUrl(url = shot!!.getHDImage())
             initToolbar()
             initPresenter()
+            showUI(shot!!)
         } else {
             finish()  //应该不会发生这样的情况
         }
@@ -97,7 +99,7 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
                         Thread.sleep(350)
                         uiThread {
                             shotImage.visibility = View.GONE
-                            dribbbleShotImage.visibility=View.VISIBLE
+                            dribbbleShotImage.visibility = View.VISIBLE
                             isExitAnim = false
                         }
                     }
@@ -112,11 +114,24 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
     override fun finishAfterTransition() {
         shotImage.translationY = location[1].toFloat()
         shotImage.visibility = View.VISIBLE
-        dribbbleShotImage.visibility=View.INVISIBLE
+        dribbbleShotImage.visibility = View.INVISIBLE
 
 
         fab.visibility = View.GONE
         super.finishAfterTransition()
+    }
+
+    override fun showUI(shotBean: ShotBean) {
+        with(shotBean) {
+            shotName.text = title
+            introduce.text = description
+            likeCount.text = "${likesCount}LIKES"
+            bucketCount.text = "${bucketsCount}BUCKET"
+            viewCount.text = "${viewsCount}VIEW"
+            userName.text = user?.username
+            userImage.loadWithUrl(url = user?.avatarUrl ?: "")
+        }
+
     }
 
     private fun initColor(bitmap: Bitmap?) {
@@ -124,8 +139,22 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
         Palette.from(bitmap).generate {
             val swatch = it.dominantSwatch
             if (swatch != null) {
-                shotBackground.setBackgroundColor(swatch.rgb)
-                back.setColorFilter(swatch.titleTextColor)
+                with(swatch) {
+                    shotBackground.setBackgroundColor(rgb)
+                    back.setColorFilter(titleTextColor)
+                    shotName.setTextColor(titleTextColor)
+                    introduce.setTextColor(bodyTextColor)
+                    likeCount.setTextColor(bodyTextColor)
+                    viewCount.setTextColor(bodyTextColor)
+                    bucketCount.setTextColor(bodyTextColor)
+                    userName.setTextColor(titleTextColor)
+                    likeImage.setColorFilter(bodyTextColor)
+                    viewImage.setColorFilter(bodyTextColor)
+                    bucketImage.setColorFilter(bodyTextColor)
+
+                }
+
+
             }
         }
     }

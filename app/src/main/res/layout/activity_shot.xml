@@ -30,15 +30,15 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
-                    android:visibility="invisible"
-                    app:placeHolder= "@color/imagePlaceHolder"
-                    android:elevation="20dp"
                     android:id="@+id/dribbbleShotImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elevation="20dp"
+                    android:visibility="invisible"
                     app:aspectRatio="1.33"
                     app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.7" />
+                    app:layout_collapseParallaxMultiplier="0.7"
+                    app:placeHolder="@color/imagePlaceHolder" />
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -57,32 +57,137 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/attachmentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp">
+
+                    <View
+                        android:background="@color/costomTransluentColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <TextView
+                        android:id="@+id/shotName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="12dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/introduce"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:text="AppBarLayout的子布局有5种滚动标识(就是上面代码CollapsingToolbarLayout中配置的app:layout_scrollFlags属性)：
+                    android:layout_margin="12dp"
+                    android:textSize="12sp" />
 
-scroll:将此布局和滚动时间关联。这个标识要设置在其他标识之前，没有这个标识则布局不会滚动且其他标识设置无效。
-enterAlways:任何向下滚动操作都会使此布局可见。这个标识通常被称为“快速返回”模式。
-enterAlwaysCollapsed：假设你定义了一个最小高度（minHeight）同时enterAlways也定义了，那么view将在到达这个最小高度的时候开始显示，并且从这个时候开始慢慢展开，当滚动到顶部的时候展开完。
-exitUntilCollapsed：当你定义了一个minHeight，此布局将在滚动到达这个最小高度的时候折叠。
-snap:当一个滚动事件结束，如果视图是部分可见的，那么它将被滚动到收缩或展开。例如，如果视图只有底部25%显示，它将折叠。相反，如果它的底部75%可见，那么它将完全展开。
-CollapsingToolbarLayout可以通过app:contentScrim设置折叠时工具栏布局的颜色，通过app:statusBarScrim设置折叠时状态栏的颜色。默认contentScrim是colorPrimary的色值，statusBarScrim是colorPrimaryDark的色值。这个后面会用到。
+                <LinearLayout
+                    android:layout_margin="12dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/likeImage"
+                            android:src="@drawable/ic_favorite_grey"
+                            android:layout_gravity="center"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:id="@+id/likeCount"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/viewImage"
+                            android:src="@drawable/ic_visibility_grey"
+                            android:layout_gravity="center"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:id="@+id/viewCount"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/bucketImage"
+                            android:src="@drawable/ic_bucket_grey"
+                            android:layout_gravity="center"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp" />
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:id="@+id/bucketCount"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
 
-CollapsingToolbarLayout的子布局有3种折叠模式（Toolbar中设置的app:layout_collapseMode）
 
-off：这个是默认属性，布局将正常显示，没有折叠的行为。
-pin：CollapsingToolbarLayout折叠后
 
-作者：简名
-链接：http://www.jianshu.com/p/06c0ae8d9a96
-來源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。" />
-            </FrameLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_margin="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
+                        android:id="@+id/userImage"
+                        android:layout_gravity="center"
+                        app:isCircle="true"
+                        app:placeHolder="@color/imagePlaceHolder"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp" />
+                    <TextView
+                        android:id="@+id/userName"
+                        android:textStyle="bold"
+                        android:layout_marginStart="12dp"
+                        android:layout_gravity="center"
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/commentText"
+                    android:gravity="center"
+                    android:text="下面是评论"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
 
@@ -108,13 +213,13 @@ pin：CollapsingToolbarLayout折叠后
         android:src="@drawable/ic_arrow_back_padded" />
 
     <com.fallllllll.lipperwithkotlin.ui.view.widget.glideimageview.GlideImageView
-        app:placeHolder= "@color/imagePlaceHolder"
-        android:elevation="20dp"
         android:id="@+id/shotImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:transitionName="@string/transition_shot"
         app:aspectRatio="1.33"
         app:layout_collapseMode="parallax"
         app:layout_collapseParallaxMultiplier="0.7"
-        android:transitionName="@string/transition_shot" />
+        app:placeHolder="@color/imagePlaceHolder" />
 </FrameLayout>

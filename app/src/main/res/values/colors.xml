@@ -21,6 +21,8 @@
     <color name="navigationBarColor">#30000000</color>
     <color name="shotTranslucentColor">#30000000</color>
 
+    <color name="costomTransluentColor">#10000000</color>
+
 
     <color name="defaultBubbleColor">#10ffffff</color>
 

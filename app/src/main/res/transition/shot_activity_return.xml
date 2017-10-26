@@ -7,11 +7,11 @@
         <target android:excludeId="@id/fab" />
         <target android:excludeId="@id/back" />
     </targets>
-<fade
-    android:duration="100"
-    android:interpolator="@android:interpolator/fast_out_linear_in"/>
+    <fade
+        android:duration="100"
+        android:interpolator="@android:interpolator/fast_out_linear_in" />
     <slide
-        android:slideEdge="bottom"
         android:duration="250"
-        android:interpolator="@android:interpolator/fast_out_linear_in"/>
+        android:interpolator="@android:interpolator/fast_out_linear_in"
+        android:slideEdge="bottom" />
 </transitionSet>
