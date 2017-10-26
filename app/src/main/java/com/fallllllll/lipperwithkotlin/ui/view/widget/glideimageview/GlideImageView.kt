@@ -204,29 +204,4 @@ class GlideImageView(context: Context, attributeSet: AttributeSet) : ImageView(c
         return requestOptions
     }
 
-    private fun getBitmap(drawable: Drawable?): Bitmap? {
-        if (drawable == null) return null
-        if (drawable is GifDrawable) {
-            return drawable.firstFrame
-        }
-        if (drawable is BitmapDrawable) {
-            return drawable.bitmap
-        }
-        return null
-    }
-
-    inner class LoadBitmapTarget(private val onLoadFinish: (bitmap: Bitmap?) -> Unit) : SimpleTarget<Bitmap>() {
-        override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
-            setImageBitmap(resource)
-            onLoadFinish.invoke(resource)
-        }
-    }
-
-    inner class LoadGifTarget(private val onLoadFinish: (bitmap: Bitmap?) -> Unit) : SimpleTarget<GifDrawable>() {
-        override fun onResourceReady(resource: GifDrawable?, transition: Transition<in GifDrawable>?) {
-            setImageDrawable(resource)
-            LogUtils.d("gif加载成功")
-            onLoadFinish.invoke(resource?.firstFrame)
-        }
-    }
 }

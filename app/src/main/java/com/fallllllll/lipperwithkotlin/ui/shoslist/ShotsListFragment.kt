@@ -35,10 +35,10 @@ const val SEARCH_TYPE = 0
 class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, LikeAndUnlikeContract.LikeAndUnlikeView, ShotLikesContract.ShotLikesView {
 
     private val type by lazy {
-        arguments.getInt(KEY_TYPE, 1)
+        arguments?.getInt(KEY_TYPE, 1)?:1
     }
     private val word: String by lazy {
-        arguments.getString(KEY_WORD, "")
+        arguments?.getString(KEY_WORD, "")?:""
     }
     private lateinit var currentLikeView: View
 
@@ -98,10 +98,10 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
 
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.clipToPadding = false
-        recyclerView.setPadding(0, 0, 0, activity.getNavigationBarHeight())
+        recyclerView.setPadding(0, 0, 0, activity?.getNavigationBarHeight()?:0)
     }
 
     override fun getAdapter(): RecyclerView.Adapter<*> = shotsListAdapter
@@ -156,6 +156,6 @@ class ShotsListFragment : BaseListFragment(), ShotsListContract.ShotsListView, L
     }
 
     override fun showLikeLoginAnimation() {
-        activity.goLogin(Color.WHITE, R.drawable.ic_favorite_grey, currentLikeView)
+        activity?.goLogin(Color.WHITE, R.drawable.ic_favorite_grey, currentLikeView)
     }
 }

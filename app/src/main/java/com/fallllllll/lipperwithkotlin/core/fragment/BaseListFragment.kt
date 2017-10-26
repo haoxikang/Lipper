@@ -31,7 +31,7 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
         baseViewUtils = BaseViewUtils(context)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         swipeRefreshLayout.setColorSchemeResources(R.color.primary, R.color.accent)
         recyclerView.itemAnimator = DefaultItemAnimator()

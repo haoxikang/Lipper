@@ -12,7 +12,7 @@
     <color name="icon_color">#757575</color>
     <color name="divider">#BDBDBD</color>
     <color name="background">#f5f5f5</color>
-    <color name="imagePlaceHolder">#757575</color>
+    <color name="imagePlaceHolder">#dedede</color>
 
 
     <color name="statusBar">#30000000</color>

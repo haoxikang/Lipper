@@ -6,6 +6,9 @@
             <target android:excludeId="@android:id/navigationBarBackground" />
             <target android:excludeId="@android:id/statusBarBackground" />
             <target android:excludeId="@id/shotImage" />
+            <target android:excludeId="@id/dribbbleShotImage" />
+            <target android:excludeId="@id/fab" />
+            <target android:excludeId="@id/back" />
         </targets>
         <transition
             class="com.fallllllll.lipperwithkotlin.ui.transitions.StaggeredDistanceSlide"

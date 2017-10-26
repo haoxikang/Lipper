@@ -36,11 +36,11 @@ class UserCenterShotsListFragment:BaseListFragment() {
 presenterLifecycleHelper.addPresenter(userCenterShotsListPresenter as Contract.Presenter)
 
     }
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.clipToPadding=false
-        val padding = context.dpTopx(12).toInt()
-        recyclerView.setPadding(padding,padding,padding,activity.getNavigationBarHeight())
+        val padding = activity?.dpTopx(12)?.toInt()?:0
+        recyclerView.setPadding(padding,padding,padding,activity?.getNavigationBarHeight()?:0)
     }
 
     override fun initListeners() {
