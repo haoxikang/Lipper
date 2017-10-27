@@ -20,12 +20,13 @@ import kotlinx.android.synthetic.main.activity_shot.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.px2dip
 import org.jetbrains.anko.uiThread
+import java.io.Serializable
 import javax.inject.Inject
 
 /**
  * Created by 康颢曦 on 2017/10/19.
  */
-private const val SHOT_BEAN_KEY = "shotActivity.shotbean.key"
+const val SHOT_BEAN_KEY = "shotActivity.shotbean.key"
 
 class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
 
@@ -34,9 +35,7 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
     private val location = intArrayOf(0, 0)
 
     @Inject lateinit var presenter: ShotActivityContract.ShotActivityPresenter
-    private val shot: ShotBean? by lazy {
-        intent.getSerializableExtra(SHOT_BEAN_KEY) as ShotBean
-    }
+
 
     companion object {
         fun startShotActivity(activity: Activity?, view: View, shotBean: ShotBean) {
@@ -57,15 +56,8 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
     override fun initViewAndData() {
         setContentView(R.layout.activity_shot)
         setTranslucentStatusBarAndNavigationBar()
-        if (shot != null) {
-            dribbbleShotImage.loadWithUrl(url = shot!!.getHDImage(), canPlayGif = true, onLoadFinish = { initColor(it) })
-            shotImage.loadWithUrl(url = shot!!.getHDImage())
-            initToolbar()
-            initPresenter()
-            showUI(shot!!)
-        } else {
-            finish()  //应该不会发生这样的情况
-        }
+        initToolbar()
+        initPresenter()
 
     }
 
@@ -80,9 +72,11 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
     private fun initPresenter() {
         DaggerShotComponent.builder()
                 .appComponent(AppApplication.instance.appComponent)
-                .shotModule(ShotModule(shot!!, this))
+                .shotModule(ShotModule(this))
                 .build()
                 .inject(this)
+        presenterLifecycleHelper.addPresenter(presenter)
+        presenterLifecycleHelper.onPresenterCreate()
     }
 
     override fun initListeners() {
@@ -111,6 +105,29 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
     }
 
 
+
+
+    override fun showUI(shotBean: ShotBean) {
+        with(shotBean) {
+            shotName.text = title
+            introduce.text = description
+            likeCount.text = "$likesCount"
+            bucketCount.text = "$bucketsCount"
+            viewCount.text = "$viewsCount"
+            userName.text = user?.username
+            userImage.loadWithUrl(url = user?.avatarUrl ?: "")
+        }
+
+    }
+
+    override fun getSerializationArgument(key: String): Serializable {
+        return intent.getSerializableExtra(SHOT_BEAN_KEY)
+    }
+
+    override fun displayAnimationImage(imageUrl: String) {
+        dribbbleShotImage.loadWithUrl(url = imageUrl, canPlayGif = true, onLoadFinish = { initColor(it) })
+        shotImage.loadWithUrl(url = imageUrl)
+    }
     override fun finishAfterTransition() {
         shotImage.translationY = location[1].toFloat()
         shotImage.visibility = View.VISIBLE
@@ -120,20 +137,6 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
         fab.visibility = View.GONE
         super.finishAfterTransition()
     }
-
-    override fun showUI(shotBean: ShotBean) {
-        with(shotBean) {
-            shotName.text = title
-            introduce.text = description
-            likeCount.text = "${likesCount}LIKES"
-            bucketCount.text = "${bucketsCount}BUCKET"
-            viewCount.text = "${viewsCount}VIEW"
-            userName.text = user?.username
-            userImage.loadWithUrl(url = user?.avatarUrl ?: "")
-        }
-
-    }
-
     private fun initColor(bitmap: Bitmap?) {
         if (bitmap == null) return
         Palette.from(bitmap).generate {
