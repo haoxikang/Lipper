@@ -105,9 +105,9 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
     }
 
 
-
-
     override fun showUI(shotBean: ShotBean) {
+        informationLayout.visibility = View.VISIBLE
+        informationProgressBar.visibility = View.GONE
         with(shotBean) {
             shotName.text = title
             introduce.text = description
@@ -128,6 +128,16 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
         dribbbleShotImage.loadWithUrl(url = imageUrl, canPlayGif = true, onLoadFinish = { initColor(it) })
         shotImage.loadWithUrl(url = imageUrl)
     }
+
+    override fun showLoadShotView() {
+        informationLayout.visibility = View.INVISIBLE
+        informationProgressBar.visibility = View.VISIBLE
+    }
+
+    override fun getShotFail(s: String) {
+        showToast(s)
+    }
+
     override fun finishAfterTransition() {
         shotImage.translationY = location[1].toFloat()
         shotImage.visibility = View.VISIBLE
@@ -137,6 +147,7 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
         fab.visibility = View.GONE
         super.finishAfterTransition()
     }
+
     private fun initColor(bitmap: Bitmap?) {
         if (bitmap == null) return
         Palette.from(bitmap).generate {

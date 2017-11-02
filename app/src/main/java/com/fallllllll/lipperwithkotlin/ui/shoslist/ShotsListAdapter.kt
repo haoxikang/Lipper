@@ -9,7 +9,7 @@ import com.fall.generalrecyclerviewfragment.GeneralAdapter
 import com.fall.generalrecyclerviewfragment.GeneralDataController
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.USER_IMAGE_SIZE
-import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
+import com.fallllllll.lipperwithkotlin.core.expandFunction.dpToPx
 import com.fallllllll.lipperwithkotlin.core.expandFunction.numberToK
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.utils.changeLikeStatus
@@ -51,9 +51,9 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                 with(itemView) {
                     val layoutParams = itemShotCardView.layoutParams as LinearLayout.LayoutParams
                     if (position == 0) {
-                        layoutParams.topMargin = context.dpTopx(10).toInt()
+                        layoutParams.topMargin = context.dpToPx(10).toInt()
                     } else {
-                        layoutParams.topMargin = context.dpTopx(0).toInt()
+                        layoutParams.topMargin = context.dpToPx(0).toInt()
                     }
                     itemShotCardView.requestLayout()
                     itemShotCardView.setOnClickListener { itemClick(shotImage, shotBean) }

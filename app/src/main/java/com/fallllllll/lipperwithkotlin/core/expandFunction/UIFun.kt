@@ -36,4 +36,4 @@ fun Fragment.showSnackBar(s: String, view: View, duration: Int = Snackbar.LENGTH
     Snackbar.make(view, s, duration).show()
 }
 
-fun Context.dpTopx(dp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), resources.displayMetrics)
+fun Context.dpToPx(dp: Int) = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), resources.displayMetrics)

@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.fall.generalrecyclerviewfragment.GeneralContract
 import com.fallllllll.AppApplication
-import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
+import com.fallllllll.lipperwithkotlin.core.expandFunction.dpToPx
 import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeight
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
 import com.fallllllll.lipperwithkotlin.core.presenter.Contract
@@ -39,7 +39,7 @@ presenterLifecycleHelper.addPresenter(userCenterShotsListPresenter as Contract.P
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.clipToPadding=false
-        val padding = activity?.dpTopx(12)?.toInt()?:0
+        val padding = activity?.dpToPx(12)?.toInt()?:0
         recyclerView.setPadding(padding,padding,padding,activity?.getNavigationBarHeight()?:0)
     }
 

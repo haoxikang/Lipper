@@ -23,6 +23,7 @@ import com.fallllllll.lipperwithkotlin.ui.search.SearchActivity
 import com.fallllllll.lipperwithkotlin.ui.shoslist.HOME_TYPE
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import com.fallllllll.lipperwithkotlin.ui.usercenter.UserCenterActivity
+import io.reactivex.rxkotlin.toFlowable
 import kotlinx.android.synthetic.main.activity_shots.*
 import kotlinx.android.synthetic.main.view_navigation.view.*
 import org.jetbrains.anko.intentFor
@@ -276,12 +277,11 @@ class ShotsActivity : BaseActivity(), ShotsActivityContract.ShotsActivityView {
 
     private fun getSelectedPosition(valueList: Array<String>, map: Map<String, String>, name: String): Int {
         val value = map[name]
-        (0 until valueList.size)
-                .forEach {
-                    if (valueList[it] == value) {
-                        return it
-                    }
-                }
+        for((position,element)in  valueList.withIndex()){
+            if (element == value) {
+                return position
+            }
+        }
         return 0
     }
 

@@ -7,7 +7,6 @@ import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.activity.BaseActivity
 import com.fallllllll.lipperwithkotlin.ui.login.DribbbleLoginActivity
 import com.fallllllll.lipperwithkotlin.ui.transitions.FabTransform
 
@@ -51,4 +50,6 @@ fun Activity.setTranslucentStatusBarAndNavigationBar() {
             or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
     window.statusBarColor = ContextCompat.getColor(this, R.color.statusBar)
+
+
 }

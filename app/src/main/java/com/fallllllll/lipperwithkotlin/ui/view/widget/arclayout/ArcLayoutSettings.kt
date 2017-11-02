@@ -3,7 +3,7 @@ package com.fallllllll.lipperwithkotlin.ui.view.widget.arclayout
 import android.content.Context
 import android.util.AttributeSet
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.expandFunction.dpTopx
+import com.fallllllll.lipperwithkotlin.core.expandFunction.dpToPx
 
 /**
  * Created by fall on 2017/7/18/018.
@@ -26,7 +26,7 @@ class ArcLayoutSettings(val context: Context, attributeSet: AttributeSet?) {
     init {
         if (attributeSet != null) {
             val styledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ArcLayout, 0, 0)
-            arcHeight = styledAttributes.getDimension(R.styleable.ArcLayout_arc_height, context.dpTopx(10))
+            arcHeight = styledAttributes.getDimension(R.styleable.ArcLayout_arc_height, context.dpToPx(10))
             val cropDirection = styledAttributes.getInt(R.styleable.ArcLayout_arc_cropDirection, CROP_INSIDE)
             cropInside = (cropDirection == CROP_INSIDE)
             position = styledAttributes.getInt(R.styleable.ArcLayout_arc_position, POSITION_BOTTOM)

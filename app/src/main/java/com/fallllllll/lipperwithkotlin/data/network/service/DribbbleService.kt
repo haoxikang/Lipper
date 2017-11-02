@@ -37,5 +37,8 @@ interface DribbbleService {
     @GET("user/shots")
     fun getUserShots(@Query("page") page: String, @Query("per_page") perPage: String):Flowable<List<ShotBean>>
 
+    @GET("shots/{shotId}")
+    fun getShotById(@Path("shotId")shotId: String):Flowable<ShotBean>
+
 
 }

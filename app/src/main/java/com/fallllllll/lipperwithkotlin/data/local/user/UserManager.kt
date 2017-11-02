@@ -84,6 +84,7 @@ class UserManager private constructor() {
 
     fun isLogin() = !access_token.isEmpty()
 
+    @Synchronized
     fun logOut() {
         access_token = ""
         scope = ""

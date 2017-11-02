@@ -39,7 +39,7 @@ data class ShotBean(
         val commentsUrl: String? = null,
 
         @field:SerializedName("id")
-        val id: Long? = null,
+        val id: Long,
 
         @field:SerializedName("views_count")
         val viewsCount: Int? = null,

@@ -39,7 +39,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
 
     override fun refreshData() {
         disposeRefresh()
-        refreshDisposable = model.getShot(type, time, sort, "1")
+        refreshDisposable = model.getShots(type, time, sort, "1")
                 .map { it.changeLikeStatus() }
                 .commonChange()
                 .subscribeBy({
@@ -50,7 +50,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
 
     override fun loadNextPageData(page: Int) {
         disposeLoadNext()
-        loadNextDisposable = model.getShot(type, time, sort, page.toString())
+        loadNextDisposable = model.getShots(type, time, sort, page.toString())
                 .map { it.changeLikeStatus() }
                 .commonChange()
                 .subscribeBy({

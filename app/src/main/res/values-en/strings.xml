@@ -10,6 +10,7 @@
     <string name="under_login">Login.......</string>
     <string name="login_failed">Login failed</string>
     <string name="login_expire">Login expires, please re-login</string>
+    <string name="too_many_request">Request too much, please try again later</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="activity">Activity</string>
