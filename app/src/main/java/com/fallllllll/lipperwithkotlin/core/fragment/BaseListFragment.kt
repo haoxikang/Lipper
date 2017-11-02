@@ -5,16 +5,22 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import com.fall.generalrecyclerviewfragment.GeneralRecyclerViewFragment
 import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.BaseViewUtils
+import com.fallllllll.lipperwithkotlin.core.expandFunction.dpToPx
 import com.fallllllll.lipperwithkotlin.core.expandFunction.showSnackBar
 import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 import com.fallllllll.lipperwithkotlin.core.presenter.PresenterLifecycleHelper
 import kotlinx.android.synthetic.main.view_list_error.view.*
 import org.jetbrains.anko.doAsync
+import kotlin.concurrent.fixedRateTimer
 
 /**
  * Created by fall on 2017/5/27/027.
@@ -24,11 +30,18 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
     protected lateinit var errorView: View
     protected lateinit var presenterLifecycleHelper: PresenterLifecycleHelper
     protected lateinit var baseViewUtils: BaseViewUtils
+    private var progressBar: ProgressBar? = null
+    private lateinit var rootView: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenterLifecycleHelper = PresenterLifecycleHelper()
         baseViewUtils = BaseViewUtils(context)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        rootView = super.onCreateView(inflater, container, savedInstanceState) as FrameLayout
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,6 +62,7 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
     override fun loadError(res: Int) {
         loadError(getString(res))
     }
+
     override fun loadError(s: String?, res: Int) {
         loadErrorView()
         errorLayout.setOnClickListener {
@@ -74,6 +88,7 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
     override fun loadNextPageError(res: Int) {
         loadNextPageError(getString(res))
     }
+
     override fun loadNextPageError(s: String?, res: Int) {
         showSnackBar(s ?: getString(R.string.failed_to_load), swipeRefreshLayout)
     }
@@ -121,5 +136,31 @@ abstract class BaseListFragment : GeneralRecyclerViewFragment(), Contract.BaseVi
 
     override fun showErrorDialog(s: String) {
         baseViewUtils.showErrorDialog(s)
+    }
+
+    override fun showLoadAnimation() {
+        if (recyclerView.adapter == null || recyclerView.adapter.itemCount == 0) {
+            if (progressBar == null) {
+                progressBar = ProgressBar(context)
+                val fp = FrameLayout.LayoutParams(activity!!.dpToPx(52).toInt(), activity!!.dpToPx(52).toInt())
+                fp.gravity = Gravity.CENTER
+                rootView.addView(progressBar, fp)
+            } else {
+                progressBar?.visibility = View.VISIBLE
+            }
+        } else {
+            super.showLoadAnimation()
+        }
+
+    }
+
+    override fun closeLoadAnimation() {
+        if (progressBar?.visibility == View.VISIBLE) {
+            progressBar?.visibility = View.GONE
+
+        } else {
+            super.closeLoadAnimation()
+        }
+
     }
 }

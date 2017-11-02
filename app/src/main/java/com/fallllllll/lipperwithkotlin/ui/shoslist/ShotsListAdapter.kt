@@ -1,5 +1,6 @@
 package com.fallllllll.lipperwithkotlin.ui.shoslist
 
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -75,9 +76,12 @@ class ShotsListAdapter : RecyclerView.Adapter<ShotsListAdapter.ShotsListViewHold
                     viewsText.text = shotBean.viewsCount?.numberToK()
                     likeText.text = shotBean.likesCount.numberToK()
                     if (shotBean.isLike) {
-                        likeImage.setImageResource(R.drawable.ic_favorite_pink)
+                        likeImage.setImageResource(R.drawable.ic_home_like)
+                        likeText.setTextColor(ContextCompat.getColor(context,R.color.primary))
                     } else {
-                        likeImage.setImageResource(R.drawable.ic_favorite_grey)
+                        likeImage.setImageResource(R.drawable.ic_home_unlike)
+                        likeText.setTextColor(ContextCompat.getColor(context,R.color.light_text))
+
                     }
                     likeLayout.setOnClickListener { favoriteClick(likeImage, position, shotBean) }
 

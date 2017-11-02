@@ -110,6 +110,7 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
         informationProgressBar.visibility = View.GONE
         with(shotBean) {
             shotName.text = title
+            shotTitle.text=title
             introduce.text = description
             likeCount.text = "$likesCount"
             bucketCount.text = "$bucketsCount"
@@ -157,11 +158,12 @@ class ShotActivity : BaseActivity(), ShotActivityContract.ShotActivityView {
                     shotBackground.setBackgroundColor(rgb)
                     back.setColorFilter(titleTextColor)
                     shotName.setTextColor(titleTextColor)
+                    shotTitle.setTextColor(titleTextColor)
                     introduce.setTextColor(bodyTextColor)
                     likeCount.setTextColor(bodyTextColor)
                     viewCount.setTextColor(bodyTextColor)
                     bucketCount.setTextColor(bodyTextColor)
-                    userName.setTextColor(titleTextColor)
+                    userName.setTextColor(bodyTextColor)
                     likeImage.setColorFilter(bodyTextColor)
                     viewImage.setColorFilter(bodyTextColor)
                     bucketImage.setColorFilter(bodyTextColor)
