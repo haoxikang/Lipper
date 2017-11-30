@@ -1,4 +1,4 @@
-package com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter
+package com.fallllllll.lipperwithkotlin.generalpresenter.dolikes
 
 import com.fallllllll.lipperwithkotlin.core.presenter.Contract
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean

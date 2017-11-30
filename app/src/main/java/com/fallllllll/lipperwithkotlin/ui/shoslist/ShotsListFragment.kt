@@ -12,10 +12,10 @@ import com.fallllllll.lipperwithkotlin.core.expandFunction.getNavigationBarHeigh
 import com.fallllllll.lipperwithkotlin.core.expandFunction.goLogin
 import com.fallllllll.lipperwithkotlin.core.fragment.BaseListFragment
 import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
-import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeContract
-import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeModule
-import com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter.ShotLikesContract
-import com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter.ShotLikesModule
+import com.fallllllll.lipperwithkotlin.generalpresenter.dolikes.LikeAndUnlikeContract
+import com.fallllllll.lipperwithkotlin.generalpresenter.dolikes.LikeAndUnlikeModule
+import com.fallllllll.lipperwithkotlin.generalpresenter.likecount.ShotLikesContract
+import com.fallllllll.lipperwithkotlin.generalpresenter.likecount.ShotLikesModule
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.DaggerHomeListComponent
 import com.fallllllll.lipperwithkotlin.ui.main.homelist.HomeListModule
 import com.fallllllll.lipperwithkotlin.ui.search.DaggerSearchListComponent

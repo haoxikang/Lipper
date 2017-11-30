@@ -8,9 +8,9 @@ import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
-import io.reactivex.rxkotlin.subscribeBy
 
 /**
+ *
  * Created by 康颢曦 on 2017/10/24.
  */
 class ShotPresenterImpl(private val dribbbleModel: DribbbleModel, private val shotActivityView: ShotActivityContract.ShotActivityView)
@@ -31,17 +31,17 @@ class ShotPresenterImpl(private val dribbbleModel: DribbbleModel, private val sh
     private fun getShotById(shotBean: ShotBean) {
         compositeDisposable.add(dribbbleModel.getShotById(shotBean.id.toString())
                 .commonChange()
-                .subscribeBy(
+                .subscribe(
                         shotActivityView::showUI, {
                     if (it.isTooManyRequest()) {
                         shotActivityView.getShotFail(shotActivityView.getString(R.string.too_many_request))
-                        return@subscribeBy
+                        return@subscribe
 
                     }
                     if (it.isTokenOutOfDate()) {
                         shotActivityView.getShotFail(shotActivityView.getString(R.string.login_expire))
                         UserManager.instance.logOut()
-                        return@subscribeBy
+                        return@subscribe
                     }
                     shotActivityView.getShotFail(shotActivityView.getString(R.string.failed_to_load))
 

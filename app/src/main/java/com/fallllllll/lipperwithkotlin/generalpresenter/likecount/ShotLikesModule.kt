@@ -1,4 +1,4 @@
-package com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter
+package com.fallllllll.lipperwithkotlin.generalpresenter.likecount
 
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import dagger.Module

@@ -13,9 +13,34 @@ import java.util.*
  * Created by fall on 2017/7/17/017.
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
-class BubbleView(context: Context, attributeSet: AttributeSet?, defStyle: Int) : View(context, attributeSet, defStyle) {
+class BubbleView : View {
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
+    constructor(context: Context, attributeSet: AttributeSet?, defStyle: Int):super(context, attributeSet, defStyle){
+        val a = context.theme.obtainStyledAttributes(attributeSet, R.styleable.BubbleView, defStyle, 0)
+        (0 until a.indexCount)
+                .map { a.getIndex(it) }
+                .forEach {
+                    when (it) {
+                        R.styleable.BubbleView_bubbleCount -> bubbleCount = a.getInt(it, 4)
+                        R.styleable.BubbleView_bubbleColor -> bubbleColor = a.getColor(it, ContextCompat.getColor(context, R.color.defaultBubbleColor))
+                    }
+
+                }
+        a.recycle()
+        (0 until bubbleCount)
+                .forEach {
+                    val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    paint.color = bubbleColor
+                    paint.style = Paint.Style.FILL
+                    paint.strokeWidth = 0.toFloat()
+                    val speedX = 1
+                    val speedY = 1
+                    bubbles.add(Bubble(paint = paint
+                            , vx = if (random.nextBoolean()) speedX.toFloat() else -speedX.toFloat()
+                            , vy = if (random.nextBoolean()) speedY.toFloat() else -speedY.toFloat()))
+                }
+    }
 
     private var maxRadius = 0
     private var minRadius = 0
@@ -44,31 +69,7 @@ class BubbleView(context: Context, attributeSet: AttributeSet?, defStyle: Int) :
         fun top() = (cy - radius).toInt()
     }
 
-    init {
-        val a = context.theme.obtainStyledAttributes(attributeSet, R.styleable.BubbleView, defStyle, 0)
-        (0 until a.indexCount)
-                .map { a.getIndex(it) }
-                .forEach {
-                    when (it) {
-                        R.styleable.BubbleView_bubbleCount -> bubbleCount = a.getInt(it, 4)
-                        R.styleable.BubbleView_bubbleColor -> bubbleColor = a.getColor(it, ContextCompat.getColor(context, R.color.defaultBubbleColor))
-                    }
 
-                }
-        a.recycle()
-        (0 until bubbleCount)
-                .forEach {
-                    val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    paint.color = bubbleColor
-                    paint.style = Paint.Style.FILL
-                    paint.strokeWidth = 0.toFloat()
-                    val speedX = 1
-                    val speedY = 1
-                    bubbles.add(Bubble(paint = paint
-                            , vx = if (random.nextBoolean()) speedX.toFloat() else -speedX.toFloat()
-                            , vy = if (random.nextBoolean()) speedY.toFloat() else -speedY.toFloat()))
-                }
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)

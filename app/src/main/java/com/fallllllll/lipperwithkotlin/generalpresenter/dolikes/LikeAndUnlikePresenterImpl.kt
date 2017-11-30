@@ -1,4 +1,4 @@
-package com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter
+package com.fallllllll.lipperwithkotlin.generalpresenter.dolikes
 
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
@@ -6,9 +6,9 @@ import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.databean.UserLikesBean
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
-import io.reactivex.rxkotlin.subscribeBy
 
 /**
+ *
  * Created by qqq34 on 2017/9/26.
  */
 class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, private val view: LikeAndUnlikeContract.LikeAndUnlikeView) :
@@ -37,7 +37,7 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
     private fun unLike(shotBean: ShotBean, position: Int) {
         compositeDisposable.add(dribbbleModel.unlikeAShot(shotBean.id.toString())
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     if (UserManager.instance.isLogin()){
                         deleteFromUserLikeList(shotBean.id.toString())
                     }
@@ -49,7 +49,7 @@ class LikeAndUnlikePresenterImpl(private val dribbbleModel: DribbbleModel, priva
     private fun like(shotBean: ShotBean, position: Int) {
         compositeDisposable.add(dribbbleModel.likeAShot(shotBean.id.toString())
                 .commonChange()
-                .subscribeBy(
+                .subscribe(
                         {
                             if (UserManager.instance.isLogin()) {
                                 it.shot = shotBean

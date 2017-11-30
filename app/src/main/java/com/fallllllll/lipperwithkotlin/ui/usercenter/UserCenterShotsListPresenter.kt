@@ -3,13 +3,11 @@ package com.fallllllll.lipperwithkotlin.ui.usercenter
 import com.fallllllll.lipperwithkotlin.core.constants.PAGE_COUNT
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
 import com.fallllllll.lipperwithkotlin.core.presenter.BaseListPresenter
-import com.fallllllll.lipperwithkotlin.data.databean.ShotBean
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.subscribeBy
-import java.util.function.Consumer
 
 /**
+ *
  * Created by qqq34 on 2017/10/17.
  */
 class UserCenterShotsListPresenter(val model: DribbbleModel) : BaseListPresenter() {
@@ -20,7 +18,7 @@ class UserCenterShotsListPresenter(val model: DribbbleModel) : BaseListPresenter
         disposeRefresh()
         refreshDisposable = model.getUserShots("1")
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     refreshFinish(it)
                     canShowError = false
                 }, {
@@ -32,7 +30,7 @@ class UserCenterShotsListPresenter(val model: DribbbleModel) : BaseListPresenter
         disposeLoadNext()
         loadNextDisposable = model.getUserShots(page.toString())
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     if (it.size < PAGE_COUNT) {
                         loadLastPageDataFinish(it)
                     } else {

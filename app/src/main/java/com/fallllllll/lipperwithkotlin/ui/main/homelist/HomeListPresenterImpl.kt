@@ -42,7 +42,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
         refreshDisposable = model.getShots(type, time, sort, "1")
                 .map { it.changeLikeStatus() }
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     refreshFinish(it)
                     canShowError = false
                 }, { if (canShowError) onRefreshError() else onReloadError() })
@@ -53,7 +53,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
         loadNextDisposable = model.getShots(type, time, sort, page.toString())
                 .map { it.changeLikeStatus() }
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     if (it.size < PAGE_COUNT) {
                         loadLastPageDataFinish(it)
                     } else {
@@ -86,7 +86,7 @@ class HomeListPresenterImpl(val model: DribbbleModel, private val shotsListView:
 
     private fun subscribeListFilterEvent() {
         compositeDisposable.add(RxBus.get().toFlowable<ShotsListFilterEvent>()
-                .subscribeBy({
+                .subscribe({
                     stopLoading()
                     checkAndRefreshData()
                 }, { subscribeListFilterEvent() }))

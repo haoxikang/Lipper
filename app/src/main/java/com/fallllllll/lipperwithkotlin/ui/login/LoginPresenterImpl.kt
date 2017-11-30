@@ -2,8 +2,8 @@ package com.fallllllll.lipperwithkotlin.ui.login
 
 import android.net.Uri
 import com.fallllllll.lipperwithkotlin.R
-import com.fallllllll.lipperwithkotlin.core.expandFunction.isTokenOutOfDate
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
+import com.fallllllll.lipperwithkotlin.core.expandFunction.isTokenOutOfDate
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
@@ -14,7 +14,6 @@ import com.fallllllll.lipperwithkotlin.data.local.user.UserToken
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
 import com.fallllllll.lipperwithkotlin.data.network.model.OauthModel
 import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.subscribeBy
 import java.util.concurrent.TimeUnit
 
 /**
@@ -40,7 +39,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
                 }
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
-                .subscribeBy({ next(it, token) }, { error(it) })
+                .subscribe({ next(it, token) }, { error(it) })
         compositeDisposable.add(disposable)
     }
 
@@ -67,7 +66,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
         return  dribbbleModel.getUserInfo(UserManager.instance.access_token)
                 .delay(2, TimeUnit.SECONDS)
                 .commonChange()
-                .subscribeBy({ next(it) }, { error(it) })
+                .subscribe({ next(it) }, { error(it) })
     }
 
 
@@ -94,7 +93,7 @@ class LoginPresenterImpl(private val dribbbleModel: DribbbleModel,
 
     private fun subscribeWebLoginEvent() {
         compositeDisposable.add(RxBus.get().toFlowable<WebLoginBackEvent>()
-                .subscribeBy({
+                .subscribe({
                     getUserData(Uri.parse(it.url).getQueryParameter("code"))
                 }, {
                     subscribeWebLoginEvent()

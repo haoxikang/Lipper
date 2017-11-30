@@ -1,8 +1,8 @@
 package com.fallllllll.lipperwithkotlin.ui.main.homelist
 
 import com.fallllllll.lipperwithkotlin.core.dagger.AppComponent
-import com.fallllllll.lipperwithkotlin.general_presenter.LikeAndUnlikePresenter.LikeAndUnlikeModule
-import com.fallllllll.lipperwithkotlin.general_presenter.shot_likes_presenter.ShotLikesModule
+import com.fallllllll.lipperwithkotlin.generalpresenter.dolikes.LikeAndUnlikeModule
+import com.fallllllll.lipperwithkotlin.generalpresenter.likecount.ShotLikesModule
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListFragment
 import dagger.Component
 

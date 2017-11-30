@@ -4,8 +4,8 @@ import com.fallllllll.lipperwithkotlin.R
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_SORT
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TIME
 import com.fallllllll.lipperwithkotlin.core.constants.KEY_FILTER_TYPE
-import com.fallllllll.lipperwithkotlin.core.expandFunction.isTokenOutOfDate
 import com.fallllllll.lipperwithkotlin.core.expandFunction.commonChange
+import com.fallllllll.lipperwithkotlin.core.expandFunction.isTokenOutOfDate
 import com.fallllllll.lipperwithkotlin.core.presenter.BasePresenter
 import com.fallllllll.lipperwithkotlin.core.rxjava.RxBus
 import com.fallllllll.lipperwithkotlin.data.databean.eventBean.LoginEvent
@@ -13,7 +13,6 @@ import com.fallllllll.lipperwithkotlin.data.databean.eventBean.ShotsListFilterEv
 import com.fallllllll.lipperwithkotlin.data.local.datatank.DelegatesExt
 import com.fallllllll.lipperwithkotlin.data.local.user.UserManager
 import com.fallllllll.lipperwithkotlin.data.network.model.DribbbleModel
-import io.reactivex.rxkotlin.subscribeBy
 
 /**
  * Created by fall on 2017/6/18.
@@ -89,7 +88,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
         val userManager = UserManager.instance
         dribbbleModel.getUserInfo(userManager.access_token)
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     userManager.updateUser(it)
                     view.showUserUI(userManager.lipperUser)
                 }, {
@@ -106,7 +105,7 @@ class ShotsActivityPresenterImpl(private val dribbbleModel: DribbbleModel, priva
 
     private fun subscribeLoginEvent() {
         compositeDisposable.add(RxBus.get().toFlowable<LoginEvent>()
-                .subscribeBy({
+                .subscribe({
                     if (it.isLogin) {
                         view.showUserUI(UserManager.instance.lipperUser)
                     } else {

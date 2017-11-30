@@ -19,18 +19,21 @@ import android.graphics.Canvas.ALL_SAVE_FLAG
  * Created by fall on 2017/7/18/018.
  * GitHub :  https://github.com/348476129/LipperWithKotlin
  */
-class ArcLayout(context: Context, attributeSet: AttributeSet?, defStyle: Int) : FrameLayout(context, attributeSet, defStyle) {
+class ArcLayout : FrameLayout {
+
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
+    constructor(context: Context, attributeSet: AttributeSet?, defStyle: Int) : super(context, attributeSet, defStyle) {
+        setting = ArcLayoutSettings(context, attributeSet)
+        setting.elevation = ViewCompat.getElevation(this)
+    }
 
-    private val setting = ArcLayoutSettings(context, attributeSet)
+    private val setting: ArcLayoutSettings
     private var h = 0f
     private var w = 0f
     private val clipPath by lazy { createClipPath() }
 
-    init {
-        setting.elevation = ViewCompat.getElevation(this)
-    }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)

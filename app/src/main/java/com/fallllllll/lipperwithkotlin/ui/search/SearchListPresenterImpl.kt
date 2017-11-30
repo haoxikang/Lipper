@@ -8,7 +8,6 @@ import com.fallllllll.lipperwithkotlin.data.network.model.SearchModel
 import com.fallllllll.lipperwithkotlin.ui.shoslist.ShotsListContract
 import com.fallllllll.lipperwithkotlin.utils.changeLikeStatus
 import io.reactivex.disposables.Disposable
-import io.reactivex.rxkotlin.subscribeBy
 
 /**
  * Created by fall on 2017/7/6/006.
@@ -24,7 +23,7 @@ class SearchListPresenterImpl(val model: SearchModel, private val shotsListView:
         refreshDisposable = model.search(kewWord, SORT_POPULAR, "1")
                 .map { it.changeLikeStatus() }
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     if (it.isEmpty()) {
                         noDataLoad(R.string.search_no_data)
                     } else {
@@ -42,7 +41,7 @@ class SearchListPresenterImpl(val model: SearchModel, private val shotsListView:
         loadNextDisposable = model.search(kewWord, SORT_POPULAR, page.toString())
                 .map { it.changeLikeStatus() }
                 .commonChange()
-                .subscribeBy({
+                .subscribe({
                     if (it.size < per_page) {
                         loadLastPageDataFinish(it)
                     } else {
